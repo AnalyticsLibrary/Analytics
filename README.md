@@ -1,4 +1,4 @@
-## REFERENTIESET DATA-ANALYSE
+## Analytics Library
 ### Introductie
 
 Het GitHub project AnalyticsLibrary is ontstaan uit wens om kennisdeling omtrent data-analyse in domein van accountants, administratie en fiscaliteit beter vorm te geven. De initiërende partijen hebben daarbij bewust gekozen voor open source in de veronderstelling dat een brede groep professionals baat heeft bij, en bij wil dragen aan dit 'body of knowledge'.
