@@ -1,3 +1,5 @@
+<img src="https://github.com/AnalyticsLibrary/Analytics/blob/master/A_GENERAL/images/RDA_img.png"
+ alt="rda logo" title="logo" align="right" width="80" />
 ## Analytics Library
 ### Introductie
 
