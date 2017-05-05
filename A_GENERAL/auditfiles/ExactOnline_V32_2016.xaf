@@ -1,0 +1,4241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Created by Exact Online
+http://www.exact.com
+Created: 04/20/2017 16:17:16
+-->
+<auditfile xmlns="http://www.auditfiles.nl/XAF/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.auditfiles.nl/XAF/3.2 ..\xml\AuditfileFinancieel3.2.xsd">
+    <header>
+        <fiscalYear>2016</fiscalYear>
+        <startDate>2016-01-01</startDate>
+        <endDate>2016-12-31</endDate>
+        <curCode>EUR</curCode>
+        <dateCreated>2017-04-20</dateCreated>
+        <softwareDesc>Exact Online</softwareDesc>
+    </header>
+    <company>
+        <companyIdent>1</companyIdent>
+        <companyName>Toro Rosso BV</companyName>
+        <taxRegistrationCountry>NL</taxRegistrationCountry>
+        <taxRegIdent />
+        <streetAddress>
+            <streetname>De Fallastraat 3</streetname>
+            <city>Capelle aan den IJssel</city>
+            <postalCode>2901RG</postalCode>
+            <country>NL</country>
+        </streetAddress>
+        <postalAddress>
+            <streetname>De Fallastraat 3</streetname>
+            <city>Capelle aan den IJssel</city>
+            <postalCode>2901RG</postalCode>
+            <country>NL</country>
+        </postalAddress>
+        <customersSuppliers>
+            <customerSupplier>
+                <custSupID>1</custSupID>
+                <custSupName>ABC Producten &amp; Diensten B.V.</custSupName>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>B</custSupTp>
+                <streetAddress>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>10</custSupID>
+                <custSupName>Belastingdienst</custSupName>
+                <website>www.belastingdienst.nl</website>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <city>Apeldoorn</city>
+                    <country>NL</country>
+                </streetAddress>
+                <bankAccount>
+                    <bankAccNr>2445588</bankAccNr>
+                    <bankIdCd>PSTBNL21</bankIdCd>
+                </bankAccount>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>11</custSupID>
+                <custSupName>Mijn Magazijn B.V.</custSupName>
+                <telephone>070  3559269</telephone>
+                <commerceNr>271376310000</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <streetname>Westduinweg 262</streetname>
+                    <city>'S-GRAVENHAGE</city>
+                    <postalCode>2583AK</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>12</custSupID>
+                <custSupName>Warmtebedrijf Eneco Delft B.V.</custSupName>
+                <telephone>088  8953736</telephone>
+                <website>www.warmteindelft.nl</website>
+                <commerceNr>244773190000</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <streetname>G.H. Betzweg 1</streetname>
+                    <city>ROTTERDAM</city>
+                    <postalCode>3068AZ</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>13</custSupID>
+                <custSupName>Ziggo B.V.</custSupName>
+                <telephone>088  7170000</telephone>
+                <website>www.ziggo.nl</website>
+                <commerceNr>370267060000</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <streetname>Atoomweg 100</streetname>
+                    <city>UTRECHT</city>
+                    <postalCode>3542AB</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>14</custSupID>
+                <custSupName>Exact Software Nederland B.V.</custSupName>
+                <telephone>015-7115100</telephone>
+                <fax>015-7115010</fax>
+                <eMail>info.nl@exact.com</eMail>
+                <website>www.exact.com</website>
+                <commerceNr>27223120</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <taxRegIdent>NL007225994B01</taxRegIdent>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <streetname>Molengraaffsingel 33</streetname>
+                    <city>Delft</city>
+                    <postalCode>2629 JD</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+                <bankAccount>
+                    <bankAccNr>0500453233</bankAccNr>
+                    <bankIdCd>ABNANL2A</bankIdCd>
+                </bankAccount>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>17</custSupID>
+                <custSupName>Picasso</custSupName>
+                <contact>JH Picasso</contact>
+                <telephone>06 - 9585858585</telephone>
+                <website>www.picassoindustries.nl</website>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <streetname>Houtkade 3</streetname>
+                    <city>Venlo</city>
+                    <postalCode>5922</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+                <bankAccount>
+                    <bankAccNr>0123456789</bankAccNr>
+                    <bankIdCd>INGBNL2A</bankIdCd>
+                </bankAccount>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>18</custSupID>
+                <custSupName>Rakers Sport B.V.</custSupName>
+                <contact>TH de Boer</contact>
+                <telephone>071  1234567</telephone>
+                <eMail>info@rakerssport.nl</eMail>
+                <website>www.rakerssport.nl</website>
+                <commerceNr>32032746</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <streetname>Willem de Zwijgerlaan 352</streetname>
+                    <city>Amsterdam</city>
+                    <postalCode>1055RD</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+                <bankAccount>
+                    <bankAccNr>0123456789</bankAccNr>
+                </bankAccount>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>19</custSupID>
+                <custSupName>High Jumper</custSupName>
+                <contact>John Jump</contact>
+                <eMail>info@highjumpers.com</eMail>
+                <website>www.highjumpers.com</website>
+                <taxRegistrationCountry>CN</taxRegistrationCountry>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <streetname>21 Jumpstreet</streetname>
+                    <city>Beijing</city>
+                    <country>CN</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>20</custSupID>
+                <custSupName>Supersnacks</custSupName>
+                <contact>KJ ten Brakel</contact>
+                <eMail>info@supersnacks.nl</eMail>
+                <website>www.supersnacks.nl</website>
+                <commerceNr>32046575</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>B</custSupTp>
+                <streetAddress>
+                    <streetname>Droplaan 123</streetname>
+                    <city>Amstelveen</city>
+                    <postalCode>1189</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>21</custSupID>
+                <custSupName>Terrie Sport</custSupName>
+                <contact>Henk Bruinstra</contact>
+                <telephone>06 - 1234567788</telephone>
+                <eMail>info@terriesport.nl</eMail>
+                <website>www.terriesport.nl</website>
+                <commerceNr>32046575</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>B</custSupTp>
+                <streetAddress>
+                    <streetname>Dorpsstraat 32</streetname>
+                    <city>Leiden</city>
+                    <postalCode>2317</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>22</custSupID>
+                <custSupName>Fittsport BV</custSupName>
+                <contact>Karin Ballegooier</contact>
+                <telephone>073  2345678</telephone>
+                <website>www.fittsport.nl</website>
+                <commerceNr>55419755</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <streetname>Leyenseweg 235</streetname>
+                    <city>'s-Hertogenbosch</city>
+                    <postalCode>5222</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>23</custSupID>
+                <custSupName>Sportmagazijn</custSupName>
+                <contact>Karel Appel</contact>
+                <telephone>043 6765432</telephone>
+                <eMail>info@sportmagazijn.nl</eMail>
+                <website>www.sportmagazijnNL.com</website>
+                <commerceNr>24376124</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <streetname>Boerhavestraat 1a</streetname>
+                    <city>Maastricht</city>
+                    <postalCode>6216</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>24</custSupID>
+                <custSupName>Sportmart B.V.</custSupName>
+                <contact>Ellis Renners</contact>
+                <telephone>040-666677767</telephone>
+                <eMail>informatie@sportmartbv.nl</eMail>
+                <website>www.sportmart.nl</website>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <streetname>Dorpstraat</streetname>
+                    <city>Veldhoven</city>
+                    <postalCode>5509</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>25</custSupID>
+                <custSupName>Belgium Bouncers</custSupName>
+                <contact>Urbanus Servranckx</contact>
+                <taxRegistrationCountry>BE</taxRegistrationCountry>
+                <taxRegIdent>BE0407186105</taxRegIdent>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <streetname>Boomsteenseweg 755</streetname>
+                    <city>Antwerpen</city>
+                    <postalCode>2610</postalCode>
+                    <country>BE</country>
+                </streetAddress>
+                <bankAccount>
+                    <bankAccNr>0123456789</bankAccNr>
+                    <bankIdCd>FTSBNL2R</bankIdCd>
+                </bankAccount>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>26</custSupID>
+                <custSupName>King</custSupName>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <streetname></streetname>
+                    <city>CAPELLE AAN DEN IJSSEL</city>
+                    <postalCode></postalCode>
+                    <country>NL</country>
+                </streetAddress>
+                <bankAccount>
+                    <bankAccNr></bankAccNr>
+                </bankAccount>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>27</custSupID>
+                <custSupName>J bv</custSupName>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <streetname></streetname>
+                    <city>Rotterdam</city>
+                    <postalCode>2901 RG</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>28</custSupID>
+                <custSupName>testklant</custSupName>
+                <taxRegistrationCountry>BE</taxRegistrationCountry>
+                <taxRegIdent>NL814948030B01</taxRegIdent>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <country>BE</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>29</custSupID>
+                <custSupName>Villa Borghesia</custSupName>
+                <taxRegistrationCountry>IT</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <country>IT</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>30</custSupID>
+                <custSupName>Pantheon</custSupName>
+                <taxRegistrationCountry>IT</taxRegistrationCountry>
+                <custSupTp>B</custSupTp>
+                <streetAddress>
+                    <country>IT</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>31</custSupID>
+                <custSupName>Atomium</custSupName>
+                <taxRegistrationCountry>BE</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <country>BE</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>32</custSupID>
+                <custSupName>IT Alignment Associates</custSupName>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>B</custSupTp>
+                <streetAddress>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>33</custSupID>
+                <custSupName>Koroma</custSupName>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>B</custSupTp>
+                <streetAddress>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>34</custSupID>
+                <custSupName>deboer grafische industrie</custSupName>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <streetname>Van Nelleweg 1</streetname>
+                    <city>ROTTERDAM</city>
+                    <postalCode>3044 BC</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>35</custSupID>
+                <custSupName>CJIB</custSupName>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>S</custSupTp>
+                <streetAddress>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>36</custSupID>
+                <custSupName>Restaurant Fyra B.V.</custSupName>
+                <telephone>020  4283632</telephone>
+                <commerceNr>50093029</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <streetname>Noorderstraat 19 -23</streetname>
+                    <city>AMSTERDAM</city>
+                    <postalCode>1017 TR</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>37</custSupID>
+                <custSupName>Eccentrade B.V.</custSupName>
+                <telephone>070  3225353</telephone>
+                <website>www.eccentrade.com</website>
+                <commerceNr>61927465</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <streetname>Symonszstraat 17 A</streetname>
+                    <city>'S-GRAVENHAGE</city>
+                    <postalCode>2584 CW</postalCode>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>38</custSupID>
+                <custSupName>belastingdienst</custSupName>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>C</custSupTp>
+                <streetAddress>
+                    <country>NL</country>
+                </streetAddress>
+            </customerSupplier>
+            <customerSupplier>
+                <custSupID>000000</custSupID>
+                <custSupName>Toro Rosso BV</custSupName>
+                <commerceNr>123456</commerceNr>
+                <taxRegistrationCountry>NL</taxRegistrationCountry>
+                <custSupTp>O</custSupTp>
+                <streetAddress>
+                    <country>NL</country>
+                </streetAddress>
+                <bankAccount>
+                    <bankAccNr></bankAccNr>
+                    <bankIdCd></bankIdCd>
+                </bankAccount>
+                <bankAccount>
+                    <bankAccNr>10</bankAccNr>
+                </bankAccount>
+                <bankAccount>
+                    <bankAccNr>1111111111</bankAccNr>
+                    <bankIdCd>ABNANL2A</bankIdCd>
+                </bankAccount>
+                <bankAccount>
+                    <bankAccNr>473677091</bankAccNr>
+                </bankAccount>
+            </customerSupplier>
+        </customersSuppliers>
+        <generalLedger>
+            <ledgerAccount>
+                <accID>0310</accID>
+                <accDesc>Geplaatst kapitaal</accDesc>
+                <accTp>B</accTp>
+                <leadCode>11</leadCode>
+                <leadDescription>Materiële vaste activa</leadDescription>
+                <leadReference>BEivGokGea</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1101</accID>
+                <accDesc>473677091</accDesc>
+                <accTp>B</accTp>
+                <leadCode>16</leadCode>
+                <leadDescription>Liquide middelen</leadDescription>
+                <leadReference>BLimBanRba</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5110</accID>
+                <accDesc>Afschrijvingskosten gebouwen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>42</leadCode>
+                <leadDescription>Afschrijvingen</leadDescription>
+                <leadReference>WAfsAmvBeg</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5300</accID>
+                <accDesc>Resultaat verkoop activa</accDesc>
+                <accTp>P</accTp>
+                <leadCode>42</leadCode>
+                <leadDescription>Afschrijvingen</leadDescription>
+                <leadReference>WAfsRvmBei</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>8900</accID>
+                <accDesc>Overige bedrijfsopbrengsten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>30</leadCode>
+                <leadDescription>Omzet</leadDescription>
+                <leadReference>WOmzNopOlh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1670</accID>
+                <accDesc>Tussenrekening assurantiën</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BVorOvrOvk</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9405</accID>
+                <accDesc>Inkoopkortingen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>44</leadCode>
+                <leadDescription>Financieel opbrengsten en kosten</leadDescription>
+                <leadReference>WKprIebIeb</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0300</accID>
+                <accDesc>Gebouwen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>11</leadCode>
+                <leadDescription>Materiële vaste activa</leadDescription>
+                <leadReference>BMvaBegVvp</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1300</accID>
+                <accDesc>Debiteuren</accDesc>
+                <accTp>B</accTp>
+                <leadCode>14</leadCode>
+                <leadDescription>Kortlopende vorderingen</leadDescription>
+                <leadReference>BVorDebHad</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5130</accID>
+                <accDesc>Afschrijvingskosten bedrijfsinventaris</accDesc>
+                <accTp>P</accTp>
+                <leadCode>42</leadCode>
+                <leadDescription>Afschrijvingen</leadDescription>
+                <leadReference>WAfsAmvBei</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9400</accID>
+                <accDesc>Verkoopkortingen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>44</leadCode>
+                <leadDescription>Financieel opbrengsten en kosten</leadDescription>
+                <leadReference>WOmzKebVek</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>7100</accID>
+                <accDesc>Inkoopkosten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>40</leadCode>
+                <leadDescription>Kostprijs verkopen</leadDescription>
+                <leadReference>WKprInhInh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>3330</accID>
+                <accDesc>Voorraad supplementen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>13</leadCode>
+                <leadDescription>Voorraden</leadDescription>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5510</accID>
+                <accDesc>Exploitatiekosten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>43</leadCode>
+                <leadDescription>Overige bedrijfskosten</leadDescription>
+                <leadReference>WBedEemOee</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9415</accID>
+                <accDesc>Betalingsverschillen inkoop</accDesc>
+                <accTp>P</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>WBedAdlBet</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9410</accID>
+                <accDesc>Betalingsverschillen verkoop</accDesc>
+                <accTp>P</accTp>
+                <leadCode>43</leadCode>
+                <leadDescription>Overige bedrijfskosten</leadDescription>
+                <leadReference>WBedAdlBet</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>4040</accID>
+                <accDesc>Pensioenlasten</accDesc>
+                <accTp>P</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>WPerPenDpe</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0700</accID>
+                <accDesc>Eigen vermogen/Aandelenkapitaal</accDesc>
+                <accTp>B</accTp>
+                <leadCode>20</leadCode>
+                <leadDescription>Eigen vermogen</leadDescription>
+                <leadReference>BEivGokGea</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1500</accID>
+                <accDesc>Af te dragen BTW hoog</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BVorBtwTtv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>2200</accID>
+                <accDesc>Nog te ontvangen facturen/goederen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BSchOpaNto</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>3000</accID>
+                <accDesc>Voorraad handelsgoederen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>13</leadCode>
+                <leadDescription>Voorraden</leadDescription>
+                <leadReference>BVrdHanVoo</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9001</accID>
+                <accDesc>VAT test</accDesc>
+                <accTp>P</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>WKprInpInp</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>8320</accID>
+                <accDesc>Omzet outdoor sports</accDesc>
+                <accTp>P</accTp>
+                <leadCode>30</leadCode>
+                <leadDescription>Omzet</leadDescription>
+                <leadReference>WOmzNopOlh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>4900</accID>
+                <accDesc>Werkkostenregeling</accDesc>
+                <accTp>P</accTp>
+                <leadCode>41</leadCode>
+                <leadDescription>Personeelskosten</leadDescription>
+                <leadReference>WPerWkfOwr</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>8330</accID>
+                <accDesc>Omzet sports supplementen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>30</leadCode>
+                <leadDescription>Omzet</leadDescription>
+                <leadReference>WOmzNopOlh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>4901</accID>
+                <accDesc>Diverse personeelsbeloningen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>41</leadCode>
+                <leadDescription>Personeelskosten</leadDescription>
+                <leadReference>WPerOvpOvp</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0301</accID>
+                <accDesc>Afschrijving gebouwen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>11</leadCode>
+                <leadDescription>Materiële vaste activa</leadDescription>
+                <leadReference>BMvaBegCae</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9150</accID>
+                <accDesc>Resultaat correcties BTW aangifte</accDesc>
+                <accTp>P</accTp>
+                <leadCode>44</leadCode>
+                <leadDescription>Financieel opbrengsten en kosten</leadDescription>
+                <leadReference>WPerWkoCiB</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>7330</accID>
+                <accDesc>Kostprijs verkopen supplementen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>40</leadCode>
+                <leadDescription>Kostprijs verkopen</leadDescription>
+                <leadReference>WKprInhInh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>7400</accID>
+                <accDesc>Assemblage</accDesc>
+                <accTp>P</accTp>
+                <leadCode>40</leadCode>
+                <leadDescription>Kostprijs verkopen</leadDescription>
+                <leadReference>WKprKuwKuw</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0750</accID>
+                <accDesc>Overige reserve</accDesc>
+                <accTp>B</accTp>
+                <leadCode>20</leadCode>
+                <leadDescription>Eigen vermogen</leadDescription>
+                <leadReference>BEivOreOvw</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9200</accID>
+                <accDesc>Rekenverschillen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>44</leadCode>
+                <leadDescription>Financieel opbrengsten en kosten</leadDescription>
+                <leadReference>WOvbOvoOvo</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5590</accID>
+                <accDesc>Overige kosten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>43</leadCode>
+                <leadDescription>Overige bedrijfskosten</leadDescription>
+                <leadReference>WBedOrgOok</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1510</accID>
+                <accDesc>Af te dragen BTW laag</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BVorBtwTtv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>2000</accID>
+                <accDesc>Vraagposten</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BSchOpaNtb</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9300</accID>
+                <accDesc>Valutaverschillen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>44</leadCode>
+                <leadDescription>Financieel opbrengsten en kosten</leadDescription>
+                <leadReference>WFbeWisWis</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>2400</accID>
+                <accDesc>Goederen onderweg</accDesc>
+                <accTp>B</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>BVrdHanVoo</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0800</accID>
+                <accDesc>Voorziening pensioenen DGA</accDesc>
+                <accTp>B</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>BVrzVvpVpd</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9265</accID>
+                <accDesc>Activa afstoting resultaat</accDesc>
+                <accTp>P</accTp>
+                <leadCode>46</leadCode>
+                <leadDescription>Uitzonderlijke opbrengsten en kosten</leadDescription>
+                <leadReference>WAfsRvmBei</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>8310</accID>
+                <accDesc>Omzet indoor sports</accDesc>
+                <accTp>P</accTp>
+                <leadCode>30</leadCode>
+                <leadDescription>Omzet</leadDescription>
+                <leadReference>WOmzNopOlh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1000</accID>
+                <accDesc>Kas</accDesc>
+                <accTp>B</accTp>
+                <leadCode>16</leadCode>
+                <leadDescription>Liquide middelen</leadDescription>
+                <leadReference>BLimKasKas</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9270</accID>
+                <accDesc>Activa realisatie winst</accDesc>
+                <accTp>P</accTp>
+                <leadCode>46</leadCode>
+                <leadDescription>Uitzonderlijke opbrengsten en kosten</leadDescription>
+                <leadReference>WAfsRvmBei</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1599</accID>
+                <accDesc>Tussenrekening correcties BTW aangifte</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BVorBtwTtv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0860</accID>
+                <accDesc>Activa herwaarderingen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>20</leadCode>
+                <leadDescription>Eigen vermogen</leadDescription>
+                <leadReference>BEivHerHew</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0440</accID>
+                <accDesc>Bedrijfsinventaris</accDesc>
+                <accTp>B</accTp>
+                <leadCode>11</leadCode>
+                <leadDescription>Materiële vaste activa</leadDescription>
+                <leadReference>BMvaBeiVvp</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0420</accID>
+                <accDesc>Transport en vervoermiddelen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>11</leadCode>
+                <leadDescription>Materiële vaste activa</leadDescription>
+                <leadReference>BMvaTevVvp</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0485</accID>
+                <accDesc>Herwaardering bedrijfsinventaris</accDesc>
+                <accTp>B</accTp>
+                <leadCode>11</leadCode>
+                <leadDescription>Materiële vaste activa</leadDescription>
+                <leadReference>BMvaBeiCuh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1830</accID>
+                <accDesc>vakantiegeld</accDesc>
+                <accTp>B</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>BSchSalTvg</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>4100</accID>
+                <accDesc>Sociale lasten</accDesc>
+                <accTp>P</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>WPerSolPsv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>8110</accID>
+                <accDesc>Omzet buitenland leveringen buiten de EU</accDesc>
+                <accTp>P</accTp>
+                <leadCode>30</leadCode>
+                <leadDescription>Omzet</leadDescription>
+                <leadReference>WOmzNohOln</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5403</accID>
+                <accDesc>Kosten ontwikkeling</accDesc>
+                <accTp>P</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>WBedOrgOeo</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1100</accID>
+                <accDesc>Bank</accDesc>
+                <accTp>B</accTp>
+                <leadCode>16</leadCode>
+                <leadDescription>Liquide middelen</leadDescription>
+                <leadReference>BLimBanRba</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0110</accID>
+                <accDesc>Personeelsactiviteiten "buitenshuis"</accDesc>
+                <accTp>B</accTp>
+                <leadCode>10</leadCode>
+                <leadDescription>Immateriële vaste activa</leadDescription>
+                <leadReference>BMvaObeVvp</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0480</accID>
+                <accDesc>Herwaarderingen transport- en vervoersmiddelen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>11</leadCode>
+                <leadDescription>Materiële vaste activa</leadDescription>
+                <leadReference>BMvaTevCuh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1700</accID>
+                <accDesc>Loonheffingen</accDesc>
+                <accTp>B</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>BSchLheAfb</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9275</accID>
+                <accDesc>Activa realisatie verlies</accDesc>
+                <accTp>P</accTp>
+                <leadCode>46</leadCode>
+                <leadDescription>Uitzonderlijke opbrengsten en kosten</leadDescription>
+                <leadReference>WAfsRvmBei</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>8010</accID>
+                <accDesc>Omzet binnenland laag tarief</accDesc>
+                <accTp>P</accTp>
+                <leadCode>30</leadCode>
+                <leadDescription>Omzet</leadDescription>
+                <leadReference>WOmzNohOli</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1520</accID>
+                <accDesc>Te vorderen BTW</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BVorBtwTtv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>2300</accID>
+                <accDesc>uitgestelde omzet</accDesc>
+                <accTp>B</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>BSchOvsOvs</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9260</accID>
+                <accDesc>Activa verkoop resultaat</accDesc>
+                <accTp>P</accTp>
+                <leadCode>46</leadCode>
+                <leadDescription>Uitzonderlijke opbrengsten en kosten</leadDescription>
+                <leadReference>WAfsRvmBei</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>4010</accID>
+                <accDesc>Vakantiegeld</accDesc>
+                <accTp>P</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>WPerLesVag</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5120</accID>
+                <accDesc>Afschrijvingskosten transport en vervoermiddelen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>42</leadCode>
+                <leadDescription>Afschrijvingen</leadDescription>
+                <leadReference>WAfsAmvTev</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1512</accID>
+                <accDesc>Af te dragen BTW verwerving goederen binnen EU</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BVorBtwTtv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0450</accID>
+                <accDesc>Afschrijving bedrijfsinventaris</accDesc>
+                <accTp>B</accTp>
+                <leadCode>11</leadCode>
+                <leadDescription>Materiële vaste activa</leadDescription>
+                <leadReference>BMvaBeiCae</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1600</accID>
+                <accDesc>Crediteuren</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BSchCreHac</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9000</accID>
+                <accDesc>test grootboekrekening</accDesc>
+                <accTp>P</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>WKprInpInp</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>2100</accID>
+                <accDesc>Netto lonen</accDesc>
+                <accTp>B</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>BSchSalNet</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1310</accID>
+                <accDesc>Voorziening oninbare debiteuren</accDesc>
+                <accTp>B</accTp>
+                <leadCode>14</leadCode>
+                <leadDescription>Kortlopende vorderingen</leadDescription>
+                <leadReference>BVorDebVdd</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>4000</accID>
+                <accDesc>Bruto lonen</accDesc>
+                <accTp>P</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>WPerLesLon</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>7310</accID>
+                <accDesc>Kostprijs verkopen indoor sports</accDesc>
+                <accTp>P</accTp>
+                <leadCode>40</leadCode>
+                <leadDescription>Kostprijs verkopen</leadDescription>
+                <leadReference>WKprInhInh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0430</accID>
+                <accDesc>Afschrijving transport en vervoermiddelen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>11</leadCode>
+                <leadDescription>Materiële vaste activa</leadDescription>
+                <leadReference>BMvaTevCae</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>7300</accID>
+                <accDesc>Kostprijs verkopen overig</accDesc>
+                <accTp>P</accTp>
+                <leadCode>40</leadCode>
+                <leadDescription>Kostprijs verkopen</leadDescription>
+                <leadReference>WKprInhInh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>3320</accID>
+                <accDesc>Voorraad outdoor sports</accDesc>
+                <accTp>B</accTp>
+                <leadCode>13</leadCode>
+                <leadDescription>Voorraden</leadDescription>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1295</accID>
+                <accDesc>Niet toegewezen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>16</leadCode>
+                <leadDescription>Liquide middelen</leadDescription>
+                <leadReference>BSchOvsOvs</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5560</accID>
+                <accDesc>Bankkosten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>43</leadCode>
+                <leadDescription>Overige bedrijfskosten</leadDescription>
+                <leadReference>WBedAdlBan</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>3700</accID>
+                <accDesc>Voorraadherwaardering</accDesc>
+                <accTp>B</accTp>
+                <leadCode>13</leadCode>
+                <leadDescription>Voorraden</leadDescription>
+                <leadReference>BVrdHanHvv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>7200</accID>
+                <accDesc>Prijsverschillen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>40</leadCode>
+                <leadDescription>Kostprijs verkopen</leadDescription>
+                <leadReference>WKprInhInh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>3600</accID>
+                <accDesc>Goederen in bewerking</accDesc>
+                <accTp>B</accTp>
+                <leadCode>13</leadCode>
+                <leadDescription>Voorraden</leadDescription>
+                <leadReference>BVrdHalVoo</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5530</accID>
+                <accDesc>Autokosten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>43</leadCode>
+                <leadDescription>Overige bedrijfskosten</leadDescription>
+                <leadReference>WBedAutOak</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>005</accID>
+                <accDesc>Goodwill</accDesc>
+                <accTp>B</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>BIvaGooCae</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>8000</accID>
+                <accDesc>Omzet binnenland hoog tarief</accDesc>
+                <accTp>P</accTp>
+                <leadCode>30</leadCode>
+                <leadDescription>Omzet</leadDescription>
+                <leadReference>WOmzNohOle</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>8020</accID>
+                <accDesc>Omzet binnenland nultarief</accDesc>
+                <accTp>P</accTp>
+                <leadCode>30</leadCode>
+                <leadDescription>Omzet</leadDescription>
+                <leadReference>WOmzNohOli</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>0770</accID>
+                <accDesc>Onverdeeld resultaat over dit jaar</accDesc>
+                <accTp>B</accTp>
+                <leadCode>20</leadCode>
+                <leadDescription>Eigen vermogen</leadDescription>
+                <leadReference>BEivOreRvh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1102</accID>
+                <accDesc>bank test</accDesc>
+                <accTp>B</accTp>
+                <leadCode>16</leadCode>
+                <leadDescription>Liquide middelen</leadDescription>
+                <leadReference>BLimBanRba</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>3310</accID>
+                <accDesc>Voorraad indoor sports</accDesc>
+                <accTp>B</accTp>
+                <leadCode>13</leadCode>
+                <leadDescription>Voorraden</leadDescription>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9002</accID>
+                <accDesc>AP test</accDesc>
+                <accTp>B</accTp>
+                <leadCode />
+                <leadDescription />
+                <leadReference>BSchCreHac</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1290</accID>
+                <accDesc>Kruisposten liquide middelen</accDesc>
+                <accTp>B</accTp>
+                <leadCode>16</leadCode>
+                <leadDescription>Liquide middelen</leadDescription>
+                <leadReference>BLimKruSto</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1511</accID>
+                <accDesc>Af te dragen BTW levering buiten EU (invoer)</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BVorBtwTtv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>8100</accID>
+                <accDesc>Omzet buitenland intracommunautair</accDesc>
+                <accTp>P</accTp>
+                <leadCode>30</leadCode>
+                <leadDescription>Omzet</leadDescription>
+                <leadReference>WOmzNohOle</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5550</accID>
+                <accDesc>Algemene kosten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>43</leadCode>
+                <leadDescription>Overige bedrijfskosten</leadDescription>
+                <leadReference>WBedAlkOal</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>2900</accID>
+                <accDesc>Tussenrekening beginbalans</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BSchOvsOvs</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>9250</accID>
+                <accDesc>Resultaat activa herwaarderingen</accDesc>
+                <accTp>P</accTp>
+                <leadCode>46</leadCode>
+                <leadDescription>Uitzonderlijke opbrengsten en kosten</leadDescription>
+                <leadReference>WAfsOwmBeg</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>1513</accID>
+                <accDesc>BTW prive-gebruik</accDesc>
+                <accTp>B</accTp>
+                <leadCode>22</leadCode>
+                <leadDescription>Schulden</leadDescription>
+                <leadReference>BVorBtwTtv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5520</accID>
+                <accDesc>Kantoorkosten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>43</leadCode>
+                <leadDescription>Overige bedrijfskosten</leadDescription>
+                <leadReference>WBedKanOka</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>7320</accID>
+                <accDesc>Kostprijs verkopen outdoor sports</accDesc>
+                <accTp>P</accTp>
+                <leadCode>40</leadCode>
+                <leadDescription>Kostprijs verkopen</leadDescription>
+                <leadReference>WKprInhInh</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5500</accID>
+                <accDesc>Huisvestingskosten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>43</leadCode>
+                <leadDescription>Overige bedrijfskosten</leadDescription>
+                <leadReference>WBedHuiOhv</leadReference>
+            </ledgerAccount>
+            <ledgerAccount>
+                <accID>5540</accID>
+                <accDesc>Verkoopkosten</accDesc>
+                <accTp>P</accTp>
+                <leadCode>43</leadCode>
+                <leadDescription>Overige bedrijfskosten</leadDescription>
+                <leadReference>WBedVkkOvr</leadReference>
+            </ledgerAccount>
+            <basics>
+                <basic>
+                    <basicType>02</basicType>
+                    <basicID>15</basicID>
+                    <basicDesc>15</basicDesc>
+                </basic>
+                <basic>
+                    <basicType>02</basicType>
+                    <basicID>20</basicID>
+                    <basicDesc>20</basicDesc>
+                </basic>
+                <basic>
+                    <basicType>02</basicType>
+                    <basicID>25</basicID>
+                    <basicDesc>25</basicDesc>
+                </basic>
+                <basic>
+                    <basicType>02</basicType>
+                    <basicID>30</basicID>
+                    <basicDesc>30</basicDesc>
+                </basic>
+                <basic>
+                    <basicType>30</basicType>
+                    <basicID>1849800</basicID>
+                    <basicDesc>joris.joppe@gmail.com</basicDesc>
+                </basic>
+            </basics>
+        </generalLedger>
+        <vatCodes>
+            <vatCode>
+                <vatID>0</vatID>
+                <vatDesc>Geen BTW</vatDesc>
+            </vatCode>
+            <vatCode>
+                <vatID>1</vatID>
+                <vatDesc>BTW laag tarief, exclusief</vatDesc>
+                <vatToPayAccID>1510</vatToPayAccID>
+                <vatToClaimAccID>1520</vatToClaimAccID>
+            </vatCode>
+            <vatCode>
+                <vatID>10</vatID>
+                <vatDesc>Verwerving binnen de EU</vatDesc>
+                <vatToPayAccID>1512</vatToPayAccID>
+                <vatToClaimAccID>1520</vatToClaimAccID>
+            </vatCode>
+            <vatCode>
+                <vatID>11</vatID>
+                <vatDesc>BTW prive gebruik</vatDesc>
+                <vatToPayAccID>1513</vatToPayAccID>
+                <vatToClaimAccID>1520</vatToClaimAccID>
+            </vatCode>
+            <vatCode>
+                <vatID>12</vatID>
+                <vatDesc>BTW overige tarieven</vatDesc>
+                <vatToPayAccID>1500</vatToPayAccID>
+                <vatToClaimAccID>1520</vatToClaimAccID>
+            </vatCode>
+            <vatCode>
+                <vatID>2</vatID>
+                <vatDesc>BTW hoog tarief, exclusief</vatDesc>
+                <vatToPayAccID>1500</vatToPayAccID>
+                <vatToClaimAccID>1520</vatToClaimAccID>
+            </vatCode>
+            <vatCode>
+                <vatID>20</vatID>
+                <vatDesc>BTW 0% (alleen grondslag)</vatDesc>
+            </vatCode>
+            <vatCode>
+                <vatID>3</vatID>
+                <vatDesc>BTW laag tarief, inclusief</vatDesc>
+                <vatToPayAccID>1510</vatToPayAccID>
+                <vatToClaimAccID>1520</vatToClaimAccID>
+            </vatCode>
+            <vatCode>
+                <vatID>4</vatID>
+                <vatDesc>BTW hoog tarief, inclusief</vatDesc>
+                <vatToPayAccID>1500</vatToPayAccID>
+                <vatToClaimAccID>1520</vatToClaimAccID>
+            </vatCode>
+            <vatCode>
+                <vatID>5</vatID>
+                <vatDesc>BTW Verlegd</vatDesc>
+                <vatToPayAccID>1500</vatToPayAccID>
+                <vatToClaimAccID>1520</vatToClaimAccID>
+            </vatCode>
+            <vatCode>
+                <vatID>6</vatID>
+                <vatDesc>Verkoop buiten de EU</vatDesc>
+            </vatCode>
+            <vatCode>
+                <vatID>7</vatID>
+                <vatDesc>Verkoop binnen de EU</vatDesc>
+            </vatCode>
+            <vatCode>
+                <vatID>8</vatID>
+                <vatDesc>Installatie/televerkoop in de EU</vatDesc>
+            </vatCode>
+            <vatCode>
+                <vatID>9</vatID>
+                <vatDesc>Verwerving buiten de EU (invoer)</vatDesc>
+                <vatToPayAccID>1511</vatToPayAccID>
+                <vatToClaimAccID>1520</vatToClaimAccID>
+            </vatCode>
+        </vatCodes>
+        <periods>
+            <period>
+                <periodNumber>1</periodNumber>
+                <startDatePeriod>2016-01-01</startDatePeriod>
+                <endDatePeriod>2016-01-31</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>2</periodNumber>
+                <startDatePeriod>2016-02-01</startDatePeriod>
+                <endDatePeriod>2016-02-29</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>3</periodNumber>
+                <startDatePeriod>2016-03-01</startDatePeriod>
+                <endDatePeriod>2016-03-31</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>4</periodNumber>
+                <startDatePeriod>2016-04-01</startDatePeriod>
+                <endDatePeriod>2016-04-30</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>5</periodNumber>
+                <startDatePeriod>2016-05-01</startDatePeriod>
+                <endDatePeriod>2016-05-31</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>6</periodNumber>
+                <startDatePeriod>2016-06-01</startDatePeriod>
+                <endDatePeriod>2016-06-30</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>7</periodNumber>
+                <startDatePeriod>2016-07-01</startDatePeriod>
+                <endDatePeriod>2016-07-31</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>8</periodNumber>
+                <startDatePeriod>2016-08-01</startDatePeriod>
+                <endDatePeriod>2016-08-31</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>9</periodNumber>
+                <startDatePeriod>2016-09-01</startDatePeriod>
+                <endDatePeriod>2016-09-30</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>10</periodNumber>
+                <startDatePeriod>2016-10-01</startDatePeriod>
+                <endDatePeriod>2016-10-31</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>11</periodNumber>
+                <startDatePeriod>2016-11-01</startDatePeriod>
+                <endDatePeriod>2016-11-30</endDatePeriod>
+            </period>
+            <period>
+                <periodNumber>12</periodNumber>
+                <startDatePeriod>2016-12-01</startDatePeriod>
+                <endDatePeriod>2016-12-31</endDatePeriod>
+            </period>
+        </periods>
+        <transactions>
+            <linesCount>167</linesCount>
+            <totalDebit>999954.06</totalDebit>
+            <totalCredit>999954.06</totalCredit>
+            <journal>
+                <jrnID>10</jrnID>
+                <desc>Kasboek</desc>
+                <jrnTp>C</jrnTp>
+                <offsetAccID>1000</offsetAccID>
+                <transaction>
+                    <nr>16100001</nr>
+                    <periodNumber>1</periodNumber>
+                    <trDt>2016-02-15</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>0300</accID>
+                        <docRef />
+                        <effDate>2016-02-15</effDate>
+                        <amnt>15000.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-02-15</effDate>
+                        <amnt>15000.00</amnt>
+                        <amntTp>C</amntTp>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16100002</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-03-03</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-03-03</effDate>
+                        <desc>Partij tweedehands trampolines - contant</desc>
+                        <amnt>15000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>18</custSupID>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>1520</accID>
+                        <docRef />
+                        <effDate>2016-03-03</effDate>
+                        <desc>Partij tweedehands trampolines - contant</desc>
+                        <amnt>2603.31</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>18</custSupID>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>0.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>1:3</nr>
+                        <accID>7320</accID>
+                        <docRef />
+                        <effDate>2016-03-03</effDate>
+                        <desc>Partij tweedehands trampolines - contant</desc>
+                        <amnt>12396.69</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>18</custSupID>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>2603.31</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16100003</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-03-26</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-03-26</effDate>
+                        <desc>testboeking negatieve kas</desc>
+                        <amnt>35000.00</amnt>
+                        <amntTp>C</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>8000</accID>
+                        <docRef />
+                        <effDate>2016-03-26</effDate>
+                        <desc>testboeking negatieve kas</desc>
+                        <amnt>35000.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16100004</nr>
+                    <periodNumber>4</periodNumber>
+                    <trDt>2016-04-13</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-04-13</effDate>
+                        <desc>nieuwe keuken</desc>
+                        <amnt>7500.00</amnt>
+                        <amntTp>C</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>7100</accID>
+                        <docRef />
+                        <effDate>2016-04-13</effDate>
+                        <desc>nieuwe keuken</desc>
+                        <amnt>7500.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16100005</nr>
+                    <periodNumber>5</periodNumber>
+                    <trDt>2016-05-05</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>witwassen drugsgeld</desc>
+                        <amnt>4000.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>8010</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>witwassen drugsgeld</desc>
+                        <amnt>4000.00</amnt>
+                        <amntTp>C</amntTp>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16100006</nr>
+                    <periodNumber>5</periodNumber>
+                    <trDt>2016-05-05</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>nachtclub</desc>
+                        <amnt>7500.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>4901</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>nachtclub</desc>
+                        <amnt>7500.00</amnt>
+                        <amntTp>C</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>Dom Perignon 1995 “White Gold Jeroboam”</desc>
+                        <amnt>4840.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>2:2</nr>
+                        <accID>1520</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>Dom Perignon 1995 “White Gold Jeroboam”</desc>
+                        <amnt>840.00</amnt>
+                        <amntTp>C</amntTp>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>0.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>2:3</nr>
+                        <accID>4900</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>Dom Perignon 1995 “White Gold Jeroboam”</desc>
+                        <amnt>4000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>840.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16100007</nr>
+                    <periodNumber>6</periodNumber>
+                    <trDt>2016-06-03</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-06-03</effDate>
+                        <amnt>10000.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>1500</accID>
+                        <docRef />
+                        <effDate>2016-06-03</effDate>
+                        <amnt>1735.54</amnt>
+                        <amntTp>C</amntTp>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>0.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>1:3</nr>
+                        <accID>8000</accID>
+                        <docRef />
+                        <effDate>2016-06-03</effDate>
+                        <amnt>8264.46</amnt>
+                        <amntTp>C</amntTp>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>1735.54</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16100008</nr>
+                    <periodNumber>7</periodNumber>
+                    <trDt>2016-07-24</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-07-24</effDate>
+                        <amnt>10350.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>1500</accID>
+                        <docRef />
+                        <effDate>2016-07-24</effDate>
+                        <amnt>1796.28</amnt>
+                        <amntTp>C</amntTp>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>0.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>1:3</nr>
+                        <accID>4901</accID>
+                        <docRef />
+                        <effDate>2016-07-24</effDate>
+                        <amnt>8553.72</amnt>
+                        <amntTp>C</amntTp>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>1796.28</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16100009</nr>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-31</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1000</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>1452.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>1520</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>252.00</amnt>
+                        <amntTp>C</amntTp>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>0.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>1:3</nr>
+                        <accID>4900</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>1200.00</amnt>
+                        <amntTp>C</amntTp>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>252.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                </transaction>
+            </journal>
+            <journal>
+                <jrnID>20</jrnID>
+                <desc>Bankboek</desc>
+                <jrnTp>B</jrnTp>
+                <offsetAccID>1100</offsetAccID>
+                <bankAccNr>1111111111</bankAccNr>
+                <transaction>
+                    <nr>16200002</nr>
+                    <periodNumber>1</periodNumber>
+                    <trDt>2016-02-15</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1100</accID>
+                        <docRef />
+                        <effDate>2016-02-15</effDate>
+                        <amnt>6500.00</amnt>
+                        <amntTp>C</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>2100</accID>
+                        <docRef />
+                        <effDate>2016-02-15</effDate>
+                        <amnt>6500.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16200003</nr>
+                    <periodNumber>3</periodNumber>
+                    <trDt>2016-03-14</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1100</accID>
+                        <docRef />
+                        <effDate>2016-03-14</effDate>
+                        <desc>ontvangst</desc>
+                        <amnt>10000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>22</custSupID>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-03-14</effDate>
+                        <desc>ontvangst</desc>
+                        <amnt>10000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16200004</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-26</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1100</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <amnt>6500.00</amnt>
+                        <amntTp>C</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>2100</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <amnt>6500.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16200005</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-03-28</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1100</accID>
+                        <docRef />
+                        <effDate>2016-03-28</effDate>
+                        <desc>testboeking</desc>
+                        <amnt>391842.46</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>33</custSupID>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-03-28</effDate>
+                        <desc>testboeking</desc>
+                        <amnt>391842.46</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>33</custSupID>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16200006</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-03-28</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1100</accID>
+                        <docRef />
+                        <effDate>2016-03-28</effDate>
+                        <amnt>1000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>35</custSupID>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>1600</accID>
+                        <docRef />
+                        <effDate>2016-03-28</effDate>
+                        <amnt>1000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>35</custSupID>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16200007</nr>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-30</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1100</accID>
+                        <docRef />
+                        <effDate>2016-10-30</effDate>
+                        <amnt>11162.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>1290</accID>
+                        <docRef />
+                        <effDate>2016-10-30</effDate>
+                        <amnt>11162.00</amnt>
+                        <amntTp>C</amntTp>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16200008</nr>
+                    <periodNumber>11</periodNumber>
+                    <trDt>2016-12-05</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1100</accID>
+                        <docRef />
+                        <effDate>2016-12-05</effDate>
+                        <amnt>2300.00</amnt>
+                        <amntTp>C</amntTp>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>2100</accID>
+                        <docRef />
+                        <effDate>2016-12-05</effDate>
+                        <amnt>2300.00</amnt>
+                        <amntTp>D</amntTp>
+                    </trLine>
+                </transaction>
+            </journal>
+            <journal>
+                <jrnID>21</jrnID>
+                <desc>473677091</desc>
+                <jrnTp>B</jrnTp>
+                <offsetAccID>1101</offsetAccID>
+                <bankAccNr>473677091</bankAccNr>
+            </journal>
+            <journal>
+                <jrnID>22</jrnID>
+                <desc>bank test</desc>
+                <jrnTp>B</jrnTp>
+                <offsetAccID>1102</offsetAccID>
+                <bankAccNr>0444144803</bankAccNr>
+            </journal>
+            <journal>
+                <jrnID>60</jrnID>
+                <desc>Inkoopboek</desc>
+                <jrnTp>P</jrnTp>
+                <offsetAccID>1600</offsetAccID>
+                <transaction>
+                    <nr>16600001</nr>
+                    <desc>PC privé project</desc>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-29</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1600</accID>
+                        <docRef />
+                        <effDate>2016-02-29</effDate>
+                        <desc>PC privé project</desc>
+                        <amnt>4000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>32</custSupID>
+                        <invRef>16600001</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4901</accID>
+                        <docRef />
+                        <effDate>2016-02-29</effDate>
+                        <desc>PC privé project</desc>
+                        <amnt>3305.79</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>32</custSupID>
+                        <invRef>16600001</invRef>
+                        <vat>
+                            <vatID>4</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>694.21</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1520</accID>
+                        <docRef />
+                        <effDate>2016-02-29</effDate>
+                        <desc>PC privé project</desc>
+                        <amnt>694.21</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>32</custSupID>
+                        <invRef>16600001</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16600002</nr>
+                    <desc>Boekstuknummer: 16600002</desc>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-28</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1600</accID>
+                        <docRef>16600002</docRef>
+                        <effDate>2016-02-28</effDate>
+                        <desc>Boekstuknummer: 16600002</desc>
+                        <amnt>12100.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>19</custSupID>
+                        <invRef>16600002</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>7310</accID>
+                        <docRef>16600002</docRef>
+                        <effDate>2016-02-28</effDate>
+                        <desc>test BTL BTW afwijkend</desc>
+                        <amnt>10000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>19</custSupID>
+                        <invRef>16600002</invRef>
+                        <vat>
+                            <vatID>4</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>2100.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1520</accID>
+                        <docRef>16600002</docRef>
+                        <effDate>2016-02-28</effDate>
+                        <desc>Boekstuknummer: 16600002</desc>
+                        <amnt>2100.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>19</custSupID>
+                        <invRef>16600002</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16600003</nr>
+                    <desc>Boekstuknummer: 16600003</desc>
+                    <periodNumber>4</periodNumber>
+                    <trDt>2016-04-25</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1600</accID>
+                        <docRef>16600003</docRef>
+                        <effDate>2016-04-25</effDate>
+                        <desc>Boekstuknummer: 16600003</desc>
+                        <amnt>4000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>12</custSupID>
+                        <invRef>16600003</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4900</accID>
+                        <docRef>16600003</docRef>
+                        <effDate>2016-04-25</effDate>
+                        <desc>Bedrijfsfeest</desc>
+                        <amnt>2305.78</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>12</custSupID>
+                        <invRef>16600003</invRef>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>484.22</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>4901</accID>
+                        <docRef>16600003</docRef>
+                        <effDate>2016-04-25</effDate>
+                        <desc>Aquariumvergoeding</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>12</custSupID>
+                        <invRef>16600003</invRef>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>210.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1520</accID>
+                        <docRef>16600003</docRef>
+                        <effDate>2016-04-25</effDate>
+                        <desc>Boekstuknummer: 16600003</desc>
+                        <amnt>694.22</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>12</custSupID>
+                        <invRef>16600003</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16600004</nr>
+                    <desc>Factuur: 16600004</desc>
+                    <periodNumber>1</periodNumber>
+                    <trDt>2016-01-12</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1600</accID>
+                        <docRef>16600004</docRef>
+                        <effDate>2016-01-12</effDate>
+                        <desc>Factuur: 16600004</desc>
+                        <amnt>6000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>33</custSupID>
+                        <invRef>16600004</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4901</accID>
+                        <docRef>16600004</docRef>
+                        <effDate>2016-01-12</effDate>
+                        <desc>Verhuiskosten</desc>
+                        <amnt>4958.68</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>33</custSupID>
+                        <invRef>16600004</invRef>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>1041.32</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1520</accID>
+                        <docRef>16600004</docRef>
+                        <effDate>2016-01-12</effDate>
+                        <desc>Factuur: 16600004</desc>
+                        <amnt>1041.32</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>33</custSupID>
+                        <invRef>16600004</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16600005</nr>
+                    <desc>Buitenlandse factuur met BTW</desc>
+                    <periodNumber>5</periodNumber>
+                    <trDt>2016-05-05</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1600</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>Buitenlandse factuur met BTW</desc>
+                        <amnt>12000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>30</custSupID>
+                        <invRef>16600005</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>7310</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>Buitenlandse factuur met BTW</desc>
+                        <amnt>9917.36</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>30</custSupID>
+                        <invRef>16600005</invRef>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>2082.64</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1520</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>Buitenlandse factuur met BTW</desc>
+                        <amnt>2082.64</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>30</custSupID>
+                        <invRef>16600005</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16600006</nr>
+                    <desc>Boekstuknummer: 16600006</desc>
+                    <periodNumber>8</periodNumber>
+                    <trDt>2016-08-14</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1600</accID>
+                        <docRef>16600006</docRef>
+                        <effDate>2016-08-14</effDate>
+                        <desc>Boekstuknummer: 16600006</desc>
+                        <amnt>12000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>20</custSupID>
+                        <invRef>16600006</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4901</accID>
+                        <docRef>16600006</docRef>
+                        <effDate>2016-08-14</effDate>
+                        <desc>Vakantietrip</desc>
+                        <amnt>9917.36</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>20</custSupID>
+                        <invRef>16600006</invRef>
+                        <vat>
+                            <vatID>4</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>2082.64</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1520</accID>
+                        <docRef>16600006</docRef>
+                        <effDate>2016-08-14</effDate>
+                        <desc>Boekstuknummer: 16600006</desc>
+                        <amnt>2082.64</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>20</custSupID>
+                        <invRef>16600006</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16600007</nr>
+                    <desc>IPAD</desc>
+                    <periodNumber>8</periodNumber>
+                    <trDt>2016-08-20</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1600</accID>
+                        <docRef />
+                        <effDate>2016-08-20</effDate>
+                        <desc>IPAD</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>32</custSupID>
+                        <invRef>16600007</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4000</accID>
+                        <docRef />
+                        <effDate>2016-08-20</effDate>
+                        <desc>IPAD</desc>
+                        <amnt>826.45</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>32</custSupID>
+                        <invRef>16600007</invRef>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>173.55</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1520</accID>
+                        <docRef />
+                        <effDate>2016-08-20</effDate>
+                        <desc>IPAD</desc>
+                        <amnt>173.55</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>32</custSupID>
+                        <invRef>16600007</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16600008</nr>
+                    <desc>aankoop pyrolyse machihne</desc>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-18</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1600</accID>
+                        <docRef />
+                        <effDate>2016-10-18</effDate>
+                        <desc>aankoop pyrolyse machihne</desc>
+                        <amnt>10000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>32</custSupID>
+                        <invRef>16600008</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>0110</accID>
+                        <docRef />
+                        <effDate>2016-10-18</effDate>
+                        <desc>aankoop pyrolyse machihne</desc>
+                        <amnt>8264.46</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>32</custSupID>
+                        <invRef>16600008</invRef>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>1735.54</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1520</accID>
+                        <docRef />
+                        <effDate>2016-10-18</effDate>
+                        <desc>aankoop pyrolyse machihne</desc>
+                        <amnt>1735.54</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>32</custSupID>
+                        <invRef>16600008</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16600009</nr>
+                    <desc>LED armaturen</desc>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-18</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1600</accID>
+                        <docRef />
+                        <effDate>2016-10-18</effDate>
+                        <desc>LED armaturen</desc>
+                        <amnt>1800.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>33</custSupID>
+                        <invRef>16600009</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>0300</accID>
+                        <docRef />
+                        <effDate>2016-10-18</effDate>
+                        <desc>LED armaturen</desc>
+                        <amnt>1487.60</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>33</custSupID>
+                        <invRef>16600009</invRef>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>312.40</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1520</accID>
+                        <docRef />
+                        <effDate>2016-10-18</effDate>
+                        <desc>LED armaturen</desc>
+                        <amnt>312.40</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>33</custSupID>
+                        <invRef>16600009</invRef>
+                    </trLine>
+                </transaction>
+            </journal>
+            <journal>
+                <jrnID>70</jrnID>
+                <desc>Verkoopboek</desc>
+                <jrnTp>S</jrnTp>
+                <offsetAccID>1300</offsetAccID>
+                <transaction>
+                    <nr>16700001</nr>
+                    <desc>foutieve BTW</desc>
+                    <periodNumber>1</periodNumber>
+                    <trDt>2016-01-28</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-01-28</effDate>
+                        <desc>foutieve BTW</desc>
+                        <amnt>8000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>1</custSupID>
+                        <invRef>16700001</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8000</accID>
+                        <docRef />
+                        <effDate>2016-01-28</effDate>
+                        <desc>foutieve BTW</desc>
+                        <amnt>7547.17</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>1</custSupID>
+                        <invRef>16700001</invRef>
+                        <vat>
+                            <vatID>3</vatID>
+                            <vatPerc>6.000</vatPerc>
+                            <vatAmnt>452.83</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1510</accID>
+                        <docRef />
+                        <effDate>2016-01-28</effDate>
+                        <desc>foutieve BTW</desc>
+                        <amnt>452.83</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>1</custSupID>
+                        <invRef>16700001</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16700002</nr>
+                    <desc>Verkooporder eerste kwartaal</desc>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-17</trDt>
+                    <sourceID>Sales invoice</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Verkooporder eerste kwartaal</desc>
+                        <amnt>43922.37</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>3196.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>4</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>607.24</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energy reep</desc>
+                        <amnt>500.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>250</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>95.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>3:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>437.50</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>250</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>83.13</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>4:1</nr>
+                        <accID>8320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>2397.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>3</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>455.43</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>5:1</nr>
+                        <accID>8320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>2397.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>3</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>455.43</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>6:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energy reep</desc>
+                        <amnt>500.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>250</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>95.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>7:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>350.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>200</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>66.50</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>8:1</nr>
+                        <accID>8320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>4794.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>6</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>910.86</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energy reep</desc>
+                        <amnt>300.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>150</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>57.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>10:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>262.50</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>150</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>49.88</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>11:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energy reep</desc>
+                        <amnt>200.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>100</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>38.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>12:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>131.25</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>75</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>24.94</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>13:1</nr>
+                        <accID>8320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>4794.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>6</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>910.86</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>14:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energy reep</desc>
+                        <amnt>550.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>275</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>104.50</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>15:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>481.25</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>275</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>91.44</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>16:1</nr>
+                        <accID>8320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>7990.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>10</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>1518.10</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>17:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energy reep</desc>
+                        <amnt>400.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>200</qntity>
+                        <vat>
+                            <vatID>1</vatID>
+                            <vatPerc>6.000</vatPerc>
+                            <vatAmnt>24.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>18:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>350.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>200</qntity>
+                        <vat>
+                            <vatID>1</vatID>
+                            <vatPerc>6.000</vatPerc>
+                            <vatAmnt>21.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>19:1</nr>
+                        <accID>8320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>6392.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>8</qntity>
+                        <vat>
+                            <vatID>2</vatID>
+                            <vatPerc>19.000</vatPerc>
+                            <vatAmnt>1214.48</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>20:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energy reep</desc>
+                        <amnt>350.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>175</qntity>
+                        <vat>
+                            <vatID>1</vatID>
+                            <vatPerc>6.000</vatPerc>
+                            <vatAmnt>21.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>21:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>288.75</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <qntity>165</qntity>
+                        <vat>
+                            <vatID>1</vatID>
+                            <vatPerc>6.000</vatPerc>
+                            <vatAmnt>17.33</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1500</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Verkooporder eerste kwartaal</desc>
+                        <amnt>6777.79</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:2</nr>
+                        <accID>1510</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Verkooporder eerste kwartaal</desc>
+                        <amnt>83.33</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16700003</nr>
+                    <desc>verkoop darts equipment Italië</desc>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-29</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-02-29</effDate>
+                        <desc>verkoop darts equipment Italië</desc>
+                        <amnt>8000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>29</custSupID>
+                        <invRef>16700003</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8100</accID>
+                        <docRef />
+                        <effDate>2016-02-29</effDate>
+                        <desc>verkoop darts equipment Italië</desc>
+                        <amnt>6611.57</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>29</custSupID>
+                        <invRef>16700003</invRef>
+                        <vat>
+                            <vatID>4</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>1388.43</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1500</accID>
+                        <docRef />
+                        <effDate>2016-02-29</effDate>
+                        <desc>verkoop darts equipment Italië</desc>
+                        <amnt>1388.43</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>29</custSupID>
+                        <invRef>16700003</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16700004</nr>
+                    <desc>Kitchen Equipment</desc>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-29</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-02-29</effDate>
+                        <desc>Kitchen Equipment</desc>
+                        <amnt>2000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>36</custSupID>
+                        <invRef>16700004</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8010</accID>
+                        <docRef />
+                        <effDate>2016-02-29</effDate>
+                        <desc>Kitchen Equipment</desc>
+                        <amnt>1886.79</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>36</custSupID>
+                        <invRef>16700004</invRef>
+                        <vat>
+                            <vatID>1</vatID>
+                            <vatPerc>6.000</vatPerc>
+                            <vatAmnt>113.21</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1510</accID>
+                        <docRef />
+                        <effDate>2016-02-29</effDate>
+                        <desc>Kitchen Equipment</desc>
+                        <amnt>113.21</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>36</custSupID>
+                        <invRef>16700004</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16700005</nr>
+                    <desc>test buitenlandse btw op verkoop</desc>
+                    <periodNumber>3</periodNumber>
+                    <trDt>2016-03-26</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-03-26</effDate>
+                        <desc>test buitenlandse btw op verkoop</desc>
+                        <amnt>12100.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>25</custSupID>
+                        <invRef>16700005</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8100</accID>
+                        <docRef />
+                        <effDate>2016-03-26</effDate>
+                        <desc>test buitenlandse btw op verkoop7</desc>
+                        <amnt>10000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>25</custSupID>
+                        <invRef>16700005</invRef>
+                        <vat>
+                            <vatID>4</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>2100.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1500</accID>
+                        <docRef />
+                        <effDate>2016-03-26</effDate>
+                        <desc>test buitenlandse btw op verkoop</desc>
+                        <amnt>2100.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>25</custSupID>
+                        <invRef>16700005</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16700006</nr>
+                    <desc>test afwijkende BTW</desc>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-26</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <desc>test afwijkende BTW</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>34</custSupID>
+                        <invRef>16700006</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8000</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <desc>test afwijkende BTW</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>34</custSupID>
+                        <invRef>16700006</invRef>
+                        <vat>
+                            <vatID>0</vatID>
+                            <vatPerc>0.000</vatPerc>
+                            <vatAmnt>0.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16700007</nr>
+                    <desc>Boekstuknummer: 16700007</desc>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-26</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <desc>Boekstuknummer: 16700007</desc>
+                        <amnt>12100.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>25</custSupID>
+                        <invRef>16700007</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8100</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <desc>test afwijkende BTW BTL7</desc>
+                        <amnt>10000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>25</custSupID>
+                        <invRef>16700007</invRef>
+                        <vat>
+                            <vatID>4</vatID>
+                            <vatPerc>21.000</vatPerc>
+                            <vatAmnt>2100.00</vatAmnt>
+                            <vatAmntTp>C</vatAmntTp>
+                        </vat>
+                    </trLine>
+                    <trLine>
+                        <nr>9999:1</nr>
+                        <accID>1500</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <desc>Boekstuknummer: 16700007</desc>
+                        <amnt>2100.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>25</custSupID>
+                        <invRef>16700007</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16700008</nr>
+                    <desc>factuur met afwijkende BTW</desc>
+                    <periodNumber>4</periodNumber>
+                    <trDt>2016-04-25</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-04-25</effDate>
+                        <desc>factuur met afwijkende BTW</desc>
+                        <amnt>5000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700008</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8010</accID>
+                        <docRef />
+                        <effDate>2016-04-25</effDate>
+                        <desc>factuur met afwijkende BTW</desc>
+                        <amnt>5000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700008</invRef>
+                        <vat>
+                            <vatID>0</vatID>
+                            <vatPerc>0.000</vatPerc>
+                            <vatAmnt>0.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16700009</nr>
+                    <desc>factuur met verkeerde BTW</desc>
+                    <periodNumber>5</periodNumber>
+                    <trDt>2016-05-05</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>0:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>factuur met verkeerde BTW</desc>
+                        <amnt>12000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700009</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8020</accID>
+                        <docRef />
+                        <effDate>2016-05-05</effDate>
+                        <desc>factuur met verkeerde BTW</desc>
+                        <amnt>12000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16700009</invRef>
+                        <vat>
+                            <vatID>20</vatID>
+                            <vatPerc>0.000</vatPerc>
+                            <vatAmnt>0.00</vatAmnt>
+                            <vatAmntTp>D</vatAmntTp>
+                        </vat>
+                    </trLine>
+                </transaction>
+            </journal>
+            <journal>
+                <jrnID>90</jrnID>
+                <desc>Memoriaal</desc>
+                <jrnTp>M</jrnTp>
+                <transaction>
+                    <nr>16900001</nr>
+                    <periodNumber>1</periodNumber>
+                    <trDt>2016-01-31</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4900</accID>
+                        <docRef />
+                        <effDate>2016-01-31</effDate>
+                        <amnt>2000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900001</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>2000</accID>
+                        <docRef />
+                        <effDate>2016-01-31</effDate>
+                        <amnt>2000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900001</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900003</nr>
+                    <periodNumber>1</periodNumber>
+                    <trDt>2016-02-15</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>2100</accID>
+                        <docRef />
+                        <effDate>2016-02-15</effDate>
+                        <amnt>6000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900003</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>4000</accID>
+                        <docRef />
+                        <effDate>2016-02-15</effDate>
+                        <amnt>10000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900003</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>3:1</nr>
+                        <accID>1700</accID>
+                        <docRef />
+                        <effDate>2016-02-15</effDate>
+                        <amnt>4000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900003</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900004</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-17</trDt>
+                    <sourceID>Goods delivery</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>3320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>1200.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <qntity>-3</qntity>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>7320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>1200.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>22</custSupID>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>3320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>2400.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <qntity>-6</qntity>
+                    </trLine>
+                    <trLine>
+                        <nr>2:2</nr>
+                        <accID>7320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Trampoline</desc>
+                        <amnt>2400.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>22</custSupID>
+                    </trLine>
+                    <trLine>
+                        <nr>3:1</nr>
+                        <accID>3330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>150.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <qntity>-150</qntity>
+                    </trLine>
+                    <trLine>
+                        <nr>3:2</nr>
+                        <accID>7330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>150.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>22</custSupID>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900005</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-17</trDt>
+                    <sourceID>Goods delivery</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>3330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>5.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>21</custSupID>
+                        <qntity>-5</qntity>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>7330</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Energydrink</desc>
+                        <amnt>5.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>21</custSupID>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900006</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-17</trDt>
+                    <sourceID>Goods delivery</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>3320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Basebal handschoen rechts</desc>
+                        <amnt>77.90</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>24</custSupID>
+                        <qntity>-2</qntity>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>7320</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Basebal handschoen rechts</desc>
+                        <amnt>77.90</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>24</custSupID>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900007</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-17</trDt>
+                    <sourceID>Goods delivery</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>3310</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Dartbord</desc>
+                        <amnt>31.50</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>25</custSupID>
+                        <qntity>-1</qntity>
+                    </trLine>
+                    <trLine>
+                        <nr>1:2</nr>
+                        <accID>7310</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Dartbord</desc>
+                        <amnt>31.50</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>25</custSupID>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>3310</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Dartpijlen 22 gram</desc>
+                        <amnt>16.67</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>25</custSupID>
+                        <qntity>-1</qntity>
+                    </trLine>
+                    <trLine>
+                        <nr>2:2</nr>
+                        <accID>7310</accID>
+                        <docRef />
+                        <effDate>2016-02-17</effDate>
+                        <desc>Dartpijlen 22 gram</desc>
+                        <amnt>16.67</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>25</custSupID>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900008</nr>
+                    <periodNumber>3</periodNumber>
+                    <trDt>2016-03-02</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>0300</accID>
+                        <docRef />
+                        <effDate>2016-03-02</effDate>
+                        <desc>boeking op 2 maart 2016 gemaakt</desc>
+                        <amnt>500.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900008</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>2000</accID>
+                        <docRef />
+                        <effDate>2016-03-02</effDate>
+                        <desc>boeking op 2 maart 2016 gemaakt</desc>
+                        <amnt>500.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900008</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900009</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-03-03</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>8330</accID>
+                        <docRef />
+                        <effDate>2016-03-03</effDate>
+                        <desc>tijdelijke correctie omzet</desc>
+                        <amnt>5000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900009</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-03-03</effDate>
+                        <desc>tijdelijke correctie omzet</desc>
+                        <amnt>5000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>22</custSupID>
+                        <invRef>16900009</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900010</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-26</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4000</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <amnt>6000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900010</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>2100</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <amnt>6000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900010</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900011</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-26</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4000</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <desc>loonbelasting</desc>
+                        <amnt>4000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900011</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>1700</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <desc>loonbelasting</desc>
+                        <amnt>4000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900011</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900012</nr>
+                    <periodNumber>2</periodNumber>
+                    <trDt>2016-02-26</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <desc>correctie debiteuren</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>34</custSupID>
+                        <invRef>16900012</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>1600</accID>
+                        <docRef />
+                        <effDate>2016-02-26</effDate>
+                        <desc>correctie debiteuren</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>11</custSupID>
+                        <invRef>16900012</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900013</nr>
+                    <periodNumber>4</periodNumber>
+                    <trDt>2016-04-24</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1600</accID>
+                        <docRef />
+                        <effDate>2016-04-24</effDate>
+                        <desc>correctie</desc>
+                        <amnt>500.00</amnt>
+                        <amntTp>D</amntTp>
+                        <custSupID>1</custSupID>
+                        <invRef>16900013</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>1300</accID>
+                        <docRef />
+                        <effDate>2016-04-24</effDate>
+                        <desc>correctie</desc>
+                        <amnt>500.00</amnt>
+                        <amntTp>C</amntTp>
+                        <custSupID>25</custSupID>
+                        <invRef>16900013</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900014</nr>
+                    <periodNumber>4</periodNumber>
+                    <trDt>2016-04-25</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>2000</accID>
+                        <docRef />
+                        <effDate>2016-04-25</effDate>
+                        <desc>vraagpost</desc>
+                        <amnt>834.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900014</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>2100</accID>
+                        <docRef />
+                        <effDate>2016-04-25</effDate>
+                        <desc>vraagpost</desc>
+                        <amnt>834.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900014</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900015</nr>
+                    <periodNumber>5</periodNumber>
+                    <trDt>2016-05-29</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>2000</accID>
+                        <docRef />
+                        <effDate>2016-05-29</effDate>
+                        <desc>onduidelijke afschrijving</desc>
+                        <amnt>1250.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900015</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>1310</accID>
+                        <docRef />
+                        <effDate>2016-05-29</effDate>
+                        <desc>onduidelijke afschrijving</desc>
+                        <amnt>1250.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900015</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900016</nr>
+                    <periodNumber>5</periodNumber>
+                    <trDt>2016-05-15</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4901</accID>
+                        <docRef />
+                        <effDate>2016-05-15</effDate>
+                        <desc>correctie onjuiste boeking</desc>
+                        <amnt>15000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900016</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>4900</accID>
+                        <docRef />
+                        <effDate>2016-05-15</effDate>
+                        <desc>correctie onjuiste boeking</desc>
+                        <amnt>15000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900016</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900017</nr>
+                    <periodNumber>9</periodNumber>
+                    <trDt>2016-09-30</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4000</accID>
+                        <docRef />
+                        <effDate>2016-09-30</effDate>
+                        <amnt>45000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900017</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>1700</accID>
+                        <docRef />
+                        <effDate>2016-09-30</effDate>
+                        <amnt>45000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900017</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900018</nr>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-31</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>4000</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>6500.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900018</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>1700</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>6500.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900018</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900019</nr>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-31</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>2100</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>166.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900019</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>4901</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>166.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900019</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900020</nr>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-31</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>1700</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>136559.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900020</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>8000</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>136559.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900020</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900021</nr>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-31</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>2100</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>1.46</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900021</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>4901</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>1.46</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900021</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900022</nr>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-31</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>0301</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>5000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900022</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>0301</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>5000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900022</invRef>
+                    </trLine>
+                </transaction>
+                <transaction>
+                    <nr>16900023</nr>
+                    <periodNumber>10</periodNumber>
+                    <trDt>2016-10-31</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>2000</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>31543.70</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900023</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>7310</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>31543.70</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900023</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>3:1</nr>
+                        <accID>1670</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>13250.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16900023</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>4:1</nr>
+                        <accID>8110</accID>
+                        <docRef />
+                        <effDate>2016-10-31</effDate>
+                        <amnt>13250.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16900023</invRef>
+                    </trLine>
+                </transaction>
+            </journal>
+            <journal>
+                <jrnID>95</jrnID>
+                <desc>Activamutaties</desc>
+                <jrnTp>M</jrnTp>
+                <transaction>
+                    <nr>16950001</nr>
+                    <periodNumber>11</periodNumber>
+                    <trDt>2016-11-05</trDt>
+                    <sourceID>Manual entry</sourceID>
+                    <trLine>
+                        <nr>1:1</nr>
+                        <accID>0301</accID>
+                        <docRef />
+                        <effDate>2016-11-05</effDate>
+                        <amnt>5000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <invRef>16950001</invRef>
+                    </trLine>
+                    <trLine>
+                        <nr>2:1</nr>
+                        <accID>5110</accID>
+                        <docRef />
+                        <effDate>2016-11-05</effDate>
+                        <amnt>5000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <invRef>16950001</invRef>
+                    </trLine>
+                </transaction>
+            </journal>
+            <subledgers>
+                <subledger>
+                    <sbType>CU</sbType>
+                    <sbDesc>A/R</sbDesc>
+                    <linesCount>14</linesCount>
+                    <totalDebit>104122.37</totalDebit>
+                    <totalCredit>408342.46</totalCredit>
+                    <sbLine>
+                        <nr>1</nr>
+                        <jrnID>20</jrnID>
+                        <trNr>16200003</trNr>
+                        <trLineNr>1:2</trLineNr>
+                        <desc>ontvangst</desc>
+                        <amnt>10000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16200003</docRef>
+                        <custSupID>22</custSupID>
+                        <invRef>0</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>C</invTp>
+                        <invDt>2016-03-14</invDt>
+                        <mutTp>P</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>2</nr>
+                        <jrnID>20</jrnID>
+                        <trNr>16200005</trNr>
+                        <trLineNr>1:2</trLineNr>
+                        <desc>testboeking</desc>
+                        <amnt>391842.46</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16200005</docRef>
+                        <custSupID>33</custSupID>
+                        <invRef>0</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>C</invTp>
+                        <invDt>2016-03-28</invDt>
+                        <mutTp>P</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>3</nr>
+                        <jrnID>70</jrnID>
+                        <trNr>16700001</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>foutieve BTW</desc>
+                        <amnt>8000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16700001</docRef>
+                        <custSupID>1</custSupID>
+                        <invRef>16700001</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-01-28</invDt>
+                        <invDueDt>2016-02-18</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>4</nr>
+                        <jrnID>70</jrnID>
+                        <trNr>16700002</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>Verkooporder eerste kwartaal</desc>
+                        <amnt>43922.37</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16700002</docRef>
+                        <custSupID>22</custSupID>
+                        <invRef>16700002</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-02-17</invDt>
+                        <invDueDt>2016-03-09</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>5</nr>
+                        <jrnID>70</jrnID>
+                        <trNr>16700003</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>verkoop darts equipment Italië</desc>
+                        <amnt>8000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16700003</docRef>
+                        <custSupID>29</custSupID>
+                        <invRef>16700003</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-02-29</invDt>
+                        <invDueDt>2016-03-21</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>6</nr>
+                        <jrnID>70</jrnID>
+                        <trNr>16700004</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>Kitchen Equipment</desc>
+                        <amnt>2000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16700004</docRef>
+                        <custSupID>36</custSupID>
+                        <invRef>16700004</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-02-29</invDt>
+                        <invDueDt>2016-03-21</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>7</nr>
+                        <jrnID>70</jrnID>
+                        <trNr>16700005</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>test buitenlandse btw op verkoop</desc>
+                        <amnt>12100.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16700005</docRef>
+                        <custSupID>25</custSupID>
+                        <invRef>16700005</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-03-26</invDt>
+                        <invDueDt>2016-04-16</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>8</nr>
+                        <jrnID>70</jrnID>
+                        <trNr>16700006</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>test afwijkende BTW</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16700006</docRef>
+                        <custSupID>34</custSupID>
+                        <invRef>16700006</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-02-26</invDt>
+                        <invDueDt>2016-03-18</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>9</nr>
+                        <jrnID>70</jrnID>
+                        <trNr>16700007</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>Boekstuknummer: 16700007</desc>
+                        <amnt>12100.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16700007</docRef>
+                        <custSupID>25</custSupID>
+                        <invRef>16700007</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-02-26</invDt>
+                        <invDueDt>2016-03-18</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>10</nr>
+                        <jrnID>70</jrnID>
+                        <trNr>16700008</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>factuur met afwijkende BTW</desc>
+                        <amnt>5000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16700008</docRef>
+                        <custSupID>22</custSupID>
+                        <invRef>16700008</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-04-25</invDt>
+                        <invDueDt>2016-05-16</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>11</nr>
+                        <jrnID>70</jrnID>
+                        <trNr>16700009</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>factuur met verkeerde BTW</desc>
+                        <amnt>12000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16700009</docRef>
+                        <custSupID>22</custSupID>
+                        <invRef>16700009</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-05-05</invDt>
+                        <invDueDt>2016-05-26</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>12</nr>
+                        <jrnID>90</jrnID>
+                        <trNr>16900009</trNr>
+                        <trLineNr>2:1</trLineNr>
+                        <desc>tijdelijke correctie omzet</desc>
+                        <amnt>5000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16900009</docRef>
+                        <custSupID>22</custSupID>
+                        <invRef>16900009</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>C</invTp>
+                        <invDt>2016-03-03</invDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>13</nr>
+                        <jrnID>90</jrnID>
+                        <trNr>16900012</trNr>
+                        <trLineNr>1:1</trLineNr>
+                        <desc>correctie debiteuren</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16900012</docRef>
+                        <custSupID>34</custSupID>
+                        <invRef>16900012</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>C</invTp>
+                        <invDt>2016-02-26</invDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>14</nr>
+                        <jrnID>90</jrnID>
+                        <trNr>16900013</trNr>
+                        <trLineNr>2:1</trLineNr>
+                        <desc>correctie</desc>
+                        <amnt>500.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16900013</docRef>
+                        <custSupID>25</custSupID>
+                        <invRef>16900013</invRef>
+                        <invPurSalTp>S</invPurSalTp>
+                        <invTp>C</invTp>
+                        <invDt>2016-04-24</invDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                </subledger>
+                <subledger>
+                    <sbType>SU</sbType>
+                    <sbDesc>A/P</sbDesc>
+                    <linesCount>12</linesCount>
+                    <totalDebit>2500.00</totalDebit>
+                    <totalCredit>62900.00</totalCredit>
+                    <sbLine>
+                        <nr>1</nr>
+                        <jrnID>20</jrnID>
+                        <trNr>16200006</trNr>
+                        <trLineNr>1:2</trLineNr>
+                        <desc />
+                        <amnt>1000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16200006</docRef>
+                        <custSupID>35</custSupID>
+                        <invRef>0</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-03-28</invDt>
+                        <mutTp>P</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>2</nr>
+                        <jrnID>60</jrnID>
+                        <trNr>16600001</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>PC privé project</desc>
+                        <amnt>4000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16600001</docRef>
+                        <custSupID>32</custSupID>
+                        <invRef>16600001</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-02-29</invDt>
+                        <invDueDt>2016-03-21</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>3</nr>
+                        <jrnID>60</jrnID>
+                        <trNr>16600002</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>Boekstuknummer: 16600002</desc>
+                        <amnt>12100.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16600002</docRef>
+                        <custSupID>19</custSupID>
+                        <invRef>16600002</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-02-28</invDt>
+                        <invDueDt>2016-03-13</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>4</nr>
+                        <jrnID>60</jrnID>
+                        <trNr>16600003</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>Boekstuknummer: 16600003</desc>
+                        <amnt>4000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16600003</docRef>
+                        <custSupID>12</custSupID>
+                        <invRef>16600003</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-04-25</invDt>
+                        <invDueDt>2016-05-16</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>5</nr>
+                        <jrnID>60</jrnID>
+                        <trNr>16600004</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>Factuur: 16600004</desc>
+                        <amnt>6000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16600004</docRef>
+                        <custSupID>33</custSupID>
+                        <invRef>16600004</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-01-12</invDt>
+                        <invDueDt>2016-02-02</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>6</nr>
+                        <jrnID>60</jrnID>
+                        <trNr>16600005</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>Buitenlandse factuur met BTW</desc>
+                        <amnt>12000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16600005</docRef>
+                        <custSupID>30</custSupID>
+                        <invRef>16600005</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-05-05</invDt>
+                        <invDueDt>2016-05-26</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>7</nr>
+                        <jrnID>60</jrnID>
+                        <trNr>16600006</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>Boekstuknummer: 16600006</desc>
+                        <amnt>12000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16600006</docRef>
+                        <custSupID>20</custSupID>
+                        <invRef>16600006</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-08-14</invDt>
+                        <invDueDt>2016-09-04</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>8</nr>
+                        <jrnID>60</jrnID>
+                        <trNr>16600007</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>IPAD</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16600007</docRef>
+                        <custSupID>32</custSupID>
+                        <invRef>16600007</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-08-20</invDt>
+                        <invDueDt>2016-09-10</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>9</nr>
+                        <jrnID>60</jrnID>
+                        <trNr>16600008</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>aankoop pyrolyse machihne</desc>
+                        <amnt>10000.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16600008</docRef>
+                        <custSupID>32</custSupID>
+                        <invRef>16600008</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-10-18</invDt>
+                        <invDueDt>2016-11-08</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>10</nr>
+                        <jrnID>60</jrnID>
+                        <trNr>16600009</trNr>
+                        <trLineNr>0:1</trLineNr>
+                        <desc>LED armaturen</desc>
+                        <amnt>1800.00</amnt>
+                        <amntTp>C</amntTp>
+                        <docRef>16600009</docRef>
+                        <custSupID>33</custSupID>
+                        <invRef>16600009</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-10-18</invDt>
+                        <invDueDt>2016-11-08</invDueDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>11</nr>
+                        <jrnID>90</jrnID>
+                        <trNr>16900012</trNr>
+                        <trLineNr>2:1</trLineNr>
+                        <desc>correctie debiteuren</desc>
+                        <amnt>1000.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16900012</docRef>
+                        <custSupID>11</custSupID>
+                        <invRef>16900012</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-02-26</invDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                    <sbLine>
+                        <nr>12</nr>
+                        <jrnID>90</jrnID>
+                        <trNr>16900013</trNr>
+                        <trLineNr>1:1</trLineNr>
+                        <desc>correctie</desc>
+                        <amnt>500.00</amnt>
+                        <amntTp>D</amntTp>
+                        <docRef>16900013</docRef>
+                        <custSupID>1</custSupID>
+                        <invRef>16900013</invRef>
+                        <invPurSalTp>P</invPurSalTp>
+                        <invTp>D</invTp>
+                        <invDt>2016-04-24</invDt>
+                        <mutTp>I</mutTp>
+                    </sbLine>
+                </subledger>
+            </subledgers>
+        </transactions>
+    </company>
+</auditfile>
