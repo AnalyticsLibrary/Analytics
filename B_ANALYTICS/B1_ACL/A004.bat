@@ -1,0 +1,60 @@
+
+COMMENT
+***********************************************************
+analyse A004
+overzicht transacties per relatie (factuurwaarde)
+***********************************************************
+
+
+COM - eerst tabel customerSuppliers relateren aan transactions om 
+COM - namen van de relaties in het overzicht op te kunnen nemen
+COM - idem tabel generalLeder voor RGS labels
+
+OPEN generalLedger
+INDEX ON accID TO "generalLedger_on_accID"
+
+OPEN customersSuppliers
+INDEX ON custSupID TO "customerSuppliers_on_ID"
+
+OPEN transactions
+DEFINE RELATION custSupID WITH customersSuppliers INDEX customerSuppliers_on_ID
+DEFINE RELATION accID WITH generalLedger INDEX generalLedger_on_accID
+
+COM - vervolgens worden subotalen gegenereerd per relatie (custSupID)
+COM - omdat het custSupID niet altijd op dezelfde wijze in het auditfile wordt opgenomen
+COM - dient eerst geverifieerd te worden hoe dit in het onderhavige geval is verwerkt
+COM - voor de rest van het script wordt verondersteld dat het CustSupID is opgenomen op 
+COM - de transactiesregels voor debiteuren en crediteuren
+COM - welke als filter op zijn genomen in dit sript (op basis van RGS labels maar dit 
+COM - filter kan eenvoudig aangepast worden aan rekeningnummer
+
+COM - bepaal de waarde van de boeking met juiste teken
+
+DEFINE FIELD a_Amount COMPUTED 
+
+	trLine_amnt * -1 IF ALLTRIM(trLine_amntTp) = "C"
+	trLine_amnt
+
+COM - geef een indicator mee voor debiteuren of crediteuren
+
+DEFINE FIELD a_rel_type COMPUTED 
+
+	"debiteuren" IF UPPER(SUBSTRING(generalLedger.leadReference 1 10)) = "BVORDEBHAD"
+	"crediteuren" IF generalLedger.leadReference = "BSCHCREHAC"
+	""
+
+COM - vervolgens alleen debiteuren/crediteuren boekingen eruit filteren
+COM - als geen RGS in het auditfile is opgenomen, kan dit filer ook aangepast worden naar
+COM - een filter op grootboekrekeningnummer (accID)
+
+EXTRACT FIELDS ALL customersSuppliers.custSupName IF MATCH(a_rel_type "debiteuren" "crediteuren") TO scr01 OPEN
+
+COM - vervolgens sorteren en intellen op relatie type en nummer 
+
+SORT ON a_rel_type custSupID custSupName TO scr02 OPEN 
+SUMMARIZE ON a_rel_type custSupID custSupName SUBTOTAL trLine_amnt TO A004 OPEN 
+
+
+EXPORT FIELDS a_rel_type AS "type" custSupID custSupName trLine_amnt COUNT AS "aantal_regels" XLSX TO A004
+
+

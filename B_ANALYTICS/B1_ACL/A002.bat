@@ -1,8 +1,8 @@
 
 COMMENT
 ***********************************************************
-analyse A001
-Mutaties per periode
+analyse A002
+matrix van dagboek per grootboek
 ***********************************************************
 
 COM - eerst tabel generalLedger relateren aan transactions
@@ -25,9 +25,9 @@ DEFINE FIELD a_Amount COMPUTED
 
 COM - vervolgens crosstabulate om output te genereren
 
-CROSSTAB ON accID generalLedger.accDesc COLUMNS a_Period SUBTOTAL a_Amount TO "A001.FIL" OPEN
+CROSSTAB ON accID generalLedger.accDesc COLUMNS a_Period SUBTOTAL a_Amount TO "A002.FIL" OPEN
 
-EXTRACT FIELDS ALL XLSX TO A001
+EXTRACT FIELDS ALL XLSX TO A002
 
 
 
