@@ -20,6 +20,6 @@ Hierbij wordt uit gegevaan van een aantal veronderstellingen:
 
 ### status 6 maart 2017
 
-Het GitHub open source project is opgezet en zal gaan dienen voor de 'huisvesting' van analyse scripts. Via de bijbehorende wiki zullen analyses functioneel worden beschreven zodat gebruikers en ontwikkelaars weten wat er valt te halen en brengen. Meer uitleg over het analyticslibrary project is te vinden op de [website](https://www.analyticslibrary.nl). Daar zijn ook mogelijkheden om je in te schrijven op de nieuwsbrief en het slack channel.
+Het GitHub open source project is opgezet en zal gaan dienen voor de 'huisvesting' van analyse scripts. Via de bijbehorende wiki zullen analyses functioneel worden beschreven zodat gebruikers en ontwikkelaars weten wat er valt te halen en brengen. Meer uitleg over het analyticslibrary project is te vinden op de [website](http://www.analyticslibrary.nl). Daar zijn ook mogelijkheden om je in te schrijven op de nieuwsbrief en het slack channel.
 
 Vragen kunnen per mail vestuurd worden naar info@AnalyticsLibrary.nl.
