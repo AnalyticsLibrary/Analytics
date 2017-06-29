@@ -1,0 +1,23 @@
+error false
+//Onderzoek of in het auditfile wel boekingen zijn die kunnen worden toegeschreven aan debiteuren of crediteuren. Dit zijn boekingen waar decrednummer niet leeg is.
+testif F fieldexists "debcrednummer"
+message "Het veld debcrednummer is niet gevuld in dit bestand, deze bewerking is niet mogelijk"
+quit
+endif
+
+delete filter
+
+//zet het gebruik van filters aan
+set filtering true
+
+//Maak een filter waarbij alle mutaties worden gefilters waarvan de debiteuren of crediteuren naam niet leeg is
+
+create filter ([debcrednaam] <> "")
+
+//Maak een kruistabel:
+//verticaal: debcrednummer;debcrednaam;debcredtype
+//Horizontaal: dagboekcode;dagboekomschrijving
+//Celwaardes: debet en -credit
+//tabelnaam: FH.10_Debiteuren_crediteuren_per_dagboek
+//rond af op 2 decimalen
+crosstable all "debcrednummer;debcrednaam;debcredtype" "dagboekcode;dagboekomschrijving" "+debet;-credit" "DC totaal" "table:FH.10_Debiteuren_crediteuren_per_dagboek" "dec:2"

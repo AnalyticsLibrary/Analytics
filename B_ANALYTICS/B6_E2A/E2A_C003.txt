@@ -1,0 +1,17 @@
+error false
+delete filter
+set filtering true
+
+//Maak een filter waarbij het facturnummer niet leeg is
+create filter ([factuurnummer] <> "") 
+
+//Extract alle factuur mutaties naar een aparte tabel
+extract records "facturen_voortschrijdend_saldo"
+
+//Sorteer mutaties per factuurnummer en mutatiedatum
+sortadd text ascending "factuurnummer"
+sort date ascending "mutatiedatum" "dateformat:yyyy-mm-dd"
+
+//maak een voortschrijdend saldo aan per factuurnummer
+//hiermee wordt zichtbaar wanneer per factuur de betaling is gedaan
+create runningtotal "saldo" 0 "factuurnummer"

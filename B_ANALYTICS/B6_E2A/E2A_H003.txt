@@ -1,0 +1,11 @@
+error false
+delete filter
+set filtering true
+
+//Filter alle mutaties met relatienummer.
+create filter ([debcrednummer] <> "")
+
+//maak een kruistabel waarbij per relatienummer het totaal debet en credit per grootboekrekening wordt getoond en
+//Sla deze op in een nieuwe tabel
+
+crosstable sum "debcrednummer;debcrednaam" "grootboekrekeningcode;grootboekrekeningnaam" "+debet;-credit" "table: totalen_per_relatie"

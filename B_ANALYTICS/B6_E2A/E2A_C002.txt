@@ -1,0 +1,17 @@
+error false
+delete filter
+set filtering true
+
+//Maak een filter waarbij het relatienummer niet leeg is
+create filter ([debcrednummer] <> "") 
+
+//Extract alle relatie mutaties naar een aparte tabel
+extract records "Debiteuren_crediteuren_voortschrijdend_saldo"
+
+//Sorteer mutaties per relatienummer en mutatiedatum
+sortadd text ascending "debcrednummer"
+sort date ascending "mutatiedatum" "dateformat:yyyy-mm-dd"
+
+//maak een voortschrijdend saldo aan per relatienummer
+//hiermee wordt zichtbaar wanneer per relatie de betaling is gedaan
+create runningtotal "saldo" 0 "debcrednummer"

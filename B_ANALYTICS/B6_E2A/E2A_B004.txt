@@ -1,0 +1,61 @@
+//Voorbereiding: declareer variabelen en vul deze met datum veld en -layout
+
+error false
+delete filter
+var fl 
+fl = "grootboekrekeningcode"
+var dveld
+var dformat
+dveld = "mutatiedatum"
+dformat = "yyyy-mm-dd"
+
+//specificeer  grootboekrekening kas
+//Als  de kaskeningen niet al eerder zijn gespecificeerd in het filter "dkas" dan moet dat alsnog gebeuren
+//Dat gebeurt in de regels tot "vervolg"
+
+var filtest
+filtest = "f"
+testif t filterexists "kas"
+use filter "kas"
+filtest = "t"
+endif
+testif f %filtest% 
+var keus
+keus = "Beginnen met 1000 of ander nummer;Afzonderlijke rekeningen specificeren;Zelf filter invoeren"
+set filtering true
+input list "Kies op welke wijze u de kasrekeningen wil specificeren" keus
+testif t %keus% = "Beginnen met 1000 of ander nummer"
+var knr
+knr = "1000"
+input text "Waarmee beginnen kasrekeningen?" knr
+create filter ([grootboekrekeningcode] b? "%knr%")
+endif
+testif t %keus% = "Zelf filter invoeren"
+var knr
+knr = "[grootboekrekeningcode] >=1000000 and [grootboekrekeningcode]<1001000"
+input text "Voer hier het filter in." knr
+create filter (%knr%)
+endif
+testif t %keus% = "Afzonderlijke rekeningen specificeren"
+unique t "grootboekrekeningcode;grootboekrekeningnaam" "Vink in de lijst hieronder de kasrekeningen aan en kies `Maak filter` of kies "Cancel" om het bestaande filter te gebruiken."
+endif
+endif
+create filter "name:kas" (%filter%)
+set filtering true
+
+//vervolg
+//Maak een nieuwe tabel  waarin het doorlopend saldo  per mutatiedatum (%dveld%)  wordt geplaatst
+//Het datum veld formaat is yyyy-mm-dd (%dformat%)
+//Gebruik hiervoor de analyse functie totals per day (totalen per dag)
+
+totalsperday %dveld% %dformat% "saldo" "FF.08_Negatieve_kassen"
+select "FF.08_Negatieve_kassen"
+fl = 0
+
+//Geef ook het begin saldo in. 
+input text "Wat is het beginsaldo" fl
+inctotal %fl% "Totale waarde"
+
+//Laat alleen die records zien waarin de dag mutaties bevat
+create filter ([aantal waarnemingen] <> 0)
+set filtering true

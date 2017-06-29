@@ -1,0 +1,9 @@
+error false
+delete filter
+set filtering true
+
+//Maak een filter dat alle percentages anders dan 0 toont en het relatieland <> nederland
+create filter ([btwpercentage] <>0 and [debcredland]<>"nederland")
+
+//Plaats de gegevens in een nieuwe tabel. 
+extract records "BTW niet NL"

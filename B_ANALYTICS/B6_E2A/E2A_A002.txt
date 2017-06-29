@@ -1,0 +1,14 @@
+//Zet foutmeldingen uit
+error false
+
+//verwijder alle actieve filters
+delete filter
+
+//Maak een kruistabel 
+//verticaal: grootboekrekeningcode,grootboekrekeningnaam,grootboekrekeningtype,fiscalyear
+//Horizontaal: dagboekcode;dagboekomschrijving
+//Celwaardes: debet en -credit
+//tabelnaam: FA.12_Dagboeken_rekeningen_debet_credit
+//rond af op 2 decimalen
+
+crosstable all "grootboekrekeningcode;grootboekrekeningnaam;grootboekrekeningtype;fiscalyear" "dagboekcode;dagboekomschrijving" "+debet;-credit" "Totaal"  "table:FA.12_Dagboeken_rekeningen_debet_credit" "dec:2"

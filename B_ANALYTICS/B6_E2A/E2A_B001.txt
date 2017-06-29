@@ -1,0 +1,20 @@
+error false
+
+//Sorteer het saldo veld oplopend
+sort numeric ascending "saldo"
+
+set filtering true
+
+//Maak een filter waarbij de waarde van saldo op de volgende regel of de waarde op de vorige regel gelijjk is aan de waarde van het saldo veld
+create filter (recoffset([saldo];1) = [saldo] or recoffset([saldo];-1) = [saldo])
+
+//Onderzoek of het veld recordnummer bestaat.
+//Zo niet: maak deze aan als expressie met als inhoud het recordnummer
+//Dit veld wordt gebruikt om de records uit de oorspronkelijke tabel (auditfile) die identieke waardes hebben te identificeren
+testif f fieldexists "recordnummer"
+create expression "recordnummer" (recno())
+update
+endif
+
+//Kopieer de gefilterde records, die bestaan uit saldo bedragen met gelijke inhoud, naar een nieuwe tabel met de naam FC.10_Mutaties_met_gelijk_bedrag
+extract recordsfix "FC.10_Mutaties_met_gelijk_bedrag"

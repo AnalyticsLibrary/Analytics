@@ -1,0 +1,13 @@
+error false
+delete filter
+set filtering true
+
+//Maak een draaitabel op factuurnummer waarbij het saldo wordt berekend.
+//Voeg als extra velden het relatienummer , relatienaam en datum. Dit is de begin datum
+pivottable "factuurnummer" "subsaldo" "extra:debcrednummer;debcrednaam;datum"
+
+//Maak een filter dat alle 0 bedragen wegfiltert. Deze zijn immers voldaan
+create filter ([sabsaldo] <>0)
+
+//Plaats de gegevens in een nieuwe tabel. A.d.h.v. een datum kan dan de ouderdom worden berekend
+extract records "ouderdom facturen_relaties"s

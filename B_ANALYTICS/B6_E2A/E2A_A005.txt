@@ -1,0 +1,5 @@
+
+//Maak een draaitabel waarbij de totalen de debet , credit en saldo worden samengevat per debiteuren/crediteurennummer en -type
+// als extra velden worden toegevoegd alle debiteuren en crediteuren gegevens
+//plaats deze in tabel FH.01_Overzicht_alle_debiteuren_crediteuren_gegevens"
+pivottable "debcrednummer;debcredtype" "debet;credit;saldo" "extra:debcred_bank;debcred_commercenr;debcred_contact;c_debcrednummer;debcrednaam;debcredtype;debcredemail;debcredfax;debcredpostplaats;debcredpostland;debcredpostnummer;debcredpostpostcode;debcredpoststraat;debcredshipid;debcredplaats;debcredland;debcredhuisnummer;debcrednummerext;debcredpostcode;debcredadres;debcredfiscaalnummer;debcredtaxland;debcredtelefoon;debcredwebside;debcrednaam;debcredcontact;debcredpostadres;;debcredpostpostplaats;debcredadres;debcredsofinummerverificatiedatum" "table:FH.01_Overzicht_alle_debiteuren_crediteuren_gegevens"

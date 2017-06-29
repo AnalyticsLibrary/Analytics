@@ -1,0 +1,44 @@
+error false
+delete filter
+var filtest
+filtest = "f"
+//spec kas
+testif t filterexists "kas"
+use filter "kas"
+filtest = "t"
+endif
+testif f %filtest% 
+var keus
+keus = "Beginnen met 1000 of ander nummer;Afzonderlijke rekeningen specificeren;Zelf filter invoeren"
+set filtering true
+input list "Kies op welke wijze u de kasrekeningen wil specificeren" keus
+testif t %keus% = "Beginnen met 1000 of ander nummer"
+var knr
+knr = "1000"
+input text "Waarmee beginnen kasrekeningen?" knr
+create filter ([grootboekrekeningcode] b? "%knr%")
+endif
+testif t %keus% = "Zelf filter invoeren"
+var knr
+knr = "[grootboekrekeningcode] >=1000000 and [grootboekrekeningcode]<1001000"
+input text "Voer hier het filter in." knr
+create filter (%knr%)
+endif
+testif t %keus% = "Afzonderlijke rekeningen specificeren"
+unique t "grootboekrekeningcode;grootboekrekeningnaam" "Vink in de lijst hieronder de kasrekeningen aan en kies `Maak filter` of kies "Cancel" om het bestaande filter te gebruiken."
+endif
+endif
+create filter "name:kas" (%filter%)
+var uit
+input txt "Welke ontvangstengrens wilt u bekijken?" uit
+create filter (%filter% and [debet] >= %uit%)
+var ftff
+ftff = %table%
+testif f fieldexists "recordnummer"
+create expression "recordnummer" (recno())
+update
+endif
+extract recordsfix "FF.06_kas_grote_ontvangsten"
+select %ftff%
+delete filter
+select "FF.06_kas_grote_ontvangsten"

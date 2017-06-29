@@ -1,0 +1,51 @@
+error false
+delete filter
+set filtering true
+var filtest
+filtest = "f"
+//spec debiteuren
+testif t filterexists "debiteuren"
+use filter "debiteuren"
+filtest = "t"
+endif
+testif f %filtest% 
+var keus
+keus = "Beginnen met 13 of ander nummer;Afzonderlijke rekeningen specificeren;Zelf filter invoeren"
+set filtering true
+input list "Kies op welke wijze u de debiteurenrekeningen wil specificeren" keus
+testif t %keus% = "Beginnen met 13 of ander nummer"
+var knr
+knr = "13"
+input text "Waarmee beginnen debiteurenrekeningen?" knr
+create filter ([grootboekrekeningcode] b? "%knr%")
+endif
+testif t %keus% = "Zelf filter invoeren"
+var knr
+knr = "[grootboekrekeningcode] >=13000 and [grootboekrekeningcode]<14000"
+input text "Voer hier het filter in." knr
+create filter (%knr%)
+endif
+testif t %keus% = "Afzonderlijke rekeningen specificeren"
+unique t "grootboekrekeningcode;grootboekrekeningnaam" "Vink in de lijst hieronder de debiteurenrekeningen aan en kies `Maak filter` of kies "Cancel" om het bestaande filter te gebruiken."
+endif
+endif
+
+
+create filter "name:debiteuren" (%filter%)
+var ff
+ff=%filter% & " and "
+create filter (%ff% [mutatieomschrijving] f? "creditnota" or ([mutatieomschrijving] f? "creditfactuur" or [mutatieomschrijving] f? "creditering"))
+testif t %filtercount% > 0
+var ftff
+ftff = %table%
+testif f fieldexists "recordnummer"
+create expression "recordnummer" (recno())
+update
+endif
+extract recordsfix "FH.27_Creditnota`s_debiteuren"
+select %ftff%
+delete filter
+select "FH.27_Creditnota`s_debiteuren"
+quit
+endif
+message "Het filter `[mutatieomschrijving] (fuzzy) bevat creditnota of creditfactuur of creditering` toont 0 regels"

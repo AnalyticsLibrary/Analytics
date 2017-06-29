@@ -1,0 +1,12 @@
+error false
+var wv
+wv = "boekstuknummer"
+testif f fieldexists "boekstuknummer"
+//message "Het veld boekstuk nummer bestaat niet. Hiermee wordt de journaalpost gedentificeerd. Deze bewerking wordt afgebroken."
+//quit
+wv = "transactienummer"
+endif
+delete filter
+set filtering true
+unique T "dagboekcode;dagboekomschrijving" "Vink de dagboeken aan die u in het overzicht wil tonen.
+crosstable all "%wv%;transactieomschrijving"  "dagboekcode;dagboekomschrijving"  "+debet;-credit" "Totaal" "table:FC.02_Journaalpost_per_dagboek" dec:2

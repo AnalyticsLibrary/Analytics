@@ -1,0 +1,13 @@
+error false
+set filtering true
+create filter (month([mutatiedatum];"yyyy-mm-dd") <> [periode])
+var ftff
+ftff = %table%
+testif f fieldexists "recordnummer"
+create expression "recordnummer" (recno())
+update
+endif
+extract recordsfix "FC.08_Mutaties_buiten_periode"
+select %ftff%
+delete filter
+select "FC.08_Mutaties_buiten_periode"

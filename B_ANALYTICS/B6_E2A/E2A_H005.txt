@@ -1,0 +1,39 @@
+error false
+delete filter
+set filtering true
+var tt
+tt = %table%
+create expression "Periode2" (fieldexpand([periode];"b";"0";2))
+crosstable sum "grootboekrekeningcode;grootboekrekeningnaam;leadreference" "fiscalyear;periode2" "+saldo" "totaal" "table:FJ.05_BTW per periode" "dec:2"
+var filtest
+filtest = "f"
+//spec btw-
+testif t filterexists "btw-"
+use filter "btw-"
+filtest = "t"
+endif
+testif f %filtest% 
+var keus
+keus = "Afzonderlijke rekeningen specificeren;Zelf filter invoeren;Beginnen met 0 of ander nummer"
+set filtering true
+input list "Kies op welke wijze u de btw-rekeningen wil specificeren" keus
+testif t %keus% = "Beginnen met 0 of ander nummer"
+var knr
+knr = "0"
+input text "Waarmee beginnen btw-rekeningen?" knr
+create filter ([grootboekrekeningcode] b? "%knr%")
+endif
+testif t %keus% = "Zelf filter invoeren"
+var knr
+knr = "[grootboekrekeningcode] >=0000 and [grootboekrekeningcode]<1000"
+input text "Voer hier het filter in." knr
+create filter (%knr%)
+endif
+testif t %keus% = "Afzonderlijke rekeningen specificeren"
+unique t "grootboekrekeningcode;grootboekrekeningnaam" "Vink in de lijst hieronder de btw-rekeningen aan en kies `Maak filter` of kies "Cancel" om het bestaande filter te gebruiken."
+endif
+endif
+create filter "name:btw-rekeningen" (%filter%)
+select %tt%
+delete field "periode2"
+select "FJ.05_BTW per periode"

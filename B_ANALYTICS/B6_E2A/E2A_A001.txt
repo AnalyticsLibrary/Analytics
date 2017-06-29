@@ -1,0 +1,11 @@
+//Zet foutmeldingen uit
+error false
+
+//verwijder alle actieve filters
+delete filter
+
+//Maak een kruistabel waarin de rijen worden gevormd door de combinatie van grootboekrekeningnaam,-code en -type, waarin de kolommen worden gevormd door de combinatie van jaar en 
+//periode en waarin debet en credit als resp. positief en negatief getal met 2 decimalen worden getoond en 
+//plaats deze kruistabel in een nieuwe tabel met de naam "FA.14_Rekening_dc_periode" 
+
+crosstable all "grootboekrekeningcode;grootboekrekeningnaam;grootboekrekeningtype" "fiscalyear;periode" "+debet;-credit" "Totaal" "table:FA.14_Rekening_dc_periode" dec:2

@@ -1,0 +1,59 @@
+error false
+delete filter
+set filtering true
+
+//declareer variabele filtest en vul deze met waarde "f"
+var filtest
+filtest = "f"
+
+//specificeer  debiteurenrekeningen
+//Als  de debiteurenrekeningen niet al eerder zijn gespecificeerd in het filter "debiteuren" dan moet dat alsnog gebeuren
+//Dat gebeurt in de regels tot "vervolg"
+testif t filterexists "debiteuren"
+use filter "debiteuren"
+filtest = "t"
+endif
+testif f %filtest% 
+var keus
+keus = "Beginnen met 12 of ander nummer;Afzonderlijke rekeningen specificeren;Zelf filter invoeren"
+set filtering true
+input list "Kies op welke wijze u de debiteurenrekeningen wil specificeren" keus
+testif t %keus% = "Beginnen met 12 of ander nummer"
+var knr
+knr = "12"
+input text "Waarmee beginnen debiteurenrekeningen?" knr
+create filter ([grootboekrekeningcode] b? "%knr%")
+endif
+testif t %keus% = "Zelf filter invoeren"
+var knr
+knr = "[grootboekrekeningcode] >=12000 and [grootboekrekeningcode]<13000"
+input text "Voer hier het filter in." knr
+create filter (%knr%)
+endif
+testif t %keus% = "Afzonderlijke rekeningen specificeren"
+unique t "grootboekrekeningcode;grootboekrekeningnaam" "Vink in de lijst hieronder de debiteurenrekeningen aan en kies `Maak filter` of kies "Cancel" om het bestaande filter te gebruiken."
+endif
+endif
+create filter "name:debiteuren" (%filter%)
+delete filter
+
+//Vervolg
+//Maak een filter aan met de naam bannk-kasboek waarbij de gebruiker de dagboekcode en -naam kiest uit een lijst met unieke dagboeknamen en codes
+unique T "dagboekcode;dagboekomschrijving" "Vink de bank en kas dagboeken aan"
+create filter "name:bank_kasboek" (%filter%)
+
+//Maak nu een filter waarbij het saldo kleiner is dan 0 (afboeking), het record voldoet aan het debiteurenfilter én er niet in kas of bank wordt geboekt
+//Dus alle negatieve bedragen op debiteuren buiten kas of bank 
+create filter "" ([saldo]<0 and @debiteuren and not @bank_kasboek)
+
+//Plaats deze records in een nieuwe tabel met recordnummer ter identificatie en seleceer deze tabel
+var ftff
+ftff = %table%
+testif f fieldexists "recordnummer"
+create expression "recordnummer" (recno())
+update
+endif
+extract recordsfix "FH.28_Afboeking_debiteuren_buiten_kas_bank"
+select %ftff%
+delete filter
+select "FH.28_Afboeking_debiteuren_buiten_kas_bank"
