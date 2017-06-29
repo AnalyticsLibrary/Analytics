@@ -2,6 +2,8 @@
 
 local remark Saldibalans per periode
 
+local remark Voor gebruik met de Invantive XML Auditfile Financieel v3.2 driver.
+
 select dtl.interface_url
 ,      dtl.company_name
 ,      dtl.fiscal_year_number
@@ -11,7 +13,15 @@ select dtl.interface_url
 ,      dtl.opening_balance
 ,      dtl.balance
 ,      coalesce(dtl.opening_balance, 0) + coalesce(dtl.balance, 0) total_balance
-from   ( select gat.interface_url
+from   --
+       -- De volgende selectie verzamelt de totalen. Aangezien er een cumulatief totaal
+       -- nodig is (en voor balans inclusief openingstand) is er een relatie gelegd met 
+       -- periods op kleiner dan/gelijk aan.
+       --
+       -- Dit kan op sommige andere database platforms opgelost worden met een sum()
+       -- over (window).
+       --
+       ( select gat.interface_url
          ,      gat.company_name
          ,      gat.fiscal_year_number
          ,      prd.periodnumber transaction_periodnumber
@@ -42,6 +52,9 @@ from   ( select gat.interface_url
          ,      prd.periodnumber
          ,      obe.balance
        ) dtl
+--
+-- Laat standen met overal 0 achterwege.
+--       
 where  coalesce(dtl.opening_balance, 0) != 0
        or
        coalesce(dtl.balance, 0) != 0
@@ -53,6 +66,4 @@ by     dtl.interface_url
 ,      dtl.accid
 ,      dtl.accdesc
 
-select * from generalledgeraccounts
-
-local export results as "c:\temp\A001.xlsx" format xlsx include headers include sql
+local export results as "C:\ws\Analytics\B_ANALYTICS\B2_INVANTIVE_SQL\A001.xlsx" format xlsx include headers include sql
