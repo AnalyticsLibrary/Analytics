@@ -1,0 +1,534 @@
+node:Auditfile_8
+bretype:core::Composite
+editor:Label=Auditfile
+editor:sortkey=5976e3fc6f453490_8
+output:5976e4262a4c48f6/in1=
+outlink:0=/=Join_Left_Inner_34.45781cad02e051b0
+outputxy:0=850,210
+outputrotation:0=0
+editor:XY=60,250
+node:Data_Analyzer_17
+bretype:core::Data Analyzer
+editor:sortkey=54c77f333b3d4963_17
+input:@4485e77f45b11f00/=XML_Data_17.51781d234c465db7
+output:@4485e7a46b2e0308/=
+output:@4485e7a8783f0c7b/=
+output:@4485e7d2359004a0/=
+editor:XY=170,220
+node:Convert_Analyzed_Data
+bretype:::Convert Analyzed Data
+editor:shadow=45707e621cf53f4e
+input:@448036dc3f874917/=
+input:@448036de4a0163a2/=
+output:@448036e822166362/=
+end:Convert_Analyzed_Data
+
+node:Analyze_Data
+bretype:::Analyze Data
+editor:shadow=45707e623ee06853
+input:@4665b06168a410a5/=
+output:@4665b05e24fd0056/=
+output:@44760e944dc14b66/=
+output:@447742cf261c5399/=
+end:Analyze_Data
+
+node:Bypass
+bretype:::Bypass
+editor:shadow=45707e6245ea298b
+input:@4485e83011372f7e/=
+input:@4485e83264650bad/=
+output:@40fd2c7436717256/=
+end:Bypass
+
+node:Sample
+bretype:::Sample
+editor:shadow=45707e625df65d94
+input:@42f2fda164ca714b/=
+output:@42f303b10a020091/=
+node:crop_sample
+bretype:::crop sample
+editor:shadow=45707e62708e1af7
+input:@40fd2c74167f1ca2/=
+output:@40fd2c7420761db6/=
+end:crop_sample
+
+node:InternalRandomId
+bretype:::InternalRandomId
+editor:shadow=45707e6268437045
+input:@40fd2c743ebf4304/=
+output:@40fd2c746a2a3b47/=
+end:InternalRandomId
+
+node:add_InternalRecordCount_InternalRandomId
+bretype:::add InternalRecordCount, InternalRandomId
+editor:shadow=45707e6217fb744e
+input:@40fd2c746abc6dc7/=
+input:@40fd2c74486e4494/=
+output:@40fd2c7445835585/=
+end:add_InternalRecordCount_InternalRandomId
+
+node:count_records
+bretype:::count records
+editor:shadow=45707e6233f01425
+input:@40fd2c7427456e5b/=
+output:@40fd2c744c862db0/=
+end:count_records
+
+end:Sample
+
+end:Data_Analyzer_17
+
+node:Alleen_journaal_transactions_17
+bretype:core::Filter
+editor:Label=Alleen journaal transactions
+editor:sortkey=57e4e6885c9c1ca7_17
+input:@40fd2c74167f1ca2/=Modify_Field_Prefix_9.454a22dc003534d6
+output:@40fd2c7420761db6/=
+prop:Script=<<EOX
+
+emit 
+'company.companyIdent', 
+'header.fiscalYear',
+company.transactions.journal.desc as "Dagboek",
+company.transactions.journal.JrnTp as "JrnTP",
+company.transactions.journal.bankAccNr  as "BankAccNr",
+company.transactions.journal.offsetAccID as "AccID",
+company.transactions.journal.transaction.trLine.vat.vatID as "VatID",
+company.transactions.journal.transaction.trLine.amnt as "TrLineAmount",
+company.transactions.journal.transaction.trLine.invRef as "TrLineInvRef",
+company.transactions.journal.transaction.desc as "Desc",
+company.transactions.journal.transaction.trDt as "TrDt",
+company.transactions.journal.transaction.trLine.nr as "TrLineNr",
+company.transactions.journal.transaction.nr as "Nr",
+company.transactions.journal.transaction.trLine.custSupID as "CustSupID",
+company.transactions.journal.transaction.trLine.amntTp as "TrLineAmntTP",
+company.transactions.journal.transaction.trLine.desc as "TrLineDesc",
+company.transactions.journal.transaction.amntTp as "AmntTp",
+company.transactions.journal.transaction.trLine.effDate as "LineEffDate",
+company.transactions.journal.transaction.periodNumber as "PeriodeNumber",
+company.transactions.journal.transaction.trLine.accID as "TrLineAccID",
+company.transactions.journal.transaction.amnt as "Amount",
+company.transactions.journal.transaction.trLine.vat.vatPerc as "VatPerc",
+company.transactions.journal.transaction.trLine.vat.vatAmntTp as "VatAmountTp",
+company.transactions.journal.transaction.trLine.docRef as "DocRef",
+company.transactions.journal.transaction.trLine.vat.vatAmnt as "VatAmount",
+company.transactions.journal.transaction.trLine.costID as "CostID",
+company.transactions.journal.transaction.trLine.currency.curCode as "curCode",
+company.transactions.journal.transaction.trLine.currency.curAmnt as "curAmount"
+
+
+
+EOX
+editor:XY=360,210
+end:Alleen_journaal_transactions_17
+
+node:Benodigde_kolommen_33
+bretype:core::Filter
+editor:Label=Benodigde kolommen
+editor:sortkey=57e4ed001a28257e_33
+input:@40fd2c74167f1ca2/=Alleen_journaal_transactions_17.40fd2c7420761db6
+output:@40fd2c7420761db6/=
+prop:Script=<<EOX
+emit * where
+
+      'JrnTP' <> str (null) 
+    or
+      'BankAccNr' <> int (null) 
+    or
+      'AccID' <> int (null) 
+    or
+      'VatID' <> int (null) 
+    or
+      'TrLineAmount' <> double (null) 
+    or
+      'TrLineInvRef' <> str (null) 
+    or
+      'Desc' <> str (null) 
+    or
+      'TrDt' <> date (null) 
+    or
+      'TrLineNr' <> int (null) 
+    or
+      'Nr' <> int (null) 
+    or
+      'CustSupID' <> str (null) 
+    or
+      'TrLineAmntTP' <> str (null) 
+    or
+      'TrLineDesc' <> str (null) 
+    or
+      'AmntTp' <> str (null) 
+    or
+      'LineEffDate' <> date (null) 
+    or
+      'PeriodeNumber' <> int (null) 
+    or
+      'TrLineAccID' <> str (null) 
+    or
+      'Amount' <> double (null) 
+    or
+      'VatPerc' <> int (null) 
+    or
+      'VatAmountTp' <> str (null) 
+    or
+      'DocRef' <> int (null) 
+    or
+      'VatAmount' <> double (null) 
+    or
+      'CostID' <> str (null) 
+	or
+	  'curCode' <> str (null) 
+	or
+	  curAmount <> str (null)
+EOX
+editor:XY=500,210
+end:Benodigde_kolommen_33
+
+node:Benodigde_kolommen_34
+bretype:core::Filter
+editor:Label=Benodigde kolommen
+editor:sortkey=57e4ed001a28257e_34
+input:@40fd2c74167f1ca2/=Rekeningschema_17.40fd2c7420761db6
+output:@40fd2c7420761db6/=
+prop:Script=<<EOX
+emit * where
+      'Reference' <> str (null) 
+    or
+      'Reknr' <> str (null) 
+    or
+      'Omschrijving' <> str (null) 
+    or
+      'SoortRekening' <> str (null) 
+
+EOX
+editor:XY=500,300
+end:Benodigde_kolommen_34
+
+node:Saldo_17
+bretype:core::Filter
+editor:Label=Saldo
+editor:sortkey=57e4eecb499d594d_17
+input:@40fd2c74167f1ca2/=Join_Left_Inner_33.45781cad02e051b0
+output:@40fd2c7420761db6/=
+prop:Script=<<EOX
+Saldo = if 'TrLineAmntTP' == "D" then TrLineAmount else - TrLineAmount
+SaldoVat = if 'VatAmountTp' == "D"  then 'VatAmount' else  - VatAmount
+emit 
+'company.companyIdent', 
+'header.fiscalYear',
+'JrnTP' ,
+ 'AccID' ,
+ TrLineNr,
+TrLineInvRef,
+DocRef,
+Dagboek,
+Nr,
+TrLineAccID as "Reknr",
+Omschrijving,
+Reference,
+SoortRekening,
+TrLineAmount,
+TrLineAmntTP,
+Saldo,
+Amount,
+curCode,
+curAmount,
+VatAmount,
+VatAmountTp,
+SaldoVat,
+VatID,
+VatPerc,
+Desc,
+TrLineDesc,
+PeriodeNumber,
+TrDt, 
+LineEffDate,
+CostID,
+CustSupID,
+'BankAccNr' 
+
+EOX
+editor:XY=670,210
+end:Saldo_17
+
+node:Rekeningschema_17
+bretype:core::Filter
+editor:Label=Rekeningschema
+editor:sortkey=57e4f4675cb43abd_17
+input:@40fd2c74167f1ca2/=Modify_Field_Prefix_9.454a22dc003534d6
+output:@40fd2c7420761db6/=
+prop:Script=<<EOX
+emit 
+      
+      'company.generalLedger.ledgerAccount.accID'  as "Reknr",
+      'company.generalLedger.ledgerAccount.accDesc' as "Omschrijving", 
+      'company.generalLedger.ledgerAccount.accTp' as "SoortRekening",
+       'company.generalLedger.ledgerAccount.leadReference' as "Reference"
+EOX
+editor:XY=350,300
+end:Rekeningschema_17
+
+node:Join_Left_Inner_33
+bretype:core::Join Left Inner
+editor:sortkey=57e4f6b914c35721_17
+input:@45781ca80c2802d0/=Benodigde_kolommen_33.40fd2c7420761db6
+input:@45781ca971fe502f/=Benodigde_kolommen_34.40fd2c7420761db6
+output:@45781cad02e051b0/=
+prop:LeftInputKey=<<EOX
+TrLineAccID.str()
+EOX
+prop:RightInputKey=<<EOX
+Reknr
+EOX
+prop:SortLeftInput=true
+prop:SortRightInput=true
+editor:XY=590,210
+node:Sort
+bretype:::Sort
+editor:shadow=4578213227295e66
+input:@40fd2c743ebf4304/=
+output:@40fd2c746a2a3b47/=
+end:Sort
+
+node:Bypass_2
+bretype:::Bypass
+editor:shadow=4578213229d61611
+input:@45782010749f0c96/=
+input:@457820124fef7658/=
+output:@40fd2c7436717256/=
+end:Bypass_2
+
+node:Sort_2
+bretype:::Sort
+editor:shadow=457821325111769a
+input:@40fd2c743ebf4304/=
+output:@40fd2c746a2a3b47/=
+end:Sort_2
+
+node:Join
+bretype:::Join
+editor:shadow=4578213269da7045
+input:@40fd2c745b6d7704/=
+input:@40fd2c74504921cd/=
+output:@40fd2c7430f76546/=
+end:Join
+
+node:Bypass
+bretype:::Bypass
+editor:shadow=457821327950136b
+input:@45782010749f0c96/=
+input:@457820124fef7658/=
+output:@40fd2c7436717256/=
+end:Bypass
+
+end:Join_Left_Inner_33
+
+node:Customers__Suppliers_16
+bretype:core::Filter
+editor:Label=Customers / Suppliers
+editor:sortkey=57e4fc3b06d45e44_16
+input:@40fd2c74167f1ca2/=Modify_Field_Prefix_9.454a22dc003534d6
+output:@40fd2c7420761db6/=
+prop:Script=<<EOX
+emit 
+company.customersSuppliers.customerSupplier.custSupID as CustSupID, 
+      'company.customersSuppliers.customerSupplier.custSupName' as "Naam" ,
+      'company.customersSuppliers.customerSupplier.contact' as "Contactpersoon",
+      'company.customersSuppliers.customerSupplier.streetAddress.streetname' as "Straatnaam",  
+      'company.customersSuppliers.customerSupplier.streetAddress.city' as "Plaats",
+      'company.customersSuppliers.customerSupplier.streetAddress.postalCode'  as "Postcode",
+      'company.customersSuppliers.customerSupplier.streetAddress.country' as "Land",
+      'company.customersSuppliers.customerSupplier.telephone' as "Telefoonnummer",
+      'company.customersSuppliers.customerSupplier.fax' as "Faxnummer",
+      'company.customersSuppliers.customerSupplier.eMail' as "Email", 
+      'company.customersSuppliers.customerSupplier.website' as "Website",
+      'company.customersSuppliers.customerSupplier.taxRegistrationCountry' as "TaxRegistrationCountry",
+      'company.customersSuppliers.customerSupplier.bankAccount.bankAccNr' as "Rekeningnummer",
+      'company.customersSuppliers.customerSupplier.bankAccount.bankIdCd' as "BankIdCode"
+      
+      
+
+where
+      'company.customersSuppliers.customerSupplier.bankAccount.bankIdCd' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.website' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.contact' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.telephone' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.custSupName' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.taxRegistrationCountry' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.fax' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.bankAccount.bankAccNr' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.streetAddress.city' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.streetAddress.postalCode' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.eMail' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.streetAddress.country' <> str (null) 
+    or
+      'company.customersSuppliers.customerSupplier.streetAddress.streetname' <> str (null) 
+EOX
+editor:XY=360,130
+end:Customers__Suppliers_16
+
+node:Join_Left_Inner_34
+bretype:core::Join Left Inner
+editor:sortkey=57eced1d1b5f7b05_16
+input:@45781ca80c2802d0/=Saldo_17.40fd2c7420761db6
+input:@45781ca971fe502f/=Customers__Suppliers_16.40fd2c7420761db6
+output:@45781cad02e051b0/=
+prop:LeftInputKey=<<EOX
+CustSupID
+EOX
+prop:RightInputKey=<<EOX
+CustSupID
+EOX
+prop:Script=<<EOX
+
+emit 1:*
+emit 2:Naam, 2:TaxRegistrationCountry
+exclude referencedFields(2, {{^RightInputKey^}})
+
+EOX
+prop:SortLeftInput=true
+prop:SortRightInput=true
+editor:XY=760,210
+node:Sort
+bretype:::Sort
+editor:shadow=4578213227295e66
+input:@40fd2c743ebf4304/=
+output:@40fd2c746a2a3b47/=
+end:Sort
+
+node:Bypass_2
+bretype:::Bypass
+editor:shadow=4578213229d61611
+input:@45782010749f0c96/=
+input:@457820124fef7658/=
+output:@40fd2c7436717256/=
+end:Bypass_2
+
+node:Sort_2
+bretype:::Sort
+editor:shadow=457821325111769a
+input:@40fd2c743ebf4304/=
+output:@40fd2c746a2a3b47/=
+end:Sort_2
+
+node:Join
+bretype:::Join
+editor:shadow=4578213269da7045
+input:@40fd2c745b6d7704/=
+input:@40fd2c74504921cd/=
+output:@40fd2c7430f76546/=
+end:Join
+
+node:Bypass
+bretype:::Bypass
+editor:shadow=457821327950136b
+input:@45782010749f0c96/=
+input:@457820124fef7658/=
+output:@40fd2c7436717256/=
+end:Bypass
+
+end:Join_Left_Inner_34
+
+node:XML_Data_17
+bretype:lal1::XML Data
+editor:sortkey=596d9e67000b18b7_9
+output:@51781d234c465db7/=
+output:@522743291aa237ba/=
+output:@522743281dab2bc6/=
+prop:XmlData=D:\Lavastorm\Audit platform\2015\Input\Multivers XL 10.7 Demo 2015 met RGS.xaf
+prop:XmlDataParamType=Filename
+editor:XY=60,230
+end:XML_Data_17
+
+node:Modify_Field_Prefix_9
+bretype:core::Modify Field Prefix
+editor:sortkey=596da1f51df0182f_9
+input:@454a22da07433364/=Data_Analyzer_17.4485e7a46b2e0308
+output:@454a22dc003534d6/=
+prop:Add=false
+prop:Prefix=auditfile.
+editor:XY=260,210
+end:Modify_Field_Prefix_9
+
+end:Auditfile_8
+
+node:CustSupID__NULL_2
+bretype:core::Filter
+editor:Label=CustSupID <> NULL
+editor:sortkey=596dace25a0e093a_2
+input:@40fd2c74167f1ca2/=Auditfile_8.5976e4262a4c48f6
+output:@40fd2c7420761db6/=
+prop:Script=<<EOX
+emit * where
+      'CustSupID' <> str (null) 
+  and 
+      'Reknr' <> "1770"
+  and
+      'Reknr' <> "1610"
+  and
+      'Reknr' <> "1310"
+  and
+      'Reknr' <> "1600"
+  and
+      'Reknr' <> "1710"
+  and
+      'Reknr' <> "1760"
+  and
+      'Reknr' <> "1300"
+
+EOX
+editor:XY=500,410
+end:CustSupID__NULL_2
+
+node:A004
+bretype:core::Agg Ex
+editor:Label=A004
+editor:sortkey=596dabd40b1e6bd1
+input:@4b4668c040aa5a85/=CustSupID__NULL_2.40fd2c7420761db6
+output:@4b4668e708143fb4/=
+prop:GroupBy=<<EOX
+CustSupID, Naam
+EOX
+prop:Script=<<EOX
+Totaal = groupSum(Saldo)
+emit referencedFields(1,{{^GroupBy^}}), Totaal
+where lastInGroup
+
+EOX
+prop:SortInput=true
+editor:XY=1330,410
+node:Bypass
+bretype:::Bypass
+editor:shadow=4b467f7e02db3a85
+input:@4b467f7e129d45c1/=
+input:@4b467f830ffe047b/=
+output:@40fd2c7436717256/=
+end:Bypass
+
+node:Sort
+bretype:::Sort
+editor:shadow=4b467f8972dc33df
+input:@40fd2c743ebf4304/=
+output:@40fd2c746a2a3b47/=
+end:Sort
+
+node:Agg
+bretype:::Agg
+editor:shadow=4b467f9b3d5028c0
+input:@40fd2c7427456e5b/=
+output:@40fd2c744c862db0/=
+end:Agg
+
+end:A004
+
