@@ -26,7 +26,7 @@ COM - dient eerst geverifieerd te worden hoe dit in het onderhavige geval is ver
 COM - voor de rest van het script wordt verondersteld dat het CustSupID is opgenomen op 
 COM - de transactiesregels voor debiteuren en crediteuren
 COM - welke als filter op zijn genomen in dit sript (op basis van RGS labels maar dit 
-COM - filter kan eenvoudig aangepast worden aan rekeningnummer
+COM - filter kan eenvoudig aangepast worden aan rekeningnummer)
 
 COM - bepaal de waarde van de boeking met juiste teken
 
@@ -40,11 +40,11 @@ COM - geef een indicator mee voor debiteuren of crediteuren
 DEFINE FIELD a_rel_type COMPUTED 
 
 	"debiteuren" IF UPPER(SUBSTRING(generalLedger.leadReference 1 10)) = "BVORDEBHAD"
-	"crediteuren" IF generalLedger.leadReference = "BSCHCREHAC"
+	"crediteuren" IF UPPER(SUBSTRING(generalLedger.leadReference 1 10)) = "BSCHCREHAC"
 	""
 
 COM - vervolgens alleen debiteuren/crediteuren boekingen eruit filteren
-COM - als geen RGS in het auditfile is opgenomen, kan dit filer ook aangepast worden naar
+COM - als geen RGS in het auditfile is opgenomen, kan dit filter ook aangepast worden naar
 COM - een filter op grootboekrekeningnummer (accID)
 
 EXTRACT FIELDS ALL customersSuppliers.custSupName IF MATCH(a_rel_type "debiteuren" "crediteuren") TO scr01 OPEN
