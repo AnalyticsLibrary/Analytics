@@ -1,0 +1,1238 @@
+
+COM import script for XAF V3.2
+
+COM ASSIGN variables for path and name of xaf which will be 
+COM used when import all tables
+
+ASSIGN vSourcefile = 
+ASSIGN vActDir = 
+
+COMMENT Initiate tablenames to which the data will be imported
+COMMENT Fiscal year and company
+
+vTablenameHDR    = vTablename + "_HDR___"
+vTablenameCMP    = vTablename + "_CMP___"
+vTablenameCMPSA  = vTablename + "_CMPSA_"
+vTablenameCMPPA  = vTablename + "_CMPPA_"
+
+COMMENT Customers and suppliers (incl history of changes)
+
+vTablenameCS     = vTablename + "_CS___"
+vTablenameCSS    = vTablename + "_CSS___"
+vTablenameCSP    = vTablename + "_CSP___"
+vTablenameCSB    = vTablename + "_CSB___"
+vTablenameCSC    = vTablename + "_CSC___"
+vTablenameCSH    = vTablename + "_CSH___"
+vTablenameCSHS   = vTablename + "_CSHS__"
+vTablenameCSHP   = vTablename + "_CSHP__"
+vTablenameCSHB   = vTablename + "_CSHB__"
+vTablenameCSHC   = vTablename + "_CSHC__"
+
+COMMENT General legder
+
+vTablenameGLA    = vTablename + "_GLA___"
+vTablenameGLAT   = vTablename + "_GLAT__"
+vTablenameGLATE  = vTablename + "_GLATE_"
+vTablenameGLATED = vTablename + "_GLATED"
+vTablenameGLAC   = vTablename + "_GLAC__"
+vTablenameGLAH   = vTablename + "_GLAH__"
+vTablenameGLAHC  = vTablename + "_GLAHC_"
+vTablenameGLB    = vTablename + "_GLB___"
+
+COMMENT VAT codes
+
+vTablenameVC     = vTablename + "_VC____"
+
+COMMENT Periodes
+
+vTablenamePER    = vTablename + "_PER___"
+
+COMMENT Opening balance (incl subledgers)
+
+vTablenameOB     = vTablename + "_OB____"
+vTablenameOBL    = vTablename + "_OBL___"
+vTablenameOBS    = vTablename + "_OBS___"
+vTablenameOBSL   = vTablename + "_OBSL__"
+vTablenameOBSLL  = vTablename + "_OBSLL_"
+
+COMMENT Transactions (incl subledgers)
+
+vTablenameTRS    = vTablename + "_TRS___"
+vTablenameJRN    = vTablename + "_JRN___"
+vTablenameTRN    = vTablename + "_TRN___"
+vTablenameTRL    = vTablename + "_TRL___"
+vTablenameTRLV   = vTablename + "_TRLV__"
+vTablenameTRLC   = vTablename + "_TRLC__"
+vTablenameTRSS   = vTablename + "_TRSS__"
+vTablenameTRSSL  = vTablename + "_TRSSL_"
+vTablenameTRSSLV = vTablename + "_TRSSLV"
+vTablenameTRSSLC = vTablename + "_TRSSLC"
+
+COMMENT Import table HEADER 
+
+vImport =           'IMPORT XML TO %vTablenameHDR% "%vTablenameHDR%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "fiscalYear"             C AT   1 DEC 0 WID 10 PIC ""           AS "" RULE "/auditfile/header/fiscalYear/text()" '
+vImport = vImport + 'FIELD "startDate"              D AT  11 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/header/startDate/text()" '
+vImport = vImport + 'FIELD "endDate"                D AT  27 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/header/endDate/text()" '
+vImport = vImport + 'FIELD "curCode"                C AT  43 DEC 0 WID  3 PIC ""           AS "" RULE "/auditfile/header/curCode/text()" '
+vImport = vImport + 'FIELD "dateCreated"            D AT  46 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/header/dateCreated/text()" '
+vImport = vImport + 'FIELD "softwareDesc"           C AT  62 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/header/softwareDesc/text()" '
+vImport = vImport + 'FIELD "softwareVersion"        C AT 112 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/header/softwareVersion/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameHDR%") <> "U" OPEN %vTablenameHDR%
+IF FTYPE("%vTablenameHDR%") <> "U" DEFINE FIELD cKey_HDR___ COMPUTED ALLTRIM(fiscalYear)
+IF FTYPE("%vTablenameHDR%") <> "U" INDEX ON cKey_HDR___ TO %vTablename%HDR
+
+COMMENT COMPANY ########################################################################################
+COMMENT Import table COMPANY 
+
+vImport =           'IMPORT XML TO %vTablenameCMP% "%vTablenameCMP%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"           C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "companyName"            C AT  36 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/companyName/text()" '
+vImport = vImport + 'FIELD "taxRegistrationCountry" C AT  86 DEC 0 WID  2 PIC ""           AS "" RULE "/auditfile/company/taxRegistrationCountry/text()" '
+vImport = vImport + 'FIELD "taxRegIdent"            C AT  88 DEC 0 WID 30 PIC ""           AS "" RULE "/auditfile/company/taxRegIdent/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameCMP%") <> "U" OPEN %vTablenameCMP%
+IF FTYPE("%vTablenameCMP%") <> "U" DEFINE FIELD cKey_CMP___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameCMP%") <> "U" INDEX ON cKey_CMP___ TO %vTablename%CMP
+
+COMMENT Import table COMPANY - STREETADDRESS 
+
+vImport =           'IMPORT XML TO %vTablenameCMPSA% "%vTablenameCMPSA%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"           C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "saStreetname"           C AT  36 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/streetAddress/streetname/text()" '
+vImport = vImport + 'FIELD "saNumber"               C AT  86 DEC 0 WID 15 PIC ""           AS "" RULE "/auditfile/company/streetAddress/number/text()" '
+vImport = vImport + 'FIELD "saNumberExtension"      C AT 101 DEC 0 WID 10 PIC ""           AS "" RULE "/auditfile/company/streetAddress/numberExtension/text()" '
+vImport = vImport + 'FIELD "saProperty"             C AT 111 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/streetAddress/property/text()" '
+vImport = vImport + 'FIELD "saCity"                 C AT 161 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/streetAddress/city/text()" '
+vImport = vImport + 'FIELD "saPostalCode"           C AT 211 DEC 0 WID 10 PIC ""           AS "" RULE "/auditfile/company/streetAddress/postalCode/text()" '
+vImport = vImport + 'FIELD "saRegion"               C AT 221 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/streetAddress/region/text()" '
+vImport = vImport + 'FIELD "saCountry"              C AT 271 DEC 0 WID  2 PIC ""           AS "" RULE "/auditfile/company/streetAddress/country/text()" '
+
+IF FTYPE("%vTablenameCMP%") <> "U" %vImport%
+IF FTYPE("%vTablenameCMPSA%") <> "U" OPEN %vTablenameCMPSA%
+IF FTYPE("%vTablenameCMPSA%") <> "U" DEFINE FIELD cKey_CMPSA_ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(saStreetname + BLANKS(50); 1; 50)
+IF FTYPE("%vTablenameCMPSA%") <> "U" INDEX ON cKey_CMPSA_ TO %vTablename%CMPSA
+
+COMMENT Import table COMPANY - POSTADDRESS 
+
+vImport =           'IMPORT XML TO %vTablenameCMPPA% "%vTablenameCMPPA%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"           C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "paStreetname"           C AT  36 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/postalAddress/streetname/text()" '
+vImport = vImport + 'FIELD "paNumber"               C AT  51 DEC 0 WID 15 PIC ""           AS "" RULE "/auditfile/company/postalAddress/number/text()" '
+vImport = vImport + 'FIELD "paNumberExtension"      C AT  66 DEC 0 WID 10 PIC ""           AS "" RULE "/auditfile/company/postalAddress/numberExtension/text()" '
+vImport = vImport + 'FIELD "paProperty"             C AT  76 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/postalAddress/property/text()" '
+vImport = vImport + 'FIELD "paCity"                 C AT 126 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/postalAddress/city/text()" '
+vImport = vImport + 'FIELD "paPostalCode"           C AT 176 DEC 0 WID 10 PIC ""           AS "" RULE "/auditfile/company/postalAddress/postalCode/text()" '
+vImport = vImport + 'FIELD "paRegion"               C AT 186 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/postalAddress/region/text()" '
+vImport = vImport + 'FIELD "paCountry"              C AT 236 DEC 0 WID  2 PIC ""           AS "" RULE "/auditfile/company/postalAddress/country/text()" '
+
+IF FTYPE("%vTablenameCMP%") <> "U" %vImport%
+IF FTYPE("%vTablenameCMPPA%") <> "U" OPEN %vTablenameCMPPA%
+IF FTYPE("%vTablenameCMPPA%") <> "U" DEFINE FIELD cKey_CMPPA_ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + SUB(paStreetname + BLANKS(50); 1; 50)
+IF FTYPE("%vTablenameCMPPA%") <> "U" INDEX ON cKey_CMPPA_ TO %vTablename%CMPPA
+
+COMMENT Define relations company
+
+IF FTYPE("%vTablenameCMP%") <> "U" OPEN %vTablenameCMP%
+IF FTYPE("%vTablenameCMP%") <> "U" AND FTYPE("%vTablenameCMPSA%") <> "U" DEFINE RELATION cKey_CMP___   WITH %vTablenameCMPSA% INDEX %vTablename%CMPSA
+IF FTYPE("%vTablenameCMP%") <> "U" AND FTYPE("%vTablenameCMPPA%") <> "U" DEFINE RELATION cKey_CMP___   WITH %vTablenameCMPPA% INDEX %vTablename%CMPPA
+
+
+COMMENT CUSTOMER - SUPPLIER #############################################################################
+COMMENT Import table CUSTOMERSUPPLIER 
+
+vImportXML = ''
+vImport =           'IMPORT XML TO %vTablenameCS% "%vTablenameCS%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"           C AT    1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "custSupID"              C AT   36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/custSupID/text()" '
+vImport = vImport + 'FIELD "custSupName"            C AT   71 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/custSupName/text()" '
+vImport = vImport + 'FIELD "contact"                C AT  121 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/contact/text()" '
+vImport = vImport + 'FIELD "telephone"              C AT  171 DEC 0 WID 30 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/telephone/text()" '
+vImport = vImport + 'FIELD "fax"                    C AT  201 DEC 0 WID 30 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/fax/text()" '
+vImport = vImport + 'FIELD "eMail"                  C AT  231 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/eMail/text()" '
+vImport = vImport + 'FIELD "website"                C AT  281 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/website/text()" '
+vImport = vImport + 'FIELD "commerceNr"             C AT  331 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/commerceNr/text()" '
+vImport = vImport + 'FIELD "taxRegistrationCountry" C AT  381 DEC 0 WID  2 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/taxRegistrationCountry/text()" '
+vImport = vImport + 'FIELD "taxRegIdent"            C AT  383 DEC 0 WID 30 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/taxRegIdent/text()" '
+vImport = vImport + 'FIELD "relationshipID"         C AT  413 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/relationshipID/text()" '
+
+COMMENT
+# Possible data in field custSupTp ########
+# Type    Description
+# B Both Customer and Supplier
+# C Customerja daar moet 
+# O Other, no Customer or Supplier
+# S Supplier
+###########################################
+END
+
+vImport = vImport + 'FIELD "custSupTp"              C AT  448 DEC 0 WID  1 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/custSupTp/text()" '
+vImport = vImport + 'FIELD "custSupGrpID"           C AT  449 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/custSupGrpID/text()" '
+vImport = vImport + 'FIELD "custCreditLimit"        C AT  484 DEC 0 WID 20 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/custCreditLimit/text()" '
+vImport = vImport + 'FIELD "supplierLimit"          C AT  504 DEC 0 WID 20 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/supplierLimit/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameCS%") <> "U" OPEN %vTablenameCS%
+IF FTYPE("%vTablenameCS%") <> "U" DEFINE FIELD cKey_CS___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameCS%") <> "U" INDEX ON cKey_CS___ TO %vTablename%CS
+
+
+COMMENT Import table CUSTOMERSUPPLIER - STREETADDRESS
+
+ImportXML = ''
+vImport =           'IMPORT XML TO %vTablenameCSS% "%vTablenameCSS%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"           C AT    1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "custSupID"              C AT   36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/custSupID/text()" '
+vImport = vImport + 'FIELD "saStreetname"           C AT   71 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/streetAddress/streetname/text()" '
+vImport = vImport + 'FIELD "saNumber"               C AT  121 DEC 0 WID 15 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/streetAddress/number/text()" '
+vImport = vImport + 'FIELD "saNumberExtension"      C AT  136 DEC 0 WID 10 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/streetAddress/numberExtension/text()" '
+vImport = vImport + 'FIELD "saProperty"             C AT  146 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/streetAddress/property/text()" '
+vImport = vImport + 'FIELD "saCity"                 C AT  196 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/streetAddress/city/text()" '
+vImport = vImport + 'FIELD "saPostalCode"           C AT  246 DEC 0 WID 10 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/streetAddress/postalCode/text()" '
+vImport = vImport + 'FIELD "saRegion"               C AT  256 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/streetAddress/region/text()" '
+vImport = vImport + 'FIELD "saCountry"              C AT  306 DEC 0 WID  2 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/streetAddress/country/text()" '
+
+IF FTYPE("%vTablenameCS%") <> "U" %vImport%
+IF FTYPE("%vTablenameCSS%") <> "U" OPEN %vTablenameCSS%
+IF FTYPE("%vTablenameCSS%") <> "U" DEFINE FIELD cKey_CSS___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35) + "_" + SUB(saStreetname + BLANKS(50); 1; 50)
+IF FTYPE("%vTablenameCSS%") <> "U" INDEX ON cKey_CSS___ TO %vTablename%CSS
+IF FTYPE("%vTablenameCSS%") <> "U" DEFINE FIELD cKey_CSS___2CS COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameCSS%") <> "U" INDEX ON cKey_CSS___2CS TO %vTablename%CSS2CS
+
+
+COMMENT Import table CUSTOMERSUPPLIER - POSTADDRESS
+
+vImportXML = ''
+vImport =           'IMPORT XML TO %vTablenameCSP% "%vTablenameCSP%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"           C AT    1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "custSupID"              C AT   36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/custSupID/text()" '
+vImport = vImport + 'FIELD "paStreetname"           C AT   71 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/postalAddress/streetname/text()" '
+vImport = vImport + 'FIELD "paNumber"               C AT  121 DEC 0 WID 15 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/postalAddress/number/text()" '
+vImport = vImport + 'FIELD "paNumberExtension"      C AT  136 DEC 0 WID 10 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/postalAddress/numberExtension/text()" '
+vImport = vImport + 'FIELD "paProperty"             C AT  186 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/postalAddress/property/text()" '
+vImport = vImport + 'FIELD "paCity"                 C AT  236 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/postalAddress/city/text()" '
+vImport = vImport + 'FIELD "paPostalCode"           C AT  286 DEC 0 WID 10 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/postalAddress/postalCode/text()" '
+vImport = vImport + 'FIELD "paRegion"               C AT  296 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/postalAddress/region/text()" '
+vImport = vImport + 'FIELD "paCountry"              C AT  346 DEC 0 WID  2 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/postalAddress/country/text()" '
+
+IF FTYPE("%vTablenameCS%") <> "U" %vImport%
+IF FTYPE("%vTablenameCSP%") <> "U" OPEN %vTablenameCSP%
+IF FTYPE("%vTablenameCSS%") <> "U" DEFINE FIELD cKey_CSP___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35) + "_" + SUB(paStreetname + BLANKS(50); 1; 50)
+IF FTYPE("%vTablenameCSS%") <> "U" INDEX ON cKey_CSP___ TO %vTablename%CSP
+IF FTYPE("%vTablenameCSP%") <> "U" DEFINE FIELD cKey_CSP___2CS COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameCSP%") <> "U" INDEX ON cKey_CSP___2CS TO %vTablename%CSP2CS
+
+COMMENT Import table CUSTOMERSUPPLIER - BANKACCOUNT
+
+vImportXML = ''
+vImport =           'IMPORT XML TO %vTablenameCSB% "%vTablenameCSB%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"           C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "custSupID"              C AT  36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/custSupID/text()" '
+vImport = vImport + 'FIELD "bankAccNr"              C AT  71 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/bankAccount/bankAccNr/text()" '
+vImport = vImport + 'FIELD "bankIdCd"               C AT 121 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/bankAccount/bankIdCd/text()" '
+
+IF FTYPE("%vTablenameCS%") <> "U" %vImport%
+IF FTYPE("%vTablenameCSB%") <> "U" OPEN %vTablenameCSB%
+IF FTYPE("%vTablenameCSS%") <> "U" DEFINE FIELD cKey_CSB___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35) + "_" + SUB(bankAccNr + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameCSS%") <> "U" INDEX ON cKey_CSB___ TO %vTablename%CSB
+IF FTYPE("%vTablenameCSB%") <> "U" DEFINE FIELD cKey_CSB___2CS COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameCSB%") <> "U" INDEX ON cKey_CSB___2CS TO %vTablename%CSB2CS
+
+
+COMMENT Import table CUSTOMERSUPPLIER - CHANGES
+
+vImportXML = ''
+vImport =           'IMPORT XML TO %vTablenameCSC% "%vTablenameCSC%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"           C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "custSupID"              C AT  36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/custSupID/text()" '
+vImport = vImport + 'FIELD "changeUserID"           C AT  71 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/changeInfo/userID/text()" '
+vImport = vImport + 'FIELD "changeDateTime"         C AT 121 DEC 0 WID 25 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/changeInfo/changeDateTime/text()" '
+vImport = vImport + 'FIELD "changeDescription"      C AT 146 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/customersSuppliers/customerSupplier/changeInfo/changeDescription/text()" '
+
+IF FTYPE("%vTablenameCS%") <> "U" %vImport%
+IF FTYPE("%vTablenameCSC%") <> "U" OPEN %vTablenameCSC%
+IF FTYPE("%vTablenameCSS%") <> "U" DEFINE FIELD cKey_CSC___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35) + "_" + SUB(changeUserID + BLANKS(35); 1; 35) + "_" + SUB(changeDateTime + BLANKS(24); 1; 24)
+IF FTYPE("%vTablenameCSS%") <> "U" INDEX ON cKey_CSC___ TO %vTablename%CSC
+IF FTYPE("%vTablenameCSC%") <> "U" DEFINE FIELD cKey_CSC___2CS COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameCSC%") <> "U" INDEX ON cKey_CSC___2CS TO %vTablename%CSC2CS
+
+
+COMMENT Define relations CustomerSupplier
+
+IF FTYPE("%vTablenameCS%") <> "U" OPEN %vTablenameCS%
+IF FTYPE("%vTablenameCS%") <> "U" AND FTYPE("%vTablenameCSS%") <> "U" DEFINE RELATION cKey_CS___    WITH %vTablenameCSS%  INDEX %vTablename%CSS2CS
+IF FTYPE("%vTablenameCS%") <> "U" AND FTYPE("%vTablenameCSP%") <> "U" DEFINE RELATION cKey_CS___    WITH %vTablenameCSP%  INDEX %vTablename%CSP2CS
+IF FTYPE("%vTablenameCS%") <> "U" AND FTYPE("%vTablenameCSB%") <> "U" DEFINE RELATION cKey_CS___    WITH %vTablenameCSB%  INDEX %vTablename%CSB2CS
+IF FTYPE("%vTablenameCS%") <> "U" AND FTYPE("%vTablenameCSC%") <> "U" DEFINE RELATION cKey_CS___    WITH %vTablenameCSC%  INDEX %vTablename%CSC2CS
+
+COMMENT GENERAL LEDGER - LEDGERACCOUNT #######################################################
+COMMENT Import table GENERALLEDGER 
+
+vImport =           'IMPORT XML TO %vTablenameGLA% "%vTablenameGLA%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"      C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "accID"             C AT  36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/accID/text()" '
+vImport = vImport + 'FIELD "accDesc"           C AT  71 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/accDesc/text()" '
+vImport = vImport + 'FIELD "accTp"             C AT 121 DEC 0 WID  2 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/accTp/text()" '
+vImport = vImport + 'FIELD "leadCode"          C AT 123 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/leadCode/text()" '
+vImport = vImport + 'FIELD "leadDescription"   C AT 173 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/leadDescription/text()" '
+vImport = vImport + 'FIELD "leadReference"     C AT 223 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/leadReference/text()" '
+vImport = vImport + 'FIELD "leadCrossRef"      C AT 273 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/leadCrossRef/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameGLA%") <> "U" OPEN %vTablenameGLA%
+IF FTYPE("%vTablenameGLA%") <> "U" DEFINE FIELD cKey_GLA___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameGLA%") <> "U" INDEX ON cKey_GLA___ TO %vTablename%GLA
+
+COMMENT Veld cKeyRefGLA definiëren voor koppeling aan RGS
+
+IF FTYPE("%vTablenameGLA%") <> "U" DEFINE FIELD cKeyRefGLA COMPUTED SUB(leadReference; 1; 13)
+
+COMMENT Import table GENERALLEDGER - LEDGERACCOUNT - TAXONOMIE 
+
+vImport =           'IMPORT XML TO %vTablenameGLAT% "%vTablenameGLAT%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"      C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "accID"             C AT  36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/accID/text()" '
+vImport = vImport + 'FIELD "taxoRef"           C AT  71 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/taxonomy/taxoRef/text()" '
+
+IF FTYPE("%vTablenameGLA%") <> "U" %vImport%
+IF FTYPE("%vTablenameGLAT%") <> "U" OPEN %vTablenameGLAT%
+IF FTYPE("%vTablenameGLAT%") <> "U" DEFINE FIELD cKey_GLAT__ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35) + "_" + SUB(taxoRef + BLANKS(50); 1; 50)
+IF FTYPE("%vTablenameGLAT%") <> "U" INDEX ON cKey_GLAT__ TO %vTablename%GLAT
+IF FTYPE("%vTablenameGLAT%") <> "U" DEFINE FIELD cKey_GLAT__TAX2LA COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameGLAT%") <> "U" INDEX ON cKey_GLAT__TAX2LA TO %vTablename%TAX2LA
+
+COMMENT Import table GENERALLEDGER - LEDGERACCOUNT - TAXONOMIE - ENTRYPOINT
+
+vImport =           'IMPORT XML TO %vTablenameGLATE% "%vTablenameGLATE%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"      C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "accID"             C AT  36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/accID/text()" '
+vImport = vImport + 'FIELD "taxoRef"           C AT  71 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/taxonomy/taxoRef/text()" '
+vImport = vImport + 'FIELD "entryPointRef"     C AT 121 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/taxonomy/entryPoint/entryPointRef/text()" '
+vImport = vImport + 'FIELD "conceptRef"        C AT 171 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/taxonomy/entryPoint/conceptRef/text()" '
+
+IF FTYPE("%vTablenameGLAT%") <> "U" %vImport%
+IF FTYPE("%vTablenameGLATE%") <> "U" OPEN %vTablenameGLATE%
+IF FTYPE("%vTablenameGLATE%") <> "U" DEFINE FIELD cKey_GLATE_ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35)  + "_" + SUB(taxoRef + BLANKS(50); 1; 50)  + "_" + SUB(entryPointRef + BLANKS(50); 1; 50) 
+IF FTYPE("%vTablenameGLATE%") <> "U" INDEX ON cKey_GLATE_ TO %vTablename%GLATE
+IF FTYPE("%vTablenameGLATE%") <> "U" DEFINE FIELD cKey_GLATE_ENT2TAX COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35)  + "_" + SUB(taxoRef + BLANKS(50); 1; 50) 
+IF FTYPE("%vTablenameGLATE%") <> "U" INDEX ON cKey_GLATE_ENT2TAX TO %vTablename%ENT2TAX
+
+
+COMMENT Import table GENERALLEDGER - LEDGERACCOUNT - TAXONOMIE - ENTRYPOINT - DOMAINMEMBER
+
+vImport =           'IMPORT XML TO %vTablenameGLATED% "%vTablenameGLATED%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"      C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "accID"             C AT  36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/accID/text()" '
+vImport = vImport + 'FIELD "taxoRef"           C AT  71 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/taxonomy/taxoRef/text()" '
+vImport = vImport + 'FIELD "entryPointRef"     C AT 121 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/taxonomy/entryPoint/entryPointRef/text()" '
+vImport = vImport + 'FIELD "domainMemberRef"   C AT 171 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/taxonomy/entryPoint/domainMember/domainMemberRef/text()" '
+
+IF FTYPE("%vTablenameGLATE%") <> "U" %vImport%
+IF FTYPE("%vTablenameGLATED%") <> "U" OPEN %vTablenameGLATED%
+IF FTYPE("%vTablenameGLATED%") <> "U" DEFINE FIELD cKey_GLATED COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35)  + "_" + SUB(taxoRef + BLANKS(50); 1; 50) + SUB(entryPointRef + BLANKS(50); 1; 50)  + "_" + SUB(domainMemberRef + BLANKS(50); 1; 50) 
+IF FTYPE("%vTablenameGLATED%") <> "U" INDEX ON cKey_GLATED TO %vTablename%GLATED
+IF FTYPE("%vTablenameGLATED%") <> "U" DEFINE FIELD cKey_GLATED_DOM2ENT COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35) + "_" + SUB(taxoRef + BLANKS(50); 1; 50)  + "_" + SUB(entryPointRef + BLANKS(50); 1; 50) 
+IF FTYPE("%vTablenameGLATED%") <> "U" INDEX ON cKey_GLATED_DOM2ENT TO %vTablename%DOM2ENT
+
+COMMENT Import table GENERAL LEDGER - LEDGERACCOUNT - CHANGEINFORMATION 
+
+vImport =           'IMPORT XML TO %vTablenameGLAC% "%vTablenameGLAC%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"      C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "accID"             C AT  36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/accID/text()" '
+vImport = vImport + 'FIELD "changeUserID"      C AT  71 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/changeInfo/userID/text()" '
+vImport = vImport + 'FIELD "changeDateTime"    C AT 106 DEC 0 WID 25 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/changeInfo/changeDateTime/text()" '
+vImport = vImport + 'FIELD "changeDescription" C AT 131 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/ledgerAccount/changeInfo/changeDescription/text()" '
+
+IF FTYPE("%vTablenameGLA%") <> "U" %vImport%
+IF FTYPE("%vTablenameGLAC%") <> "U" OPEN %vTablenameGLAC%
+IF FTYPE("%vTablenameGLAC%") <> "U" DEFINE FIELD cKey_GLAC__ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35) + "_" + SUB(changeUserID + BLANKS(35); 1; 35) + "_" + SUB(changeDateTime + BLANKS(24); 1; 24)
+IF FTYPE("%vTablenameGLAC%") <> "U" INDEX ON cKey_GLAC__ TO %vTablename%GLAC
+IF FTYPE("%vTablenameGLAC%") <> "U" DEFINE FIELD cKey_GLAC__CHG2LA COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameGLAC%") <> "U" INDEX ON cKey_GLAC__CHG2LA TO %vTablename%CHG2LA
+
+COMMENT Import table GENERALLEDGER - BASICS - BASIC
+COMMENT
+# Possible data in field basicType #############
+# Type    Description
+# 02      Cost codes / Cost ID
+# 03      Product codes / Product ID
+# 04      Project codes / Project ID
+# 05      Article Group codes / Article Group ID
+# 12      Journal codes / Journal ID
+# 14      Quantity codes / Quantity ID
+# 23      Relationship codes / Relationship ID
+# 29      Source codes / Source ID
+#################################################
+END
+vImport =           'IMPORT XML TO %vTablenameGLB% "%vTablenameGLB%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"      C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "basicType"         C AT  36 DEC 0 WID  2 PIC "" AS "" RULE "/auditfile/company/generalLedger/basics/basic/basicType/text()" '
+vImport = vImport + 'FIELD "basicID"           C AT  38 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/generalLedger/basics/basic/basicID/text()" '
+vImport = vImport + 'FIELD "basicDesc"         C AT  73 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/generalLedger/basics/basic/basicDesc/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameGLB%") <> "U" OPEN %vTablenameGLB%
+IF FTYPE("%vTablenameGLB%") <> "U" DEFINE FIELD cKey_GLB___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(basicType + BLANKS(2); 1; 2) + "_" + SUB(basicID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameGLB%") <> "U" INDEX ON cKey_GLB___ TO %vTablename%GLB
+
+
+COMMENT #3# Define relations General Ledger
+COMMENT
+Relating the tables as below results in ONE record per ledger account.
+If one wants for instance all domainmemberRefs table GLATED would have to be parent.
+We have no experience with xaf3.2, so we build it this way to start.
+END
+
+COMMENT FIRST RE-index the standard RGS table to be sure
+COMMENT voor nu uitgezet omdat script nog niet voorziet in tabel Def_RGS
+
+COM OPEN Def_RGS
+COM DELETE INDEX rgs_on_referentiecode OK
+COM DELETE rgs_on_referentiecode.inx OK
+COM DELETE cKeyRefRGS OK
+COM DEFINE FIELD cKeyRefRGS COMPUTED SUB(Referentiecode; 1; 13)
+COM INDEX ON cKeyRefRGS TO "rgs_on_referentiecode"
+
+IF FTYPE("%vTablenameGLA%") <> "U" OPEN %vTablenameGLA%
+IF FTYPE("%vTablenameGLA%") <> "U" AND FTYPE("%vTablenameGLAT%") <> "U"     DEFINE RELATION cKey_GLA___ WITH %vTablenameGLAT% INDEX %vTablename%TAX2LA
+IF FTYPE("%vTablenameGLAT%") <> "U" AND FTYPE("%vTablenameGLATE%") <> "U"   DEFINE RELATION %vTablenameGLAT%.cKey_GLAT__ WITH %vTablenameGLATE% INDEX %vTablename%ENT2TAX
+IF FTYPE("%vTablenameGLATE%") <> "U" AND FTYPE("%vTablenameGLATED%") <> "U" DEFINE RELATION %vTablenameGLATE%.cKey_GLATE_ WITH %vTablenameGLATED% INDEX %vTablename%DOM2ENT
+IF FTYPE("%vTablenameGLA%") <> "U" AND FTYPE("%vTablenameGLAC%") <> "U"     DEFINE RELATION cKey_GLA___ WITH %vTablenameGLAC% INDEX %vTablename%GLAC
+IF FTYPE("%vTablenameGLA%") <> "U" AND FTYPE("%vTablenameGLB%") <> "U"      DEFINE RELATION cKey_GLA___ WITH %vTablenameGLB% INDEX %vTablename%GLB
+COM IF FTYPE("%vTablenameGLA%") <> "U"                                          DEFINE RELATION cKeyRefGLA WITH Def_RGS INDEX rgs_on_referentiecode
+
+COMMENT VAT CODES ##############################################################
+COMMENT Import table VATCODES 
+
+vImport =           'IMPORT XML TO %vTablenameVC% "%vTablenameVC%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"     C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "vatID"            C AT  36 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/vatCodes/vatCode/vatID/text()" '
+vImport = vImport + 'FIELD "vatDesc"          C AT  71 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/vatCodes/vatCode/vatDesc/text()" '
+vImport = vImport + 'FIELD "vatToPayAccID"    C AT 121 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/vatCodes/vatCode/vatToPayAccID/text()" '
+vImport = vImport + 'FIELD "vatToClaimAccID"  C AT 156 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/vatCodes/vatCode/vatToClaimAccID/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameVC%") <> "U" OPEN %vTablenameVC%
+IF FTYPE("%vTablenameVC%") <> "U" DEFINE FIELD cKey_VC____ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(vatID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameVC%") <> "U" INDEX ON cKey_VC____ TO %vTablename%VC
+
+
+COMMENT PERIODS ###################################################################
+COMMENT Import table PERIODS 
+
+vImport =           'IMPORT XML TO %vTablenamePER% "%vTablenamePER%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"     C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "periodNumber"     C AT  36 DEC 0 WID  3 PIC ""           AS "" RULE "/auditfile/company/periods/period/periodNumber/text()" '
+vImport = vImport + 'FIELD "periodDesc"       C AT  39 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/periods/period/periodDesc/text()" '
+vImport = vImport + 'FIELD "startDatePeriod"  D AT  89 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/company/periods/period/startDatePeriod/text()" '
+vImport = vImport + 'FIELD "startTimePeriod"  C AT 105 DEC 0 WID 14 PIC ""           AS "" RULE "/auditfile/company/periods/period/startTimePeriod/text()" '
+vImport = vImport + 'FIELD "endDatePeriod"    D AT 119 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/company/periods/period/endDatePeriod/text()" '
+vImport = vImport + 'FIELD "endTimePeriod"    C AT 133 DEC 0 WID 14 PIC ""           AS "" RULE "/auditfile/company/periods/period/endTimePeriod/text()" '
+%vImport%
+
+IF FTYPE("%vTablenamePER%") <> "U" OPEN %vTablenamePER%
+IF FTYPE("%vTablenamePER%") <> "U" DEFINE FIELD cKey_PER___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(periodNumber + BLANKS(3); 1; 3)
+IF FTYPE("%vTablenamePER%") <> "U" INDEX ON cKey_PER___ TO %vTablename%PER
+
+
+COMMENT OPENING BALANCE  ######################################################################
+COMMENT Import table OPENINGBALANCE 
+
+vImport =           'IMPORT XML TO %vTablenameOB% "%vTablenameOB%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"     C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "opBalDate"        D AT  36 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/company/openingBalance/opBalDate/text()" '
+vImport = vImport + 'FIELD "opBalDesc"        C AT  52 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/openingBalance/opBalDesc/text()" '
+vImport = vImport + 'FIELD "linesCount"       C AT 102 DEC 0 WID 10 PIC ""           AS "" RULE "/auditfile/company/openingBalance/linesCount/text()" '
+vImport = vImport + 'FIELD "totalDebit"       C AT 112 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/openingBalance/totalDebit/text()" '
+vImport = vImport + 'FIELD "totalCredit"      C AT 132 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/openingBalance/totalCredit/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameOB%") <> "U" OPEN %vTablenameOB%
+IF FTYPE("%vTablenameOB%") <> "U" DEFINE FIELD cKey_OB____ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(DATE(opBalDate) + BLANKS(16); 1; 16)
+IF FTYPE("%vTablenameOB%") <> "U" INDEX ON cKey_OB____ TO %vTablename%OB
+
+
+COMMENT Add a computed fields NUM with totals for reporting
+IF FTYPE("%vTablenameOB%") <> "U" DEFINE FIELD cTotalDebit          COMPUTED
+
+  VALUE(EXCLUDE(TotalDebit;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(TotalDebit)))=3
+  VALUE(EXCLUDE(TotalDebit;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(TotalDebit)))=2
+  VALUE(EXCLUDE(TotalDebit;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(TotalDebit)))=1
+  VALUE(EXCLUDE(TotalDebit;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(TotalDebit)))=0
+  DEC(0;2)
+
+IF FTYPE("%vTablenameOB%") <> "U" DEFINE FIELD cTotalCredit         COMPUTED
+
+  VALUE(EXCLUDE(TotalCredit;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(TotalCredit)))=3
+  VALUE(EXCLUDE(TotalCredit;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(TotalCredit)))=2
+  VALUE(EXCLUDE(TotalCredit;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(TotalCredit)))=1
+  VALUE(EXCLUDE(TotalCredit;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(TotalCredit)))=0
+  DEC(0;2)
+
+COMMENT Calculate totals SOLL
+vObDebitTotalSoll = DEC(0; 2)
+vObCreditTotalSoll = DEC(0; 2)
+vObLinesCountSoll = 0
+GROUP IF FTYPE("%vTablenameOB%") <> "U" 
+    TOTAL cTotalDebit
+    TOTAL cTotalCredit
+    TOTAL VAL(linesCount; 0)
+END
+IF FTYPE("%vTablenameOB%") <> "U" vObDebitTotalSoll = TOTAL2
+IF FTYPE("%vTablenameOB%") <> "U" vObCreditTotalSoll = TOTAL3
+IF FTYPE("%vTablenameOB%") <> "U" vOblinesCountSoll = TOTAL4
+
+
+COMMENT Import table OPENINGBALANCE - LINES  
+
+vImport =           'IMPORT XML TO %vTablenameOBL% "%vTablenameOBL%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"     C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "nr"               C AT  36 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obLine/nr/text()" '
+vImport = vImport + 'FIELD "accID"            C AT  71 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obLine/accID/text()" '
+vImport = vImport + 'FIELD "amnt"             C AT 106 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obLine/amnt/text()" '
+COMMENT # Possible types: D or C
+vImport = vImport + 'FIELD "amntTp"           C AT 126 DEC 0 WID  1 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obLine/amntTp/text()" '
+
+IF FTYPE("%vTablenameOB%") <> "U" %vImport%
+IF FTYPE("%vTablenameOBL%") <> "U" OPEN %vTablenameOBL%
+IF FTYPE("%vTablenameOBL%") <> "U" DEFINE FIELD cKey_OBL___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35)  + "_" + SUB(nr + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameOBL%") <> "U" INDEX ON cKey_OBL___ TO %vTablename%OBL
+
+COMMENT Add a computed fields NUM with amnt for export
+IF FTYPE("%vTablenameOBL%") <> "U" DEFINE FIELD cAmnt_D          COMPUTED
+
+  VALUE(EXCLUDE(amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(amnt)))=3 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(amnt)))=2 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(amnt)))=1 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(amnt)))=0 AND amntTp = "D"
+  DEC(0;2)
+
+
+IF FTYPE("%vTablenameOBL%") <> "U" DEFINE FIELD cAmnt_C          COMPUTED
+
+  VALUE(EXCLUDE(amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(amnt)))=3 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(amnt)))=2 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(amnt)))=1 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(amnt)))=0 AND amntTp = "C"
+  DEC(0;2)
+
+COMMENT Calculate totals IST
+vObDebitTotalIst = DEC(0; 2)
+vObCreditTotalIst = DEC(0; 2)
+vObLinesCountIst = 0
+GROUP IF FTYPE("%vTablenameOBL%") <> "U" 
+    TOTAL cAmnt_D
+    TOTAL cAmnt_C
+END
+IF FTYPE("%vTablenameOBL%") <> "U" vObDebitTotalIst = TOTAL2
+IF FTYPE("%vTablenameOBL%") <> "U" vObCreditTotalIst = TOTAL3
+IF FTYPE("%vTablenameOBL%") <> "U" vOblinesCountIst = vCountOBL
+
+
+COMMENT Add a computed field with GL-accName for export
+IF FTYPE("%vTablenameOBL%") <> "U" DEFINE FIELD cKey_OBL___2GLA COMPUTED SUB(companyIdent + BLANKS(35); 1; 35)  + "_" + SUB(accID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameOBL%") <> "U" AND FTYPE("%vTablenameGLA%") <> "U" DEFINE RELATION cKey_OBL___2GLA WITH %vTablenameGLA%  INDEX %vTablename%GLA
+
+
+COMMENT Import table OPENINGBALANCE - SUBLEDGERS  
+vImport =           'IMPORT XML TO %vTablenameOBS% "%vTablenameOBS%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"     C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+COMMENT
+# Possible data in field sbType #############
+# Type    Description
+# CS      Customers / Suppliers
+# CU      Customers
+# SU      Suppliers
+# ZZ      Other
+#############################################
+END
+vImport = vImport + 'FIELD "sbType"           C AT  36 DEC 0 WID  2 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/sbType/text()" '
+vImport = vImport + 'FIELD "sbDesc"           C AT  39 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/sbDesc/text()" '
+vImport = vImport + 'FIELD "linesCount"       C AT  89 DEC 0 WID 10 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/linesCount/text()" '
+vImport = vImport + 'FIELD "totalDebit"       C AT  99 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/totalDebit/text()" '
+vImport = vImport + 'FIELD "totalCredit"      C AT 119 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/totalCredit/text()" '
+
+IF FTYPE("%vTablenameOB%") <> "U" %vImport%
+IF FTYPE("%vTablenameOBS%") <> "U" OPEN %vTablenameOBS%
+IF FTYPE("%vTablenameOBS%") <> "U" DEFINE FIELD cKey_OBS___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35)  + "_" + SUB(sbType + BLANKS(2); 1; 2)
+IF FTYPE("%vTablenameOBS%") <> "U" INDEX ON cKey_OBS___ TO %vTablename%OBS
+
+COMMENT Import table OPENINGBALANCE - SUBLEDGERS - LINES  
+
+vImport =           'IMPORT XML TO %vTablenameOBSL% "%vTablenameOBSL%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent" C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "sbType"       C AT  36 DEC 0 WID  2 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/sbType/text()" '
+vImport = vImport + 'FIELD "nr"           C AT  38 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/nr/text()" '
+COMMENT #4#   Field obLineNr is the key to line in opening balance
+vImport = vImport + 'FIELD "obLineNr"     C AT  73 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/obLineNr/text()" '
+vImport = vImport + 'FIELD "desc"         C AT 108 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/desc/text()" '
+vImport = vImport + 'FIELD "amnt"         C AT 158 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/amnt/text()" '
+COMMENT # Possible types: D or C
+vImport = vImport + 'FIELD "amntTp"       C AT 178 DEC 0 WID  1 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/amntTp/text()" '
+vImport = vImport + 'FIELD "docRef"       C AT 179 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/docRef/text()" '
+vImport = vImport + 'FIELD "recRef"       C AT 229 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/recRef/text()" '
+vImport = vImport + 'FIELD "matchKeyID"   C AT 279 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/matchKeyID/text()" '
+vImport = vImport + 'FIELD "custSupID"    C AT 314 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/custSupID/text()" '
+vImport = vImport + 'FIELD "invRef"       C AT 349 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/invRef/text()" '
+COMMENT # Possible types: P(urchase) or S(ales)
+vImport = vImport + 'FIELD "invPurSalTp"  C AT 399 DEC 0 WID  1 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/invPurSalTp/text()" '
+COMMENT # Possible types: D(ebitinvoice) or C(reditinvoice)
+vImport = vImport + 'FIELD "invTp"        C AT 400 DEC 0 WID  1 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/invTp/text()" '
+vImport = vImport + 'FIELD "invDt"        D AT 401 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/invDt/text()" '
+vImport = vImport + 'FIELD "invDueDt"     D AT 417 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/invDueDt/text()" '
+COMMENT
+# Possible data in field mutTp #############
+# Type    Description
+# I       Invoice
+# P       Payment
+# Z       Other
+#############################################
+END
+vImport = vImport + 'FIELD "mutTp"        C AT 433 DEC 0 WID  1 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/mutTp/text()" '
+vImport = vImport + 'FIELD "costID"       C AT 434 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/costID/text()" '
+vImport = vImport + 'FIELD "prodID"       C AT 469 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/prodID/text()" '
+vImport = vImport + 'FIELD "projID"       C AT 504 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/projID/text()" '
+vImport = vImport + 'FIELD "artGrpID"     C AT 539 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/artGrpID/text()" '
+vImport = vImport + 'FIELD "qntityID"     C AT 584 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/qntityID/text()" '
+vImport = vImport + 'FIELD "qntity"       C AT 619 DEC 0 WID 10 PIC ""           AS "" RULE "/auditfile/company/openingBalance/obSubledgers/obSubledger/obSbLine/qntity/text()" '
+
+IF FTYPE("%vTablenameOB%") <> "U" %vImport%
+IF FTYPE("%vTablenameOBSL%") <> "U" OPEN %vTablenameOBSL%
+IF FTYPE("%vTablenameOBSL%") <> "U" DEFINE FIELD cKey_OBSL__ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" +  SUB(sbType + BLANKS(2); 1; 2) + "_" + SUB(Nr + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameOBSL%") <> "U" INDEX ON cKey_OBSL__ TO %vTablename%OBSL
+
+
+COMMENT Add a computed fields NUM with amnt
+IF FTYPE("%vTablenameOBSL%") <> "U" DEFINE FIELD cAmnt_D          COMPUTED
+
+  VALUE(EXCLUDE(amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(amnt)))=3 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(amnt)))=2 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(amnt)))=1 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(amnt)))=0 AND amntTp = "D"
+  DEC(0;2)
+
+
+IF FTYPE("%vTablenameOBSL%") <> "U" DEFINE FIELD cAmnt_C          COMPUTED
+
+  VALUE(EXCLUDE(amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(amnt)))=3 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(amnt)))=2 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(amnt)))=1 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(amnt)))=0 AND amntTp = "C"
+  DEC(0;2)
+
+COMMENT #2# *** Importing OpeningBalance Subledgers not yet completely coded in this version ***
+COMMENT # Define relations ************
+COMMENT # Export to excel **********
+COMM IF FTYPE("%vTablenameBAL%") <> "U" EXPORT FIELDS ALL XLSX TO ".\_out\xaf_%vTablename%" WORKSHEET "OpeningBalanceSLL"
+
+
+COMMENT TRANSACTIONS ##################################################################
+COMMENT Import table TRANSACTIONS 
+vImport =           'IMPORT XML TO %vTablenameTRS% "%vTablenameTRS%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"           C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "linesCount"             C AT  36 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/transactions/linesCount/text()" '
+vImport = vImport + 'FIELD "totalDebit"             C AT  56 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/transactions/totalDebit/text()" '
+vImport = vImport + 'FIELD "totalCredit"            C AT  76 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/transactions/totalCredit/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameTRS%") <> "U" OPEN %vTablenameTRS%
+IF FTYPE("%vTablenameTRS%") <> "U" DEFINE FIELD cKey_TRS___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRS%") <> "U" INDEX ON cKey_TRS___ TO %vTablename%TRS
+IF FTYPE("%vTablenameTRS%") <> "U" LOCATE IF RECNO() = 1
+
+COMMENT Add a computed fields NUM with totals for reporting
+IF FTYPE("%vTablenameTRS%") <> "U" DEFINE FIELD cTotalDebit          COMPUTED
+
+  VALUE(EXCLUDE(TotalDebit;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(TotalDebit)))=3
+  VALUE(EXCLUDE(TotalDebit;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(TotalDebit)))=2
+  VALUE(EXCLUDE(TotalDebit;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(TotalDebit)))=1
+  VALUE(EXCLUDE(TotalDebit;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(TotalDebit)))=0
+  DEC(0;2)
+
+
+IF FTYPE("%vTablenameTRS%") <> "U" DEFINE FIELD cTotalCredit         COMPUTED
+
+  VALUE(EXCLUDE(TotalCredit;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(TotalCredit)))=3
+  VALUE(EXCLUDE(TotalCredit;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(TotalCredit)))=2
+  VALUE(EXCLUDE(TotalCredit;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(TotalCredit)))=1
+  VALUE(EXCLUDE(TotalCredit;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(TotalCredit)))=0
+  DEC(0;2)
+
+COMMENT Calculate totals SOLL
+vTrsDebitTotalSoll = 0
+vTrsCreditTotalSoll = 0
+vTrsLinesCountSoll = 0
+GROUP IF FTYPE("%vTablenameTRS%") <> "U" 
+    TOTAL cTotalDebit
+    TOTAL cTotalCredit
+    TOTAL VAL(linesCount; 0)
+END
+IF FTYPE("%vTablenameTRS%") <> "U" vTrsDebitTotalSoll = TOTAL2
+IF FTYPE("%vTablenameTRS%") <> "U" vTrsCreditTotalSoll = TOTAL3
+IF FTYPE("%vTablenameTRS%") <> "U" vTrsLinesCountSoll = TOTAL4
+
+
+COMMENT Import table TRANSACTIONS - JOURNAL
+vImport =           'IMPORT XML TO %vTablenameJRN% "%vTablenameJRN%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"         C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "jrnID"                C AT  36 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/jrnID/text()" '
+vImport = vImport + 'FIELD "jrnDesc"              C AT  71 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/desc/text()" '
+COMMENT
+# Possible data in field jrnType #############
+# Type    Description
+# B       Bank
+# C       Cash
+# G       Goods (received/sent)
+# M       Memo / Daybook
+# O       Opening Balance
+# P       Purchases
+# S       Sales
+# T       Production
+# Y       Payroll
+# Z       Other
+#############################################
+END
+vImport = vImport + 'FIELD "jrnTp"                C AT 121 DEC 0 WID  2 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/jrnTp/text()" '
+vImport = vImport + 'FIELD "offsetAccID"          C AT 123 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/offsetAccID/text()" '
+vImport = vImport + 'FIELD "bankAccNr"            C AT 158 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/bankAccNr/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameJRN%") <> "U" OPEN %vTablenameJRN%
+IF FTYPE("%vTablenameJRN%") <> "U" DEFINE FIELD cKey_JRN___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameJRN%") <> "U" INDEX ON cKey_JRN___ TO %vTablename%JRN
+
+COMMENT Import table TRANSACTIONS - JOURNAL - TRANSACTION
+
+vImport =           'IMPORT XML TO %vTablenameTRN% "%vTablenameTRN%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"         C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "jrnID"                C AT  36 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/jrnID/text()" '
+vImport = vImport + 'FIELD "trNr"                 C AT 193 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/nr/text()" '
+vImport = vImport + 'FIELD "trDesc"               C AT 228 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/desc/text()" '
+vImport = vImport + 'FIELD "periodNumber"         C AT 278 DEC 0 WID  3 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/periodNumber/text()" '
+vImport = vImport + 'FIELD "trDt"                 D AT 281 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/company/transactions/journal/transaction/trDt/text()" '
+vImport = vImport + 'FIELD "amnt"                 C AT 297 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/amnt/text()" '
+vImport = vImport + 'FIELD "amntTp"               C AT 317 DEC 0 WID  1 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/amntTp/text()" '
+vImport = vImport + 'FIELD "sourceID"             C AT 318 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/sourceID/text()" '
+vImport = vImport + 'FIELD "userID"               C AT 351 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/userID/text()" '
+
+IF FTYPE("%vTablenameJRN%") <> "U" %vImport%
+IF FTYPE("%vTablenameTRN%") <> "U" OPEN %vTablenameTRN%
+IF FTYPE("%vTablenameTRN%") <> "U" DEFINE FIELD cKey_TRN___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35) + "_" + SUB(trNr + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRN%") <> "U" INDEX ON cKey_TRN___ TO %vTablename%TRN
+IF FTYPE("%vTablenameTRN%") <> "U" DEFINE FIELD cKey_TRN___2JRN COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRN%") <> "U" INDEX ON cKey_TRN___2JRN TO %vTablename%TRN2JRN
+IF FTYPE("%vTablenameTRN%") <> "U" DEFINE FIELD cKey_TRN___2PER COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(periodNumber + BLANKS(3); 1; 3)
+IF FTYPE("%vTablenameTRN%") <> "U" INDEX ON cKey_TRN___2PER TO %vTablename%TRN2PER
+
+
+COMMENT Add a computed fields NUM with amnt for export
+IF FTYPE("%vTablenameTRN%") <> "U" DEFINE FIELD cAmnt_D          COMPUTED
+
+  VALUE(EXCLUDE(amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(amnt)))=3 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(amnt)))=2 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(amnt)))=1 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(amnt)))=0 AND amntTp = "D"
+  DEC(0;2)
+
+
+IF FTYPE("%vTablenameTRN%") <> "U" DEFINE FIELD cAmnt_C          COMPUTED
+
+  VALUE(EXCLUDE(amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(amnt)))=3 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(amnt)))=2 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(amnt)))=1 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(amnt)))=0 AND amntTp = "C"
+  DEC(0;2)
+
+COMMENT Calculate totals IST
+vTrnDebitTotalIst = DEC(0; 2)
+vTrnCreditTotalIst = DEC(0; 2)
+vTrnLinesCountIst = 0
+GROUP IF FTYPE("%vTablenameTRN%") <> "U" 
+    TOTAL cAmnt_D
+    TOTAL cAmnt_C
+ END
+IF FTYPE("%vTablenameTRN%") <> "U" vTrnDebitTotalIst = TOTAL2
+IF FTYPE("%vTablenameTRN%") <> "U" vTrnCreditTotalIst = TOTAL3
+IF FTYPE("%vTablenameTRN%") <> "U" vTrnlinesCountIst = vCountTRN
+
+
+COMMENT Import table TRANSACTIONS - JOURNAL - TRANSACTION - TRANSACTIONLINES
+vImport =           'IMPORT XML TO %vTablenameTRL% "%vTablenameTRL%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"         C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+COMMENT jrnID and trNr are the key to table _TRN
+vImport = vImport + 'FIELD "jrnID"                C AT  36 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/jrnID/text()" '
+vImport = vImport + 'FIELD "trNr"                 C AT  61 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/nr/text()" '
+vImport = vImport + 'FIELD "trLineNr"             C AT  96 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/nr/text()" '
+vImport = vImport + 'FIELD "accID"                C AT 131 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/accID/text()" '
+vImport = vImport + 'FIELD "docRef"               C AT 166 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/docRef/text()" '
+vImport = vImport + 'FIELD "effDate"              D AT 216 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/effDate/text()" '
+vImport = vImport + 'FIELD "trlineDesc"           C AT 232 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/desc/text()" '
+vImport = vImport + 'FIELD "amnt"                 C AT 272 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/amnt/text()" '
+COMMENT # Possible types: D or C
+vImport = vImport + 'FIELD "amntTp"               C AT 292 DEC 0 WID  1 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/amntTp/text()" '
+vImport = vImport + 'FIELD "recRef"               C AT 293 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/recRef/text()" '
+vImport = vImport + 'FIELD "matchKeyID"           C AT 343 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/matchKeyID/text()" '
+vImport = vImport + 'FIELD "custSupID"            C AT 378 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/custSupID/text()" '
+vImport = vImport + 'FIELD "invRef"               C AT 413 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/invRef/text()" '
+vImport = vImport + 'FIELD "orderRef"             C AT 463 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/orderRef/text()" '
+vImport = vImport + 'FIELD "receivingDocRef"      C AT 513 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/receivingDocRef/text()" '
+vImport = vImport + 'FIELD "shipDocRef"           C AT 563 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/shipDocRef/text()" '
+vImport = vImport + 'FIELD "costID"               C AT 613 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/costID/text()" '
+vImport = vImport + 'FIELD "prodID"               C AT 648 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/prodID/text()" '
+vImport = vImport + 'FIELD "projID"               C AT 683 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/projID/text()" '
+vImport = vImport + 'FIELD "artGrpID"             C AT 718 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/artGrpID/text()" '
+vImport = vImport + 'FIELD "workCostArrRef"       C AT 753 DEC 0 WID 50 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/workCostArrRef/text()" '
+vImport = vImport + 'FIELD "qntityID"             C AT 803 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/qntityID/text()" '
+vImport = vImport + 'FIELD "qntity"               C AT 838 DEC 0 WID 10 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/qntity/text()" '
+vImport = vImport + 'FIELD "bankAccNr"            C AT 848 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/bankAccNr/text()" '
+vImport = vImport + 'FIELD "bankIdCd"             C AT 883 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/bankIdCd/text()" '
+
+IF FTYPE("%vTablenameJRN%") <> "U" %vImport%
+IF FTYPE("%vTablenameTRL%") <> "U" OPEN %vTablenameTRL%
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cKey_TRL___ COMPUTED       SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35) + "_" + SUB(trNr + BLANKS(35); 1; 35) + "_" + SUB(trLineNr + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRL%") <> "U" INDEX ON cKey_TRL___ TO %vTablename%TRL
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cKey_TRL___2TRN COMPUTED   SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35) + "_" + SUB(trNr + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRL%") <> "U" INDEX ON cKey_TRL___2TRN TO %vTablename%TRL2TRN
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cKey_TRL___2JRN COMPUTED   SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRL%") <> "U" INDEX ON cKey_TRL___2JRN TO %vTablename%TRL2JRN
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cKey_TRL___2CS COMPUTED    SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(custSupID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRL%") <> "U" INDEX ON cKey_TRL___2CS TO %vTablename%TRL2CS
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cKey_TRL___2GLA COMPUTED    SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(accID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRL%") <> "U" INDEX ON cKey_TRL___2GLA TO %vTablename%TRL2GLA
+
+
+COMMENT Add computed fields NUM with amnt
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cAmnt_D          COMPUTED
+
+  VALUE(EXCLUDE(amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(amnt)))=3 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(amnt)))=2 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(amnt)))=1 AND amntTp = "D"
+  VALUE(EXCLUDE(amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(amnt)))=0 AND amntTp = "D"
+  DEC(0;2)
+
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cAmnt_C          COMPUTED
+
+  VALUE(EXCLUDE(amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(amnt)))=3 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(amnt)))=2 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(amnt)))=1 AND amntTp = "C"
+  VALUE(EXCLUDE(amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(amnt)))=0 AND amntTp = "C"
+  DEC(0;2)
+
+COMMENT Calculate totals IST
+vTrlDebitTotalIst = DEC(0; 2)
+vTrlCreditTotalIst = DEC(0; 2)
+vTrlLinesCountIst = 0
+GROUP IF FTYPE("%vTablenameTRL%") <> "U" 
+    TOTAL cAmnt_D
+    TOTAL cAmnt_C
+END
+IF FTYPE("%vTablenameTRL%") <> "U" vTrlDebitTotalIst = TOTAL2
+IF FTYPE("%vTablenameTRL%") <> "U" vTrlCreditTotalIst = TOTAL3
+IF FTYPE("%vTablenameTRL%") <> "U" vTrllinesCountIst = vCountTRL
+
+COMMENT Import table TRANSACTIONS - JOURNAL - TRANSACTION - TRANSACTIONLINES - VAT
+vImport =           'IMPORT XML TO %vTablenameTRLV% "%vTablenameTRLV%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"         C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+COMMENT jrnID, trNr and trLineNr are the key to table _TRL
+vImport = vImport + 'FIELD "jrnID"                C AT  36 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/jrnID/text()" '
+vImport = vImport + 'FIELD "trNr"                 C AT  61 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/nr/text()" '
+vImport = vImport + 'FIELD "trLineNr"             C AT  96 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/nr/text()" '
+vImport = vImport + 'FIELD "vatID"                C AT 918 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/vat/vatID/text()" '
+vImport = vImport + 'FIELD "vatPerc"              C AT 953 DEC 0 WID  8 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/vat/vatPerc/text()" '
+vImport = vImport + 'FIELD "vatAmnt"              C AT 961 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/vat/vatAmnt/text()" '
+COMMENT Possible types: D or C
+vImport = vImport + 'FIELD "vatAmntTp"            C AT 981 DEC 0 WID  1 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/vat/vatAmntTp/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameTRLV%") <> "U" OPEN %vTablenameTRLV%
+IF FTYPE("%vTablenameTRLV%") <> "U" DEFINE FIELD cKey_TRLV___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35) + "_" + SUB(trNr + BLANKS(35); 1; 35) + "_" + SUB(trLineNr + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRLV%") <> "U" INDEX ON cKey_TRLV___ TO %vTablename%TRLV
+IF FTYPE("%vTablenameTRLV%") <> "U" DEFINE FIELD cKey_TRLV__ COMPUTED       SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35) + "_" + SUB(trNr + BLANKS(35); 1; 35) + "_" + SUB(trLineNr + BLANKS(35); 1; 35) + "_" + SUB(vatID + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRLV%") <> "U" INDEX ON cKey_TRLV__ TO %vTablenameTRLV%
+
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cVatAmnt_D          COMPUTED
+
+  VALUE(EXCLUDE(vatAmnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=3 AND vatAmntTp = "D"
+  VALUE(EXCLUDE(vatAmnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=2 AND vatAmntTp = "D"
+  VALUE(EXCLUDE(vatAmnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=1 AND vatAmntTp = "D"
+  VALUE(EXCLUDE(vatAmnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=0 AND vatAmntTp = "D"
+  DEC(0;2)
+
+
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cVatAmnt_C          COMPUTED
+
+  VALUE(EXCLUDE(vatAmnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=3 AND vatAmntTp = "C"
+  VALUE(EXCLUDE(vatAmnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=2 AND vatAmntTp = "C"
+  VALUE(EXCLUDE(vatAmnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=1 AND vatAmntTp = "C"
+  VALUE(EXCLUDE(vatAmnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=0 AND vatAmntTp = "C"
+  DEC(0;2)
+
+COMMENT Import table TRANSACTIONS - JOURNAL - TRANSACTION - TRANSACTIONLINES - CURRENCY
+
+vImport =           'IMPORT XML TO %vTablenameTRLC% "%vTablenameTRLC%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"         C AT   1 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/companyIdent/text()" '
+COMMENT jrnID, trNr and trLineNr are the key to table _TRL
+vImport = vImport + 'FIELD "jrnID"                C AT  36 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/jrnID/text()" '
+vImport = vImport + 'FIELD "trNr"                 C AT  61 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/nr/text()" '
+vImport = vImport + 'FIELD "trLineNr"             C AT  96 DEC 0 WID 35 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/nr/text()" '
+vImport = vImport + 'FIELD "curCode"              C AT 982 DEC 0 WID  3 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/currency/curCode/text()" '
+vImport = vImport + 'FIELD "curAmnt"              C AT 985 DEC 0 WID 20 PIC ""           AS "" RULE "/auditfile/company/transactions/journal/transaction/trLine/currency/curAmnt/text()" '
+%vImport%
+
+IF FTYPE("%vTablenameTRLC%") <> "U" OPEN %vTablenameTRLC%
+IF FTYPE("%vTablenameTRLC%") <> "U" DEFINE FIELD cKey_TRLC__ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35) + "_" + SUB(trNr + BLANKS(35); 1; 35) + "_" + SUB(trLineNr + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRLC%") <> "U" INDEX ON cKey_TRLC__ TO %vTablename%TRLC
+
+
+IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cCurAmnt            COMPUTED
+
+  VALUE(EXCLUDE(curAmnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(curAmnt)))=3
+  VALUE(EXCLUDE(curAmnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(curAmnt)))=2
+  VALUE(EXCLUDE(curAmnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(curAmnt)))=1
+  VALUE(EXCLUDE(curAmnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(curAmnt)))=0
+  DEC(0;2)
+
+
+COMMENT Define relations Transactionlines
+COMMENT - history and subledgers (not yet coded in this version)
+
+IF FTYPE("%vTablenameTRL%") <> "U" OPEN %vTablenameTRL%
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameTRLV%") <> "U"                                         DEFINE RELATION cKey_TRL___ WITH %vTablenameTRLV% INDEX %vTablename%TRLV
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameVC%") <> "U"                                           DEFINE RELATION %vTablenameTRLV%.vatID WITH %vTablenameVC%  INDEX %vTablename%VC
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameTRLC%") <> "U"                                         DEFINE RELATION cKey_TRL___ WITH %vTablenameTRLC% INDEX %vTablename%TRLC
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameTRN%") <> "U"                                          DEFINE RELATION cKey_TRL___2TRN WITH %vTablenameTRN% INDEX %vTablename%TRN
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameTRN%") <> "U" AND FTYPE("%vTablenamePER%") <> "U"      DEFINE RELATION %vTablenameTRN%.cKey_TRN___2PER WITH %vTablenamePER%  INDEX %vTablename%PER
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameJRN%") <> "U"                                          DEFINE RELATION cKey_TRL___2JRN WITH %vTablenameJRN%  INDEX %vTablename%JRN
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameCS%") <> "U"                                           DEFINE RELATION cKey_TRL___2CS WITH %vTablenameCS%  INDEX %vTablename%CS
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameCS%") <> "U" AND FTYPE("%vTablenameCSS%") <> "U"       DEFINE RELATION %vTablenameCS%.cKey_CS___ WITH %vTablenameCSS% INDEX %vTablename%CSS2CS
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameCS%") <> "U" AND FTYPE("%vTablenameCSP%") <> "U"       DEFINE RELATION %vTablenameCS%.cKey_CS___ WITH %vTablenameCSP% INDEX %vTablename%CSP2CS
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameCS%") <> "U" AND FTYPE("%vTablenameCSB%") <> "U"       DEFINE RELATION %vTablenameCS%.cKey_CS___ WITH %vTablenameCSB% INDEX %vTablename%CSB2CS
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameCS%") <> "U" AND FTYPE("%vTablenameCSC%") <> "U"       DEFINE RELATION %vTablenameCS%.cKey_CS___ WITH %vTablenameCSC% INDEX %vTablename%CSC2CS
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameGLA%") <> "U"                                          DEFINE RELATION cKey_TRL___2GLA WITH %vTablenameGLA%  INDEX %vTablename%GLA
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameGLA%") <> "U" AND FTYPE("%vTablenameGLAT%") <> "U"     DEFINE RELATION %vTablenameGLA%.cKey_GLA___ WITH %vTablenameGLAT% INDEX %vTablename%TAX2LA
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameGLAT%") <> "U" AND FTYPE("%vTablenameGLATE%") <> "U"   DEFINE RELATION %vTablenameGLAT%.cKey_GLAT__ WITH %vTablenameGLATE% INDEX %vTablename%ENT2TAX
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameGLATE%") <> "U" AND FTYPE("%vTablenameGLATED%") <> "U" DEFINE RELATION %vTablenameGLATE%.cKey_GLATE_ WITH %vTablenameGLATED% INDEX %vTablename%DOM2ENT
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameGLA%") <> "U" AND FTYPE("%vTablenameGLAC%") <> "U"     DEFINE RELATION %vTablenameGLA%.cKey_GLA___ WITH %vTablenameGLAC% INDEX %vTablename%GLAC
+IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameGLA%") <> "U" AND FTYPE("%vTablenameGLB%") <> "U"      DEFINE RELATION %vTablenameGLA%.cKey_GLA___ WITH %vTablenameGLB% INDEX %vTablename%GLB
+
+COMMENT #4#   RGS-koppeling
+COM IF FTYPE("%vTablenameTRL%") <> "U" AND FTYPE("%vTablenameGLA%") <> "U"                                          DEFINE RELATION %vTablenameGLA%.cKeyRefGLA WITH Def_RGS INDEX rgs_on_referentiecode
+
+COMMENT #3# Extract all relevant tables and fields to a flat table xaf_%vTablename% with transactionlines
+COMMENT #4# Unlike the method for the other tables for 'transactions' an ACL-table will be created first
+COMMENT #4# This table is needed for analysis on the GL-lines
+COMMENT #4# To be able to combine data from multiple auditfiles (company-parts or periods) field widths have to be made static by using SUB()
+
+EXTRACT FIELDS 
+xaf_%vTablename%
+SUB(companyIdent; 1; 35)                           AS "companyIdent"
+SUB(jrnID; 1; 35)                                  AS "journalID"
+SUB(%vTablenameJRN%.jrnDesc; 1; 75)                AS "jrnDesc"
+SUB(%vTablenameJRN%.jrnTp; 1; 2)                   AS "jrnType"
+SUB(%vTablenameJRN%.offsetAccID; 1; 35)            AS "jrnOffsetAccID"
+SUB(%vTablenameJRN%.bankAccNr; 1; 35)              AS "bankAccID"
+SUB(trNr; 1; 35)                                   AS "transactionID"
+SUB(%vTablenameTRN%.trDesc; 1; 50)                 AS "transactionDescription"          
+SUB(%vTablenameTRN%.periodNumber; 1; 3)            AS "period" 
+%vTablenameTRN%.trDt                               AS "transactionDate" 
+SUB(%vTablenameTRN%.sourceID; 1; 35)               AS "trSrcID" 
+SUB(%vTablenameTRN%.userID; 1; 35)                 AS "trUserID" 
+SUB(trLineNr; 1; 35)                               AS "lineNr"                 
+SUB(accID; 1; 35)                                  AS "glAccID"
+SUB(%vTablenameGLA%.accDesc; 1; 50)                AS "glAccDesc"
+SUB(%vTablenameGLA%.accTp; 1; 2)                   AS "glAccType"
+SUB(%vTablenameGLA%.leadCode; 1; 50)               AS "leadCode"
+SUB(%vTablenameGLA%.leadDescription; 1; 50)        AS "leadDescription"
+SUB(%vTablenameGLA%.leadReference; 1; 50)          AS "leadReference"
+SUB(%vTablenameGLA%.leadCrossRef; 1; 50)           AS "leadCrossRef"
+SUB(docRef; 1; 50)                                 AS "docRef"                        
+effDate                                            AS "effectiveDate"                     
+SUB(trLineDesc; 1; 50)                             AS "lineDesc"            
+cAmnt_D                                            AS "debitAmount"
+cAmnt_C                                            AS "creditAmount"
+SUB(custSupID; 1; 35)                              AS "custSupID"
+SUB(%vTablenameCS%.custSupTp; 1; 1)                AS "csType"
+SUB(%vTablenameCS%.custSupName; 1; 50)             AS "csCompanyName"
+SUB(%vTablenameCSS%.saStreetname; 1; 50)           AS "csAddress"
+SUB(%vTablenameCSS%.saPostalCode; 1; 10)           AS "csPostalCode"
+SUB(%vTablenameCSS%.saCity; 1; 50)                 AS "csCity"
+SUB(%vTablenameCSS%.saCountry; 1; 2)               AS "csCountry"
+SUB(%vTablenameCSP%.paStreetname; 1; 50)           AS "csPostAddress"
+SUB(%vTablenameCSP%.paPostalCode; 1; 10)           AS "csPostPostalCode"
+SUB(%vTablenameCSP%.paCity; 1; 50)                 AS "csPostCity"
+SUB(%vTablenameCSP%.paCountry; 1; 2)               AS "csPostCountry"
+SUB(%vTablenameCS%.contact; 1; 50)                 AS "csContact"
+SUB(%vTablenameCS%.telephone; 1; 30)               AS "csTel"
+SUB(%vTablenameCS%.fax; 1; 30)                     AS "csFax"
+SUB(%vTablenameCS%.eMail; 1; 50)                   AS "csEmail"
+SUB(%vTablenameCS%.website; 1; 50)                 AS "csWebsite"
+SUB(%vTablenameCS%.commerceNr; 1; 50)              AS "csCommerceNr"
+SUB(%vTablenameCS%.taxRegistrationCountry; 1; 2)   AS "csTaxRegCountry"
+SUB(%vTablenameCS%.taxRegIdent; 1; 30)             AS "csTaxRegistrationNr"
+SUB(%vTablenameCS%.relationshipID; 1; 35)          AS "csRelID"
+SUB(%vTablenameCS%.custSupGrpID; 1; 35)            AS "csSupGrpID"
+SUB(%vTablenameCS%.custCreditLimit; 1; 20)         AS "csCustCredLimit"
+SUB(%vTablenameCS%.supplierLimit; 1; 20)           AS "csSupLimit"
+SUB(%vTablenameCSB%.bankAccNr; 1; 35)              AS "csBankAccNr"
+SUB(%vTablenameCSB%.bankIdCd; 1; 35)               AS "csBankIdCd"
+SUB(%vTablenameCSC%.changeUserID; 1; 35)           AS "csChangeUserID"
+SUB(%vTablenameCSC%.changeDateTime; 1; 24)         AS "csChangeDateTime"
+SUB(%vTablenameCSC%.changeDescription; 1; 50)      AS "csChangeDesc"
+SUB(invRef; 1; 50)                                 AS "invRef"
+SUB(costID; 1; 35)                                 AS "costID"
+SUB(prodID; 1; 35)                                 AS "prodID"
+SUB(projID; 1; 35)                                 AS "projID"
+SUB(artGrpID; 1; 35)                               AS "artGrpID"
+SUB(qntityID; 1; 35)                               AS "qntityID"
+SUB(qntity; 1; 10)                                 AS "qntity"
+SUB(bankAccNr; 1; 35)                              AS "bankAccNr"
+SUB(bankIdCd; 1; 35)                               AS "bankIdCd"
+SUB(%vTablenameTRLV%.vatID; 1; 35)                 AS "vatCode"
+SUB(%vTablenameTRLV%.vatPerc; 1; 8)                AS "vatPercentage"
+%vTablenameTRLV%.cVatAmnt_D                        AS "vatAmount_D"
+%vTablenameTRLV%.cVatAmnt_C                        AS "vatAmount_C"
+SUB(%vTablenameVC%.vatDesc; 1; 50)                 AS "vatDesc"
+SUB(%vTablenameVC%.vatToPayAccID; 1; 35)           AS "vatToPayAccID"
+SUB(%vTablenameVC%.vatToClaimAccID; 1; 35)         AS "vatToClaimAccID"
+SUB(%vTablenameTRLC%.curCode; 1; 3)                AS "curCode"        
+%vTablenameTRLC%.cCurAmnt                          AS "curAmnt"
+
+COMMENT 
+Add openingBalanceLines to transactions if desired
+- vFiscalYear needed to determine date of openingBalance. If not present, actual year will be set
+END
+
+vFiscalYear = ""
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T OPEN %vTablename%_HDR___
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T vFiscalYear = ALLTRIM(fiscalYear)
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T AND vFiscalYear = "" vFiscalYear = DATE(startdate; "YYYY")  
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T AND vFiscalYear = "" vFiscalYear = DATE(CTOD(DATE()); "YYYY") 
+
+COMMENT - then open OBL and extract the fields with same length and type as transactions
+
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T OPEN %vTablename%_OBL___
+
+vExtract =            'SUB(companyIdent; 1; 35) AS "companyIdent" ' 
+vExtract = vExtract + 'SUB("00"; 1; 35) AS "journalID" ' 
+vExtract = vExtract + 'SUB("Opening Balance"; 1; 75) AS "jrnDesc" ' 
+vExtract = vExtract + 'SUB("O"; 1; 2) AS "jrnType" ' 
+vExtract = vExtract + 'BLANKS(35) AS "jrnOffsetAccID" ' 
+vExtract = vExtract + 'BLANKS(35) AS "bankAccID" ' 
+vExtract = vExtract + 'SUB("00"; 1; 35) AS "transactionID" ' 
+vExtract = vExtract + 'SUB("OpeningBalance"; 1; 50) AS "transactionDescription" ' 
+vExtract = vExtract + 'SUB("00"; 1; 3) AS "period" ' 
+COMM dit is erg vreemd om een tekst in een datumveld te appenden, maar het werkt niet anders.
+vExtract = vExtract + '"%vFiscalYear%-01-01" AS "transactionDate" ' 
+vExtract = vExtract + 'BLANKS(35) AS "trSrcID" ' 
+vExtract = vExtract + 'BLANKS(35) AS "trUserID" ' 
+vExtract = vExtract + 'SUB(nr; 1; 35) AS "lineNr" ' 
+vExtract = vExtract + 'SUB(accID; 1; 35) AS "glAccID" ' 
+vExtract = vExtract + 'SUB(%vTablenameGLA%.accDesc; 1; 50) AS "glAccDesc" ' 
+vExtract = vExtract + 'SUB(%vTablenameGLA%.accTp; 1; 2) AS "glAccType" ' 
+vExtract = vExtract + 'SUB(%vTablenameGLA%.leadCode; 1; 50) AS "leadCode" ' 
+vExtract = vExtract + 'SUB(%vTablenameGLA%.leadDescription; 1; 50) AS "leadDescription" ' 
+vExtract = vExtract + 'SUB(%vTablenameGLA%.leadReference; 1; 50) AS "leadReference" ' 
+vExtract = vExtract + 'SUB(%vTablenameGLA%.leadCrossRef; 1; 50) AS "leadCrossRef" ' 
+vExtract = vExtract + 'BLANKS(50) AS "docRef" ' 
+COMM dit is erg vreemd om een tekst in een datumveld te appenden, maar het werkt niet anders.
+vExtract = vExtract + '"%vFiscalYear%-01-01" AS "effectiveDate" ' 
+vExtract = vExtract + 'SUB("OpeningBalance"; 1; 50) AS "lineDesc" ' 
+vExtract = vExtract + 'cAmnt_D AS "debitAmount" ' 
+vExtract = vExtract + 'cAmnt_C AS "creditAmount" ' 
+vExtract = vExtract + 'BLANKS(35) AS "custSupID" ' 
+vExtract = vExtract + 'BLANKS(1) AS "csType" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csCompanyName" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csAddress" ' 
+vExtract = vExtract + 'BLANKS(10) AS "csPostalCode" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csCity" ' 
+vExtract = vExtract + 'BLANKS(2) AS "csCountry" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csPostAddress" ' 
+vExtract = vExtract + 'BLANKS(10) AS "csPostPostalCode" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csPostCity" ' 
+vExtract = vExtract + 'BLANKS(2) AS "csPostCountry" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csContact" ' 
+vExtract = vExtract + 'BLANKS(30) AS "csTel" ' 
+vExtract = vExtract + 'BLANKS(30) AS "csFax" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csEmail" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csWebsite" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csCommerceNr" ' 
+vExtract = vExtract + 'BLANKS(2) AS "csTaxRegCountry" ' 
+vExtract = vExtract + 'BLANKS(30) AS "csTaxRegistrationNr" ' 
+vExtract = vExtract + 'BLANKS(35) AS "csRelID" ' 
+vExtract = vExtract + 'BLANKS(35) AS "csSupGrpID" ' 
+vExtract = vExtract + 'BLANKS(20) AS "csCustCredLimit" ' 
+vExtract = vExtract + 'BLANKS(20) AS "csSupLimit" ' 
+vExtract = vExtract + 'BLANKS(35) AS "csBankAccNr" ' 
+vExtract = vExtract + 'BLANKS(35) AS "csBankIdCd" ' 
+vExtract = vExtract + 'BLANKS(35) AS "csChangeUserID" ' 
+vExtract = vExtract + 'BLANKS(24) AS "csChangeDateTime" ' 
+vExtract = vExtract + 'BLANKS(50) AS "csChangeDesc" ' 
+vExtract = vExtract + 'BLANKS(50) AS "invRef" ' 
+vExtract = vExtract + 'BLANKS(35) AS "costID" ' 
+vExtract = vExtract + 'BLANKS(35) AS "prodID" ' 
+vExtract = vExtract + 'BLANKS(35) AS "projID" ' 
+vExtract = vExtract + 'BLANKS(35) AS "artGrpID" ' 
+vExtract = vExtract + 'BLANKS(35) AS "qntityID" ' 
+vExtract = vExtract + 'BLANKS(10) AS "qntity" ' 
+vExtract = vExtract + 'BLANKS(35) AS "bankAccNr" ' 
+vExtract = vExtract + 'BLANKS(35) AS "bankIdCd" ' 
+vExtract = vExtract + 'BLANKS(35) AS "vatCode" ' 
+vExtract = vExtract + 'BLANKS(8) AS "vatPercentage" ' 
+vExtract = vExtract + 'DEC(0; 2) AS "vatAmount_D" ' 
+vExtract = vExtract + 'DEC(0; 2) AS "vatAmount_C" ' 
+vExtract = vExtract + 'BLANKS(50) AS "vatDesc" ' 
+vExtract = vExtract + 'BLANKS(35) AS "vatToPayAccID" ' 
+vExtract = vExtract + 'BLANKS(35) AS "vatToClaimAccID" ' 
+vExtract = vExtract + 'BLANKS(3) AS "curCode" ' 
+vExtract = vExtract + 'DEC(0; 2) AS "curAmnt" ' 
+
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T EXTRACT %vExtract% TO xaf_%vTablename% APPEND 
+DELETE vExtract OK
+
+
+COMMENT Import table TRANSACTIONS - SUBLEDGERS (not encountered testdata yet***)
+vImport =           'IMPORT XML TO %vTablenameTRSS% "%vTablenameTRSS%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent" C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+COMMENT
+# Possible data in field sbType #############
+# Type    Description
+# CS      Customers / Suppliers
+# CU      Customers
+# SU      Suppliers
+# ZZ      Other
+#############################################
+END
+vImport = vImport + 'FIELD "sbType"       C AT  36 DEC 0 WID  2 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbType/text()" '
+vImport = vImport + 'FIELD "sbDesc"       C AT  38 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbDesc/text()" '
+vImport = vImport + 'FIELD "linesCount"   C AT  88 DEC 0 WID 10 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/linesCount/text()" '
+vImport = vImport + 'FIELD "totalDebit"   C AT  98 DEC 0 WID 20 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/totalDebit/text()" '
+vImport = vImport + 'FIELD "totalCredit"  C AT 118 DEC 0 WID 20 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/totalCredit/text()" '
+
+IF FTYPE("%vTablenameTRS%") <> "U" %vImport%
+IF FTYPE("%vTablenameTRSS%") <> "U" OPEN %vTablenameTRSS%
+IF FTYPE("%vTablenameTRSS%") <> "U" DEFINE FIELD cKey_TRSS__ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(sbType + BLANKS(2); 1; 2)
+IF FTYPE("%vTablenameTRSS%") <> "U" INDEX ON cKey_TRSS__ TO %vTablename%TRSS
+
+
+COMMENT Add a computed fields NUM with totals for reporting
+IF FTYPE("%vTablenameTRSS%") <> "U" DEFINE FIELD cTotalDebit          COMPUTED
+
+  VALUE(EXCLUDE(totalDebit;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(totalDebit)))=3
+  VALUE(EXCLUDE(totalDebit;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(totalDebit)))=2
+  VALUE(EXCLUDE(totalDebit;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(totalDebit)))=1
+  VALUE(EXCLUDE(totalDebit;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(totalDebit)))=0
+  DEC(0;2)
+
+IF FTYPE("%vTablenameTRSS%") <> "U" DEFINE FIELD cTotalCredit         COMPUTED
+
+  VALUE(EXCLUDE(totalCredit;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(totalCredit)))=3
+  VALUE(EXCLUDE(totalCredit;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(totalCredit)))=2
+  VALUE(EXCLUDE(totalCredit;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(totalCredit)))=1
+  VALUE(EXCLUDE(totalCredit;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(totalCredit)))=0
+  DEC(0;2)
+
+COMMENT Calculate totals SOLL
+vTrssDebitTotalSoll = 0
+vTrssCreditTotalSoll = 0
+vTrssLinesCountSoll = 0
+GROUP IF FTYPE("%vTablenameTRSS%") <> "U" 
+    TOTAL cTotalDebit
+    TOTAL cTotalCredit
+    TOTAL VAL(linesCount; 0)
+END
+IF FTYPE("%vTablenameTRSS%") <> "U" vTrssDebitTotalSoll = TOTAL2
+IF FTYPE("%vTablenameTRSS%") <> "U" vTrssCreditTotalSoll = TOTAL3
+IF FTYPE("%vTablenameTRSS%") <> "U" vTrssLinesCountSoll = TOTAL4
+
+
+COMMENT Import table TRANSACTIONS - SUBLEDGERS - LINES (not encountered testdata yet***)
+vImport =           'IMPORT XML TO %vTablenameTRSSL% "%vTablenameTRSSL%.fil" FROM "%vActDir%%vSourcefile%" '
+vImport = vImport + 'FIELD "companyIdent"  C AT   1 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/companyIdent/text()" '
+vImport = vImport + 'FIELD "sbType"        C AT  36 DEC 0 WID  2 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbType/text()" '
+vImport = vImport + 'FIELD "nr"            C AT  38 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/nr/text()" '
+vImport = vImport + 'FIELD "jrnID"         C AT  73 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/jrnID/text()" '
+vImport = vImport + 'FIELD "trNr"          C AT 108 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/trNr/text()" '
+vImport = vImport + 'FIELD "trLineNr"      C AT 143 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/trLineNr/text()" '
+vImport = vImport + 'FIELD "desc"          C AT 178 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/desc/text()" '
+vImport = vImport + 'FIELD "amnt"          C AT 228 DEC 0 WID 20 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/amnt/text()" '
+COMMENT # Possible types: D or C
+vImport = vImport + 'FIELD "amntTp"        C AT 248 DEC 0 WID  1 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/amntTp/text()" '
+vImport = vImport + 'FIELD "docRef"        C AT 298 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/docRef/text()" '
+vImport = vImport + 'FIELD "recRef"        C AT 348 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/recRef/text()" '
+vImport = vImport + 'FIELD "matchKeyID"    C AT 398 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/matchKeyID/text()" '
+vImport = vImport + 'FIELD "custSupID"     C AT 433 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/custSupID/text()" '
+vImport = vImport + 'FIELD "invRef"        C AT 468 DEC 0 WID 50 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/invRef/text()" '
+COMMENT # Possible types: P(urchase) or S(ales) 
+vImport = vImport + 'FIELD "invPurSalTp"   C AT 518 DEC 0 WID  1 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/invPurSalTp/text()" '
+COMMENT # Possible types: D or C
+vImport = vImport + 'FIELD "invTp"         C AT 519 DEC 0 WID  1 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/invTp/text()" '
+vImport = vImport + 'FIELD "invDt"         D AT 520 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/invDt/text()" '
+vImport = vImport + 'FIELD "invDueDt"      D AT 536 DEC 0 WID 16 PIC "YYYY-MM-DD" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/invDueDt/text()" '
+COMMENT # Possible types: I(nvoice), P(ayment) or Z(=other) 
+vImport = vImport + 'FIELD "mutTp"         C AT 552 DEC 0 WID  1 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/mutTp/text()" '
+vImport = vImport + 'FIELD "costID"        C AT 553 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/costID/text()" '
+vImport = vImport + 'FIELD "prodID"        C AT 588 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/prodID/text()" '
+vImport = vImport + 'FIELD "projID"        C AT 623 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/projID/text()" '
+vImport = vImport + 'FIELD "artGrpID"      C AT 658 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/artGrpID/text()" '
+vImport = vImport + 'FIELD "qntityID"      C AT 693 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/qntitiyID/text()" '
+vImport = vImport + 'FIELD "qntity"        C AT 728 DEC 0 WID 10 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/qntity/text()" '
+vImport = vImport + 'FIELD "vatID"         C AT 738 DEC 0 WID 35 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/vat/vatID/text()" '
+vImport = vImport + 'FIELD "vatPerc"       C AT 773 DEC 0 WID  8 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/vat/vatPerc/text()" '
+vImport = vImport + 'FIELD "vatAmnt"       C AT 781 DEC 0 WID 20 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/vat/vatAmnt/text()" '
+COMMENT # Possible types: D or C
+vImport = vImport + 'FIELD "vatAmntTp"     C AT 801 DEC 0 WID  1 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/vat/vatAmntTp/text()" '
+vImport = vImport + 'FIELD "curCode"       C AT 802 DEC 0 WID  3 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/currency/curCode/text()" '
+vImport = vImport + 'FIELD "curAmnt"       C AT 805 DEC 0 WID 20 PIC "" AS "" RULE "/auditfile/company/transactions/subledgers/subledger/sbLine/currency/curAmnt/text()" '
+
+IF FTYPE("%vTablenameTRS%") <> "U" %vImport%
+IF FTYPE("%vTablenameTRSSL%") <> "U" OPEN %vTablenameTRSSL%
+IF FTYPE("%vTablenameTRSSL%") <> "U" DEFINE FIELD cKey_TRSSL_ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(sbType + BLANKS(2); 1; 2) + "_" + SUB(nr + BLANKS(35); 1; 35)
+IF FTYPE("%vTablenameTRSSL%") <> "U" INDEX ON cKey_TRSSL_ TO %vTablename%TRSSL
+
+COMMENT Define numeric fields for calculation of totals
+IF FTYPE("%vTablenameTRSSL%") <> "U" DEFINE FIELD cAmnt_D          COMPUTED
+
+  VALUE(EXCLUDE(Amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(Amnt)))=3 AND AmntTp = "D"
+  VALUE(EXCLUDE(Amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(Amnt)))=2 AND AmntTp = "D"
+  VALUE(EXCLUDE(Amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(Amnt)))=1 AND AmntTp = "D"
+  VALUE(EXCLUDE(Amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(Amnt)))=0 AND AmntTp = "D"
+  DEC(0;2)
+
+IF FTYPE("%vTablenameTRSSL%") <> "U" DEFINE FIELD cAmnt_C          COMPUTED
+
+  VALUE(EXCLUDE(Amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(Amnt)))=3 AND AmntTp = "C"
+  VALUE(EXCLUDE(Amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(Amnt)))=2 AND AmntTp = "C"
+  VALUE(EXCLUDE(Amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(Amnt)))=1 AND AmntTp = "C"
+  VALUE(EXCLUDE(Amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(Amnt)))=0 AND AmntTp = "C"
+  DEC(0;2)
+
+IF FTYPE("%vTablenameTRSSL%") <> "U" DEFINE FIELD cVatAmnt_D          COMPUTED
+
+  VALUE(EXCLUDE(vatAmnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=3 AND vatAmntTp = "D"
+  VALUE(EXCLUDE(vatAmnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=2 AND vatAmntTp = "D"
+  VALUE(EXCLUDE(vatAmnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=1 AND vatAmntTp = "D"
+  VALUE(EXCLUDE(vatAmnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=0 AND vatAmntTp = "D"
+  DEC(0;2)
+
+IF FTYPE("%vTablenameTRSSL%") <> "U" DEFINE FIELD cVatAmnt_C          COMPUTED
+
+  VALUE(EXCLUDE(vatAmnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=3 AND vatAmntTp = "C"
+  VALUE(EXCLUDE(vatAmnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=2 AND vatAmntTp = "C"
+  VALUE(EXCLUDE(vatAmnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=1 AND vatAmntTp = "C"
+  VALUE(EXCLUDE(vatAmnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(vatAmnt)))=0 AND vatAmntTp = "C"
+  DEC(0;2)
+
+COMMENT Calculate totals IST
+vTrsslDebitTotalIst = DEC(0; 2)
+vTrsslCreditTotalIst = DEC(0; 2)
+vTrsslLinesCountIst = 0
+GROUP IF FTYPE("%vTablenameTRL%") <> "U" 
+    TOTAL cAmnt_D
+    TOTAL cAmnt_C
+END
+IF FTYPE("%vTablenameTRSSL%") <> "U" vTrsslDebitTotalIst = TOTAL2
+IF FTYPE("%vTablenameTRSSL%") <> "U" vTrsslCreditTotalIst = TOTAL3
+IF FTYPE("%vTablenameTRSSL%") <> "U" vTrsslLinesCountIst = vCountTRSSL
