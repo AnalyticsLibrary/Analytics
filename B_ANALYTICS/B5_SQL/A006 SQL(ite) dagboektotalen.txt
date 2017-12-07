@@ -1,0 +1,4 @@
+A006 totalen per dagboek: Hieronder SQL(ite) statement.
+
+
+SELECT Transactieregels.jrnID, Dagboek.desc, Dagboek.jrnTp, COUNT(Transactieregels.amnt) AS LinesCount, SUM (CASE WHEN Transactieregels.amntTp='D' THEN Transactieregels.amnt ELSE 0 END) AS Debet, SUM (CASE WHEN Transactieregels.amntTp='C' THEN Transactieregels.amnt ELSE 0 END) AS Credit , SUM (CASE WHEN Transactieregels.amntTp='D' THEN Transactieregels.amnt ELSE Transactieregels.amnt * -1 END) AS Saldo FROM Transactieregels INNER JOIN Dagboek ON (Transactieregels.jrnID=Dagboek.jrnID) GROUP BY Transactieregels.jrnID

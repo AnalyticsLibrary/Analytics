@@ -1,0 +1,8 @@
+  Hieronder een SQL(ITE) statement om het totaal aantal mutaties te krijgen [COUNT(amnt)] daarna wordt per begingetal 1 tm 9 vastgesteld of deze voorkomt. Indien voorkomt dan wordt 1 opgesteld bij het betreffende getal.
+  De gegevens worden gehaald uit de tabel Transactions. Met abs(amnt * 100) wordt een bedrag vermenigvuldigd om geen voorloopnullen meer te hebben. Daarna absoluut gemaakt. Met cast wordt het getal omzet in een tekst variabele ('string') van de string
+  wordt het eerste teken beoordeeld of dit een 1, 2 .... 9 is.
+  
+  
+  
+  SELECT COUNT(amnt) AS T, SUM (CASE WHEN substr(cast(abs(amnt * 100) as text),1,1)='1' THEN 1 ELSE 0 END) AS N1, SUM (CASE WHEN substr(cast(abs(amnt * 100) as text),1,1)='2' THEN 1 ELSE 0 END) AS N2, SUM (CASE WHEN substr(cast(abs(amnt * 100) as text),1,1)='3' THEN 1 ELSE 0 END) AS N3, SUM (CASE WHEN substr(cast(abs(amnt * 100) as text),1,1)='4' THEN 1 ELSE 0 END) AS N4, SUM (CASE WHEN substr(cast(abs(amnt * 100) as text),1,1)='5' THEN 1 ELSE 0 END) AS N5, SUM (CASE WHEN substr(cast(abs(amnt * 100) as text),1,1)='6' THEN 1 ELSE 0 END) AS N6, SUM (CASE WHEN substr(cast(abs(amnt * 100) as text),1,1)='7' THEN 1 ELSE 0 END) AS N7, SUM (CASE WHEN substr(cast(abs(amnt * 100) as text),1,1)='8' THEN 1 ELSE 0 END) AS N8, SUM (CASE WHEN substr(cast(abs(amnt * 100) as text),1,1)='9' THEN 1 ELSE 0 END) AS N9 FROM Transactions
+  

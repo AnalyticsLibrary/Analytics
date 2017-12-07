@@ -1,11 +1,23 @@
 
 COM import script for XAF V3.2
 
+
+SET SAFETY OFF
+DELETE LOG OK
+SET DATE       "YYYYMMDD"
+SET SEPARATORS ".,;"
+SET PICTURE    "-9,999,999.99"
+SET READAHEAD  255
+
+
 COM ASSIGN variables for path and name of xaf which will be 
 COM used when import all tables
+ 
+ 
+ASSIGN vSourcefile = ""
+ASSIGN vActDir = ""
+ASSIGN vTablename = "Tabel"
 
-ASSIGN vSourcefile = 
-ASSIGN vActDir = 
 
 COMMENT Initiate tablenames to which the data will be imported
 COMMENT Fiscal year and company
@@ -498,6 +510,8 @@ vImport = vImport + 'FIELD "amntTp"           C AT 126 DEC 0 WID  1 PIC ""      
 
 IF FTYPE("%vTablenameOB%") <> "U" %vImport%
 IF FTYPE("%vTablenameOBL%") <> "U" OPEN %vTablenameOBL%
+IF FTYPE("%vTablenameOBL%") <> "U" COUNT IF nr <> ""
+IF FTYPE("%vTablenameOBL%") <> "U" vCountOBL = COUNT1
 IF FTYPE("%vTablenameOBL%") <> "U" DEFINE FIELD cKey_OBL___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35)  + "_" + SUB(nr + BLANKS(35); 1; 35)
 IF FTYPE("%vTablenameOBL%") <> "U" INDEX ON cKey_OBL___ TO %vTablename%OBL
 
@@ -720,6 +734,8 @@ vImport = vImport + 'FIELD "userID"               C AT 351 DEC 0 WID 35 PIC ""  
 
 IF FTYPE("%vTablenameJRN%") <> "U" %vImport%
 IF FTYPE("%vTablenameTRN%") <> "U" OPEN %vTablenameTRN%
+IF FTYPE("%vTablenameTRN%") <> "U" COUNT IF trNr <> ""
+IF FTYPE("%vTablenameTRN%") <> "U" vCountTRN = COUNT1
 IF FTYPE("%vTablenameTRN%") <> "U" DEFINE FIELD cKey_TRN___ COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35) + "_" + SUB(trNr + BLANKS(35); 1; 35)
 IF FTYPE("%vTablenameTRN%") <> "U" INDEX ON cKey_TRN___ TO %vTablename%TRN
 IF FTYPE("%vTablenameTRN%") <> "U" DEFINE FIELD cKey_TRN___2JRN COMPUTED SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35)
@@ -792,6 +808,8 @@ vImport = vImport + 'FIELD "bankIdCd"             C AT 883 DEC 0 WID 35 PIC ""  
 
 IF FTYPE("%vTablenameJRN%") <> "U" %vImport%
 IF FTYPE("%vTablenameTRL%") <> "U" OPEN %vTablenameTRL%
+IF FTYPE("%vTablenameTRL%") <> "U" COUNT IF trLineNr <> ""
+IF FTYPE("%vTablenameTRL%") <> "U" vCountTRL = COUNT1
 IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cKey_TRL___ COMPUTED       SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35) + "_" + SUB(trNr + BLANKS(35); 1; 35) + "_" + SUB(trLineNr + BLANKS(35); 1; 35)
 IF FTYPE("%vTablenameTRL%") <> "U" INDEX ON cKey_TRL___ TO %vTablename%TRL
 IF FTYPE("%vTablenameTRL%") <> "U" DEFINE FIELD cKey_TRL___2TRN COMPUTED   SUB(companyIdent + BLANKS(35); 1; 35) + "_" + SUB(jrnID + BLANKS(35); 1; 35) + "_" + SUB(trNr + BLANKS(35); 1; 35)
@@ -1006,14 +1024,14 @@ Add openingBalanceLines to transactions if desired
 END
 
 vFiscalYear = ""
-IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T OPEN %vTablename%_HDR___
-IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T vFiscalYear = ALLTRIM(fiscalYear)
-IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T AND vFiscalYear = "" vFiscalYear = DATE(startdate; "YYYY")  
-IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T AND vFiscalYear = "" vFiscalYear = DATE(CTOD(DATE()); "YYYY") 
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1  OPEN %vTablename%_HDR___
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1  vFiscalYear = ALLTRIM(fiscalYear)
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vFiscalYear = "" vFiscalYear = DATE(startdate; "YYYY")  
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vFiscalYear = "" vFiscalYear = DATE(CTOD(DATE()); "YYYY") 
 
 COMMENT - then open OBL and extract the fields with same length and type as transactions
 
-IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T OPEN %vTablename%_OBL___
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1  OPEN %vTablename%_OBL___
 
 vExtract =            'SUB(companyIdent; 1; 35) AS "companyIdent" ' 
 vExtract = vExtract + 'SUB("00"; 1; 35) AS "journalID" ' 
@@ -1025,7 +1043,7 @@ vExtract = vExtract + 'SUB("00"; 1; 35) AS "transactionID" '
 vExtract = vExtract + 'SUB("OpeningBalance"; 1; 50) AS "transactionDescription" ' 
 vExtract = vExtract + 'SUB("00"; 1; 3) AS "period" ' 
 COMM dit is erg vreemd om een tekst in een datumveld te appenden, maar het werkt niet anders.
-vExtract = vExtract + '"%vFiscalYear%-01-01" AS "transactionDate" ' 
+vExtract = vExtract + 'SUBSTRING("%vFiscalYear%0101" 1 16) AS "transactionDate" ' 
 vExtract = vExtract + 'BLANKS(35) AS "trSrcID" ' 
 vExtract = vExtract + 'BLANKS(35) AS "trUserID" ' 
 vExtract = vExtract + 'SUB(nr; 1; 35) AS "lineNr" ' 
@@ -1038,7 +1056,7 @@ vExtract = vExtract + 'SUB(%vTablenameGLA%.leadReference; 1; 50) AS "leadReferen
 vExtract = vExtract + 'SUB(%vTablenameGLA%.leadCrossRef; 1; 50) AS "leadCrossRef" ' 
 vExtract = vExtract + 'BLANKS(50) AS "docRef" ' 
 COMM dit is erg vreemd om een tekst in een datumveld te appenden, maar het werkt niet anders.
-vExtract = vExtract + '"%vFiscalYear%-01-01" AS "effectiveDate" ' 
+vExtract = vExtract + 'SUBSTRING("%vFiscalYear%0101" 1 16) AS "effectiveDate" ' 
 vExtract = vExtract + 'SUB("OpeningBalance"; 1; 50) AS "lineDesc" ' 
 vExtract = vExtract + 'cAmnt_D AS "debitAmount" ' 
 vExtract = vExtract + 'cAmnt_C AS "creditAmount" ' 
@@ -1089,7 +1107,7 @@ vExtract = vExtract + 'BLANKS(35) AS "vatToClaimAccID" '
 vExtract = vExtract + 'BLANKS(3) AS "curCode" ' 
 vExtract = vExtract + 'DEC(0; 2) AS "curAmnt" ' 
 
-IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 AND vAddObl = T EXTRACT %vExtract% TO xaf_%vTablename% APPEND 
+IF FTYPE("%vTablename%_OBL___") <> "U" AND vCountOBL > 1 EXTRACT %vExtract% TO xaf_%vTablename% APPEND 
 DELETE vExtract OK
 
 
@@ -1235,4 +1253,4 @@ GROUP IF FTYPE("%vTablenameTRL%") <> "U"
 END
 IF FTYPE("%vTablenameTRSSL%") <> "U" vTrsslDebitTotalIst = TOTAL2
 IF FTYPE("%vTablenameTRSSL%") <> "U" vTrsslCreditTotalIst = TOTAL3
-IF FTYPE("%vTablenameTRSSL%") <> "U" vTrsslLinesCountIst = vCountTRSSL
+

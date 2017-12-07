@@ -1,0 +1,4 @@
+Hieronder een SQL(ite) statement voor het verkrijgen van inzicht verkopen/inkopen per relatie. 
+
+
+SELECT Transactieregels.custSupID, Relaties.custSupName, Relaties.custSupTp, COUNT(Transactieregels.amnt) AS LinesCount, SUM (CASE WHEN Transactieregels.amntTp='D' THEN Transactieregels.amnt ELSE 0 END) AS Debet, SUM (CASE WHEN Transactieregels.amntTp='C' THEN Transactieregels.amnt ELSE 0 END) AS Credit, SUM (CASE WHEN Transactieregels.amntTp='D' THEN Transactieregels.amnt ELSE Transactieregels.amnt * -1 END) AS Saldo FROM Transactieregels INNER JOIN Relaties ON (Transactieregels.custSupID=Relaties.custSupID) GROUP BY Transactieregels.custSupID
