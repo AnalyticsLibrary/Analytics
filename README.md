@@ -18,8 +18,4 @@ Hierbij wordt uit gegeven van een aantal veronderstellingen:
 2. Alhoewel de auditfile-familie vaak de databron zal zijn, is de inhoud van de analyse een belangrijk uitgangspunt. Dit betekent dat sommige analyses niet uitgevoerd kunnen worden met alleen auditfiles maar dat data uit andere bronnen noodzakelijk is. 
 3. Sommige analyses zullen gebruik maken van het referentiegrootboekschema. 
 
-### Status 6 maart 2017
-
-Het GitHub open source project is opgezet en zal gaan dienen voor de 'huisvesting' van analyse scripts. Via de bijbehorende wiki zullen analyses functioneel worden beschreven zodat gebruikers en ontwikkelaars weten wat er valt te halen en brengen. Meer uitleg over het Analytics Library project is te vinden op de [website](https://www.analyticslibrary.nl). Daar zijn ook mogelijkheden om je in te schrijven op de nieuwsbrief en het Slack channel.
-
 Vragen kunnen per mail vestuurd worden naar info@AnalyticsLibrary.nl.
