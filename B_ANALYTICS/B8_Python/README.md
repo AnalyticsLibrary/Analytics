@@ -15,4 +15,4 @@ Op de volgende site staat uitgelegd hoe je Jupyter notebook installeert:
 
 http://jupyter.org/install
 
-Het script werkt ook op andere type auditfiles, aangezien in beginsel het pakket niet moet uitmaken voor het importeren van de transacties. De gedachte is dat auditfiles een uniform format hebben. (we weten dat dit niet altijd het geval is: Het kan bijvoorbeeld zijn dat er btw gegevens o.i.d. ontbreken)
+Het script werkt ook op andere software pakketten, aangezien in beginsel het pakket niet moet uitmaken voor het importeren van de transacties. De gedachte is dat auditfiles een uniform format hebben. (we weten dat dit niet altijd het geval is: Het kan bijvoorbeeld zijn dat er btw gegevens o.i.d. ontbreken)
