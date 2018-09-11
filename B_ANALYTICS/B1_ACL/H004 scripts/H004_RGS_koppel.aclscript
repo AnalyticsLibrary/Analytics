@@ -1,0 +1,102 @@
+SET FOLDER /Tables
+OPEN transactions
+SUMMARIZE ON accID TO "transactions_tijd.FIL" OPEN PRESORT
+
+OPEN GeneralLedger
+INDEX ON accID TO "GeneralLedger_on_accID"
+OPEN transactions_tijd
+DEFINE RELATION accID WITH GeneralLedger INDEX GeneralLedger_on_accID
+DEFINE FIELD accDesc        COMPUTED  GeneralLedger.accDesc
+DEFINE FIELD accTp          COMPUTED  GeneralLedger.accTp
+DEFINE FIELD leadReference  COMPUTED  GeneralLedger.leadReference
+
+SUMMARIZE ON accID accDesc OTHER leadReference IF accTp = "B" TO "GL_RGS_Koppel.FIL" PRESORT OPEN
+DEFINE FIELD accIDDesc      COMPUTED  REPLACE(REPLACE(ALLTRIM(accID + " " + accDesc); "'" ; "" );'"' ; '' ) 
+COUNT
+vAantGrbk = COUNT1 
+
+Extract "DIALOG (DIALOG TITLE 'RGS-labels koppelen' WIDTH 750 HEIGHT" + string(vAantGrbk*15+90 ; 6) + ") (BUTTONSET TITLE '&OK;&Cancel' AT 650 12 DEFAULT 1 ) (TEXT TITLE 'Selecteer de OB-grootboekrekeningen. Indien u een verkeerde keuze maakt, kunt u het script ten alle tijde opnieuw uitvoeren.' AT 12 16 WIDTH 143 HEIGHT 181 ) " IF recno()=1 TO ".\output\DialogBoxRGS.BAT" 
+
+vDialogRGS = 1
+
+Extract "SET SAFETY OFF"+CHR(10)+"SET FOLDER /Tables"+CHR(10)+"OPEN GL_RGS_Koppel"+CHR(10)+"Locate record vDialogRGS"+CHR(10)+"vaccIDDesc = accIDDesc"+CHR(10)+"EXTRACT "+'"'+"(CHECKBOX TITLE '%vacc"+"IDDesc%'"+" TO "+"'vaccIDDesc"+"%vDialog"+"RGS%_filteren'"+" AT 180 "+'"'+" + string(vDialogRGS*15; 6) + "+'"'+" HEIGHT 14 )"+'"'+" If recno()=1 TO "+'"'+".\output\DialogBoxRGS.BAT"+'"'+" APPEND"+CHR(10)+"vDialogRGS = vDialogRGS + 1" IF recno()=1 TO ".\output\DialogRGS.BAT"
+
+DO script .\output\DialogRGS.BAT WHILE vAantGrbk >= vDialogRGS
+DO script .\output\DialogBoxRGS.BAT
+
+vGesGrbk = 0
+Extract "OPEN GL_RGS_Koppel"+CHR(10)+"SET SAFETY OFF"+CHR(10)+"SET FOLDER /Tables"+CHR(10)+"ASSIGN vGesGrbk = vGesGrbk + 1"+CHR(10)+"IF vaccIDDesc%vGes"+"Grbk%_filteren = T Extract FIELDS accID accDesc accIDDesc if recno()=%vGesG"+"rbk% to 'GL_RGS_Koppel_geselec.FIL' APPEND" IF recno()=1 TO ".\output\GesGrbk.BAT"
+DO script .\output\GesGrbk.BAT WHILE vGesGrbk < vAantGrbk
+
+OPEN RGS_OB_Aangifte 
+
+LOCATE RECORD 1
+ASSIGN vRGS1 = F2
+LOCATE RECORD 2
+ASSIGN vRGS2 = F2
+LOCATE RECORD 3
+ASSIGN vRGS3 = F2
+LOCATE RECORD 4
+ASSIGN vRGS4 = F2
+LOCATE RECORD 5
+ASSIGN vRGS5 = F2
+LOCATE RECORD 6
+ASSIGN vRGS6 = F2
+LOCATE RECORD 7
+ASSIGN vRGS7 = F2
+LOCATE RECORD 8
+ASSIGN vRGS8 = F2
+LOCATE RECORD 9
+ASSIGN vRGS9 = F2
+
+OPEN GL_RGS_Koppel_geselec
+COUNT
+ASSIGN vAantKopp = Count1
+vKopp = 0
+
+Extract "OPEN GL_RGS_Koppel_geselec"+CHR(10)+"SET SAFETY OFF"+CHR(10)+"ASSIGN vKopp = vKopp + 1"+CHR(10)+"LOCATE RECORD vKopp"+CHR(10)+"ASSIGN vKoppel = accIDDesc"+CHR(10)+CHR(10)+"DIALOG (DIALOG TITLE "+'"%vKo'+'ppel%"'+" WIDTH 478 HEIGHT 486 ) (BUTTONSET TITLE "+'"'+'&OK;&Cancel" AT 370 12 DEFAULT 1 ) (TEXT TITLE "Selecteer de RGS code die hoort bij de grootboekrekening"+CHR(10)+"%vKo'+'ppel%"+CHR(10)+"Indien u een verkeerde keuze maakt, kunt u het script ten alle tijde opnieuw uitvoeren." AT 12 16 WIDTH 337 HEIGHT 51 ) (RADIOBUTTON TITLE "%vR'+"GS1%"+";%vRG"+"S2%"+";%vRG"+"S3%"+";%vR"+"GS4%"+";%vR"+"GS5%"+";%vR"+"GS6%"+";%vR"+"GS7%"+";%vR"+"GS8%"+";%vR"+"GS9%"+'" '+'TO "vRGS_OB%vK'+'opp%" AT 12 96 WIDTH 452 HEIGHT 350 DEFAULT 1 )'+CHR(10)+CHR(10)+"OPEN GL_RGS_Koppel_geselec"+CHR(10)+"DEFINE FIELD A%vKo"+"pp%     COMPUTED "+CHR(10)+CHR(10)+" vRGS1 IF recno() = %vKo"+"pp% AND vRGS_OB%vK"+"opp% = 1"+CHR(10)+" vRGS2 IF recno() = %vKo"+"pp% AND vRGS_OB%vK"+"opp% = 2"+CHR(10)+" vRGS3 IF recno() = %vKo"+"pp% AND vRGS_OB%vK"+"opp% = 3"+CHR(10)+" vRGS4 IF recno() = %vKo"+"pp% AND vRGS_OB%vK"+"opp% = 4"+CHR(10)+" vRGS5 IF recno() = %vKo"+"pp% AND vRGS_OB%vK"+"opp% = 5"+CHR(10)+" vRGS6 IF recno() = %vKo"+"pp% AND vRGS_OB%vK"+"opp% = 6"+CHR(10)+" vRGS7 IF recno() = %vKo"+"pp% AND vRGS_OB%vK"+"opp% = 7"+CHR(10)+" vRGS8 IF recno() = %vKo"+"pp% AND vRGS_OB%vK"+"opp% = 8"+CHR(10)+" vRGS9 IF recno() = %vKo"+"pp% AND vRGS_OB%vK"+"opp% = 9"+CHR(10)+' "" ' IF recno()=1 TO ".\output\Kopp.BAT"
+
+DO script .\output\Kopp.BAT WHILE vKopp < vAantKopp
+
+OPEN GL_RGS_Koppel_geselec
+vKopp2 = 0
+vKoppUitv = "DEFINE FIELD RGS_label_omschr COMPUTED "
+Extract "OPEN GL_RGS_Koppel_geselec"+CHR(10)+"SET SAFETY OFF"+CHR(10)+"ASSIGN vKopp2 = vKopp2 + 1"+CHR(10)+CHR(10)+"IF vKo"+"pp2 < 2 vKop"+"pUitv = vKop"+"pUitv + "+'"'+"Alltrim(A%vK"+"opp2%)"+'" '+CHR(10)+"IF vKop"+"p2 >= 2 vKop"+"pUitv = vKop"+"pUitv + "+'"'+"+ Alltrim(A%vK"+"opp2%)"+'" ' IF recno()=1 TO ".\output\Kopp2.BAT"
+
+DO script .\output\Kopp2.BAT WHILE vKopp2 < vAantKopp
+%vKoppUitv% 
+
+EXTRACT FIELDS accID accDesc accIDDesc RGS_label_omschr TO "GL_RGS_Koppel_geselec2.FIL" OPEN
+DEFINE FIELD cKey           COMPUTED 
+WIDTH 1  
+ SUBSTR( RGS_label_omschr; 1 ; 70 )
+
+OPEN RGS_OB_Aangifte
+DEFINE FIELD cKey           COMPUTED 
+WIDTH 1  
+ SUBSTR( F2; 1 ; 70 )
+
+OPEN RGS_OB_Aangifte
+INDEX ON cKey TO "RGS_OB_Aangifte_on_cKey"
+OPEN GL_RGS_Koppel_geselec2
+DEFINE RELATION cKey WITH RGS_OB_Aangifte INDEX RGS_OB_Aangifte_on_cKey
+DEFINE FIELD RGS_label      COMPUTED  RGS_OB_Aangifte.F1
+
+OPEN GeneralLedger_arc
+EXTRACT RECORD TO "GeneralLedger_arc2.FIL"
+OPEN GL_RGS_Koppel_geselec2
+INDEX ON accID TO "GL_RGS_Koppel_geselec2_on_accID"
+OPEN GeneralLedger_arc2
+DEFINE RELATION accID WITH GL_RGS_Koppel_geselec2 INDEX GL_RGS_Koppel_geselec2_on_accID
+DELETE FIELD Rgs_label OK 
+DEFINE FIELD Rgs_labela     ASCII     141  13    
+DEFINE FIELD Rgs_labelb     COMPUTED  GL_RGS_Koppel_geselec2.RGS_label
+DEFINE FIELD RGS_label      COMPUTED 
+
+ RGS_labela IF RGS_labelb = ""
+ RGS_labelb
+
+DELETE FORMAT GeneralLedger_arc OK
+DELETE GeneralLedger_arc.fil OK
+OPEN GeneralLedger_arc2
+EXTRACT FIELDS fiscalYear accID accDesc accTp leadReference basicType basicID basicDesc RGS_label TO "GeneralLedger_arc.FIL" OPEN

@@ -1,0 +1,102 @@
+COMMENT
+# Het opschonen van het ACL project bij het afronden of afbreken van het script.
+
+DELETE FORMAT GeneralLedger OK
+DELETE FORMAT customersSuppliers OK
+DELETE FORMAT jrnID OK
+DELETE FORMAT periods OK
+DELETE FOLDER B0_Input OK
+DELETE FORMAT arcroles OK
+DELETE FORMAT Dagboeken OK
+DELETE FORMAT a_generalLedger_arc OK
+DELETE FORMAT aangiftetotalen OK
+DELETE FORMAT scr01 OK
+DELETE FORMAT sr01 OK
+DELETE FORMAT XAF_list OK
+DELETE FORMAT header OK
+DELETE FORMAT subledgers OK
+DELETE FORMAT transactions OK
+DELETE FORMAT vatCodes OK
+DELETE FORMAT RGS_uit_GL_tijd OK
+DELETE FORMAT transactions_RGS OK
+DELETE FORMAT GeneralLedger_arc OK
+DELETE SCRIPT DialogBox OK
+DELETE SCRIPT DialogBoxRGS OK
+DELETE SCRIPT Summarize OK
+DELETE SCRIPT Filter OK
+DELETE FORMAT DialogBox OK
+DELETE FORMAT Summarize OK
+DELETE FORMAT Filter OK
+DELETE FORMAT Gefilterde_dagboeken_OB_boekingen OK
+DELETE FORMAT Gefilterde_dagboeken OK
+DELETE FORMAT GeneralLedger_arc OK
+DELETE FORMAT GeneralLedger_arc2 OK
+DELETE FORMAT DialogBoxRGS OK
+DELETE FORMAT GL_RGS_Koppel_geselec OK
+DELETE FORMAT GL_RGS_Koppel_geselec2 OK
+DELETE FORMAT GL_RGS_Koppel OK
+DELETE FORMAT GL_RGS_Koppel2 OK
+DELETE FORMAT RGS_OB_Aangifte OK
+DELETE FORMAT transactions_tijd OK
+DELETE FORMAT Dagboek OK
+DELETE SCRIPT Dagboek OK
+DELETE FORMAT Dialog OK
+DELETE SCRIPT Dialog OK
+DELETE FORMAT DagbOpsch OK
+DELETE SCRIPT DagbOpsch OK
+DELETE FORMAT Filt OK
+DELETE FORMAT DialogRGS OK
+DELETE SCRIPT DialogRGS OK
+DELETE SCRIPT Filt OK
+DELETE FORMAT GesGrbk OK
+DELETE SCRIPT GesGrbk OK
+DELETE SCRIPT Summ OK
+DELETE FORMAT Summ OK
+DELETE SCRIPT Kopp OK
+DELETE FORMAT Kopp OK
+DELETE SCRIPT Kopp2 OK
+DELETE FORMAT Kopp2 OK
+DELETE a_generalLedger_arc.FIL OK
+DELETE aangiftetotalen.FIL OK
+DELETE arcroles.FIL OK
+DELETE customersSuppliers.FIL OK
+DELETE Dagboeken.FIL OK
+DELETE GeneralLedger.FIL OK
+DELETE header.FIL OK
+DELETE jrnID.FIL OK
+DELETE periods.FIL OK
+DELETE scr01.FIL OK
+DELETE sr01.fil OK
+DELETE subledgers.fil OK
+DELETE transactions.fil OK
+DELETE vatCodes.fil OK
+DELETE XAF_list.fil OK
+DELETE transactions.fil OK
+DELETE vatCodes.fil OK
+DELETE RGS_uit_GL_tijd.fil OK
+DELETE transactions_RGS.fil OK
+DELETE GeneralLedger_arc.fil OK
+DELETE GeneralLedger_arc2.fil OK
+DELETE Gefilterde_dagboeken_OB_boekingen.fil OK
+DELETE Gefilterde_dagboeken.fil OK
+DELETE DialogBoxRGS.fil OK
+DELETE GL_RGS_Koppel_geselec.FIL OK
+DELETE GL_RGS_Koppel_geselec2.FIL OK
+DELETE GL_RGS_Koppel.FIL OK
+DELETE GL_RGS_Koppel2.FIL OK
+DELETE RGS-OB-Aangifte.fil OK
+DELETE transactions_tijd.fil OK
+DELETE ".\output\DialogBox.BAT" OK
+DELETE ".\output\DialogBoxRGS.BAT" OK
+DELETE ".\output\Summarize.BAT" OK
+DELETE ".\output\Dagboek.BAT" OK
+DELETE ".\output\DagbOpsch.BAT" OK
+DELETE ".\output\Dialog.BAT" OK
+DELETE ".\output\DialogRGS.BAT" OK
+DELETE ".\output\Filt.BAT" OK
+DELETE ".\output\Filter.BAT" OK
+DELETE ".\output\GesGrbk.BAT" OK
+DELETE ".\output\Kopp.BAT" OK
+DELETE ".\output\Kopp2.BAT" OK
+DELETE ".\output\Summ.BAT" OK
+DELETE ALL OK

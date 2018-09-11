@@ -1,0 +1,183 @@
+
+COMMENT
+*****************************************************************************
+In tegestelling tot sommige andere ACL scripts die zijn opgenomen
+in de Analytics Library, heeft dit script zijn eigen inleesscript. Dit
+inleesscript en andere subscripts worden aangeroepen door H004.aclscript
+*****************************************************************************
+
+COMMENT
+*****************************************************************************
+H004 - voorbereiding voor aansluiting tussen administratie en de BTW aangifte
+*****************************************************************************
+
+COMMENT - Eerst alle tabellen verwijderen voor het geval dat het script niet de eerste keer wordt gedraaid
+SET SEPARATORS ",.;"
+SET SAFETY OFF OK
+DO H004_Opschonen OK
+DELETE FORMAT H004 OK
+DELETE H004.FIL OK
+DELETE ".\output\H004.xlsx" OK
+DELETE ".\output\Gefilterde_dagboeken_OB_JPs.xlsx" OK
+
+COMMENT - Het inlezen van de XAF bestanden uit de foler 'Input'
+Pause "U dient de auditfile met 'XAF' extensie te plaatsen in de folder 'input'. Gebruik per ACL-project één auditfile."
+DIALOG (DIALOG TITLE "Auditfile" WIDTH 465 HEIGHT 112 ) (BUTTONSET TITLE "&OK;&Cancel" AT 360 12 DEFAULT 1 ) (TEXT TITLE "Zit de auditfile in folder 'input'?" AT 12 16 WIDTH 334 HEIGHT 19 ) (RADIOBUTTON TITLE "Ja;Nee" TO "Radio1" AT 12 48 WIDTH 107 DEFAULT 1 )
+
+IF Radio1 = 2 Pause "Het script wordt gestopt. U kunt het script opnieuw uitvoeren nadat u de auditfile heeft geplaatst in de folder 'input'"
+IF Radio1 = 2 ESCAPE
+
+SET FOLDER /Tables
+DIRECTORY ".\input\*.xaf" SUPPRESS TO XAF_list.fil 
+IF WRITE1=0 Pause "Er bevindt zich geen auditfile in de folder 'input'. Het script wordt gestopt. U kunt het script opnieuw uitvoeren nadat u de auditfile heeft geplaatst in de folder 'input'"
+IF WRITE1=0 DO H004_Opschonen 
+IF FILESIZE("XAF_list.fil") = -1  ESCAPE
+
+OPEN XAF_list
+COUNT
+ASSIGN vNumber_XAF = COUNT1
+ASSIGN vNumber_XAF_done = 0
+DO H004_import WHILE vNumber_XAF_done < vNumber_XAF
+
+COMMENT - Het selecteren van de aangifte frequentie
+DIALOG (DIALOG TITLE "Maand of kwartaal?" WIDTH 465 HEIGHT 153 ) (BUTTONSET TITLE "&OK;&Cancel" AT 360 12 DEFAULT 1 ) (TEXT TITLE "Aansluiting per maand of per kwartaal?" AT 24 16 WIDTH 144 HEIGHT 47 ) (DROPDOWN TITLE "maand;kwartaal" TO "v_frequentie" AT 228 12 DEFAULT 1 )
+
+COMMENT - Het inlezen van de RGS-labels en de RGS-omschrijvingen uit de Nederlandse OB aangifte
+IMPORT EXCEL TO RGS_OB_Aangifte "RGS-OB-Aangifte.fil" FROM "input\RGS-OB-Aangifte.xlsx" TABLE "Blad1$" FIELD "F1" C WID 13 AS "" FIELD "F2" C WID 62 AS ""
+
+COMMENT - Inlezen van XML bestand om link te bepalen tussen de RGS labels en aangiftevelden. Dit XML bestand (arcroles.xml) is afkomstig van http://www.nltaxonomie.nl/ en wordt ingelezen als platte tekst 
+SET FOLDER /Tables
+IMPORT DELIMITED TO sr01 "sr01.fil" FROM ".\input\rgs-mapping_ob-aangifte-2017.xml" 0 SEPARATOR "^" QUALIFIER NONE CONSECUTIVE STARTLINE 1 FIELD "Field_1" C AT 1 DEC 0 WID 955 PIC "" AS "" 
+
+COMMENT - Vervolgens worden hier de records uit gefilterd die de link tussen RGS en aangifte weer geven
+EXTRACT FIELDS ALL IF FIND('xlink:type="arc"') = T TO arcroles OPEN  
+
+COMMENT - Vervolgens veld rgs_label aanmaken door parsen van het veld (maximeren op 13)
+DEFINE FIELD Rgs_label COMPUTED SUBSTRING(SPLIT(SPLIT(Field_1 ; 'rgs-i_' ; 2) ; '" xlink' ; 1) 1 13)
+
+COMMENT - Vervolgens RGS-labels koppelen aan grootboekrekeningen.
+OPEN arcroles
+INDEX ON Rgs_label TO "arcroles_on_Rgs_label"
+OPEN GeneralLedger
+DEFINE RELATION leadReference WITH arcroles INDEX arcroles_on_Rgs_label
+EXTRACT FIELDS ALL arcroles.Rgs_label TO GeneralLedger_arc OPEN
+
+COMMENT - Controleren van RGS-labels
+OPEN GeneralLedger_arc
+SET FILTER TO MATCH(Rgs_label;"BSchBtwAtdOla";"BSchBtwAtdOlv";"BSchBtwAtdOlo";"BSchBtwAtdOop";"BSchBtwAtdOlw";"BSchBtwAtdOlb";"BSchBtwAtdOlu";"BSchBtwAtdVoo";"BSchBtwAtdVvd")
+SUMMARIZE ON Rgs_label TO "RGS_uit_GL_tijd.FIL" OPEN PRESORT
+COUNT
+IF Count1 < 2 Pause "De RGS-labels bij de OB-grootboekrekeningen uit deze auditfile lijken niet (helemaal) goed gekoppeld te zijn. Wilt u de OB-grootboekrekeningen koppelen aan de juiste RGS-labels?"
+IF Count1 < 2 DO H004_RGS_koppel
+
+COMMENT - Vervolgens transacties bepalen die volgens de RGS-labels horen bij velden in de BTW aangifte
+OPEN GeneralLedger_arc
+INDEX ON accID TO "GeneralLedger_arc_on_accID"
+OPEN transactions
+DEFINE RELATION accID WITH GeneralLedger_arc INDEX GeneralLedger_arc_on_accID
+
+COMMENT - Velden aanmaken voor intelling
+DEFINE FIELD maand        COMPUTED 
+WIDTH 7  
+ fiscalYear + "-" + periodNumber
+
+DEFINE FIELD kwartaal COMPUTED 
+
+ fiscalYear + "-" + "BB" IF value(periodNumber ,0) = 0
+ fiscalYear + "-" + "Q1" IF value(periodNumber ,0) < 4
+ fiscalYear + "-" + "Q2" IF value(periodNumber ,0) < 7
+ fiscalYear + "-" + "Q3" IF value(periodNumber ,0) < 10
+ fiscalYear + "-" + "Q4" IF value(periodNumber ,0) > 9
+ "X"
+
+DEFINE FIELD bedrag_tijd        COMPUTED   
+           
+  VALUE(EXCLUDE(trLine_amnt;".,");2)/100 IF AT(1;".";REVERSE(ALLTRIM(trLine_amnt)))=3 OR AT(1;",";REVERSE(ALLTRIM(trLine_amnt)))=3 
+  VALUE(EXCLUDE(trLine_amnt;".,");2)/10  IF AT(1;".";REVERSE(ALLTRIM(trLine_amnt)))=2 OR AT(1;",";REVERSE(ALLTRIM(trLine_amnt)))=2 
+  VALUE(EXCLUDE(trLine_amnt;".,");2)/1   IF AT(1;".";REVERSE(ALLTRIM(trLine_amnt)))=1 OR AT(1;",";REVERSE(ALLTRIM(trLine_amnt)))=1 
+  VALUE(EXCLUDE(trLine_amnt;".,");2)     IF AT(1;".";REVERSE(ALLTRIM(trLine_amnt)))=0 OR AT(1;",";REVERSE(ALLTRIM(trLine_amnt)))=0 
+  DEC(0;2)
+
+DEFINE FIELD bedrag         COMPUTED 
+
+ bedrag_tijd * -1,00  IF trLine_amntTp = 'C'
+ bedrag_tijd 
+
+DEFINE FIELD Dagboeken      COMPUTED  REPLACE(REPLACE(ALLTRIM(fiscalYear)+"|"+ALLTRIM(jrnID)+"|"+ALLTRIM(journal_desc); "'" ; "" );'"' ; '' )
+ SORT ON accID GeneralLedger_arc.accDesc GeneralLedger_arc.Rgs_label %v_frequentie% Dagboeken TO transactions_RGS
+
+COMMENT - Dagboeken definieren voor het eventueel filteren.
+OPEN transactions
+SUMMARIZE ON Dagboeken TO "Dagboeken.FIL" PRESORT OPEN
+COUNT
+ASSIGN vAantalDagboeken = COUNT1
+ASSIGN vAantalDagboeken_done = 0
+Extract "SET SAFETY OFF"+CHR(10)+"SET FOLDER /Tables"+CHR(10)+"ASSIGN vAantalD"+"agboeken_done = vAantalDag"+"boeken_done + 1"+CHR(10)+"OPEN DAGBOEKEN"+CHR(10)+"LOCATE RECORD vAantalD"+"agboeken_done"+CHR(10)+"ASSIGN vDag"+"boek%vAantal"+"Dagboeken_done% = ALLTRIM(Dagboeken)" IF recno()=1 TO ".\output\Dagboek.BAT"
+
+DO script .\output\Dagboek.BAT  WHILE vAantalDagboeken_done < vAantalDagboeken
+
+Extract "DIALOG (DIALOG TITLE 'Dagboeken Selecteren' WIDTH 605 HEIGHT" + string(vAantalDagboeken*15+170 ; 6) + ") (BUTTONSET TITLE '&OK;&Cancel' AT 504 12 DEFAULT 1 ) (TEXT TITLE 'Selecteer de dagboeken die niet meegenomen moeten worden in de aansluiting (bv: Dagboek memoriaal). Denk hierbij aan de verstorende journaalposten zoals de periodieke opschoning van de BTW rekeningen. De journaalposten met OB boekingen uit de geselecteerde dagboeken worden aan het einde van het script separaat geëxporteerd in een Excel-bestand.' AT 12 16 WIDTH 143 HEIGHT 181 ) " IF recno()=1 TO ".\output\DialogBox.BAT" 
+vDialog = 0
+
+Extract "SET SAFETY OFF"+CHR(10)+"ASSIGN vDi"+"alog = vDi"+"alog + 1"+CHR(10)+'IF Ftype("vDagb'+'oek%vDia'+'log%") <> "U" EXTRACT "(CHECKBOX TITLE " + "'+"'%"+'"+"vDagb'+'oek%vDia'+'log%"+"%'+"'"+'"+" TO '+"'vDagb%vDi"+"alog%_filteren' AT 180 "+'" + string(vDia'+'log*15; 6) + " HEIGHT 14 )" If recno()=1 TO ".\output\DialogBox.BAT" APPEND' IF recno()=1 TO ".\output\Dialog.BAT"
+
+DO script .\output\Dialog.BAT  WHILE vDialog < vAantalDagboeken
+DO script .\output\DialogBox.BAT
+
+vDagbOpsch = 0
+
+Extract "SET SAFETY OFF"+CHR(10)+"ASSIGN vDagb"+"Opsch = vDag"+"bOpsch + 1"+CHR(10)+'IF Ftype("vDagb%vDa'+'gbOpsch%_filteren") = "U" vDagb%vDag'+'bOpsch%_filteren = F OK'+CHR(10)+"IF vDagb%vDa"+"gbOpsch%_filteren = F del vDagboek%vDag"+"bOpsch% OK"+CHR(10)+"del vDagb%vDagb"+"Opsch%_filteren = OK" IF recno()=1 TO ".\output\DagbOpsch.BAT"
+
+DO script .\output\DagbOpsch.BAT  WHILE vDagbOpsch < vAantalDagboeken
+
+COMMENT - Extracten van de transacties zonder de uitgefilterde dagboeken.
+OPEN transactions_RGS
+Extract "SUMMARIZE ON accID GeneralLedger_arc.accDesc GeneralLedger_arc.Rgs_label %v_frequentie% Dagboeken SUBTOTAL bedrag IF (NOT MATCH(Dagboeken" IF recno()=1 TO ".\output\Summarize.BAT" 
+vSumm = 0
+
+Extract "SET SAFETY OFF"+CHR(10)+"ASSIGN vSu"+"mm = vSu"+"mm + 1"+CHR(10)+'IF Ftype("vDagboek%vS'+'umm%") <> "U" EXTRACT ";'+"'"+'%vDag'+'boek"+"%vSu'+'mm%"+"%'+"'"+'" If recno()=1 TO ".\output\Summarize.BAT" APPEND' IF recno()=1 TO ".\output\Summ.BAT"
+
+DO script .\output\Summ.BAT  WHILE vSumm < vAantalDagboeken
+
+Extract ")) AND (GeneralLedger_arc.Rgs_label <> ' ') TO Aangiftetotalen OPEN PRESORT" IF recno()=1 TO ".\output\Summarize.BAT" APPEND
+DO script .\output\Summarize.BAT
+
+OPEN RGS_OB_Aangifte
+INDEX ON F1 TO "RGS_OB_Aangifte_on_F1"
+OPEN Aangiftetotalen
+DEFINE RELATION RGS_label WITH RGS_OB_Aangifte INDEX RGS_OB_Aangifte_on_F1
+OPEN Aangiftetotalen
+DEFINE FIELD RGS_label_omschr COMPUTED  RGS_OB_Aangifte.F2
+
+COMMENT - Vervolgens een draaitabel maken per periode.
+CROSSTAB ON accID accDesc Rgs_label RGS_label_omschr COLUMNS %v_frequentie% SUBTOTAL bedrag TO H004 OPEN
+
+COMMENT - Exporteren van het resultaat naar een excel-bestand.
+EXPORT FIELDS ALL XLSX TO ".\output\H004" WORKSHEET H004 
+
+COMMENT - Exporteren van de OB transacties uit de geselecteerde dagboeken.
+OPEN transactions_RGS
+Extract "SORT ON fiscalYear transaction_nr FIELDS fiscalYear accID GeneralLedger_arc.accDesc effDate %v_frequentie% GeneralLedger_arc.Rgs_label transaction_nr transaction_desc trLine_desc Dagboeken bedrag IF (MATCH(Dagboeken" IF recno()=1 TO ".\output\Filter.BAT" 
+vFilt = 0
+
+Extract "SET SAFETY OFF"+CHR(10)+"ASSIGN vFi"+"lt = vFi"+"lt + 1"+CHR(10)+'IF Ftype("vDag'+'boek%vF'+'ilt%") <> "U" EXTRACT ";'+"'"+'%vDag'+'boek"+"%vF'+'ilt%"+"%'+"'"+'" If recno()=1 TO ".\output\Filter.BAT" APPEND' IF recno()=1 TO ".\output\Filt.BAT"
+
+DO script .\output\Filt.BAT  WHILE vFilt < vAantalDagboeken
+Extract ")) TO Gefilterde_dagboeken OPEN" IF recno()=1 TO ".\output\Filter.BAT" APPEND
+DO script .\output\Filter.BAT
+
+SUMMARIZE ON transaction_nr IF (Rgs_label <> " ") AND (bedrag <> 0,00) TO "Gefilterde_dagboeken_OB_boekingen.FIL" OPEN PRESORT
+INDEX ON transaction_nr TO "Gefilterde_dagboeken_OB_boekingen_on_transaction_nr"
+OPEN Gefilterde_dagboeken
+DEFINE RELATION transaction_nr WITH Gefilterde_dagboeken_OB_boekingen INDEX Gefilterde_dagboeken_OB_boekingen_on_transaction_nr
+DEFINE FIELD BkNr_OB COMPUTED Gefilterde_dagboeken_OB_boekingen.transaction_nr
+
+EXTRACT FIELDS fiscalYear effDate %v_frequentie% accID accDesc bedrag transaction_nr Dagboeken Rgs_label transaction_desc trLine_desc IF BkNr_OB <> " " TO "Gefilterde_dagboeken_OB_JPs" OPEN
+
+EXPORT FIELDS fiscalYear effDate %v_frequentie% accID accDesc bedrag transaction_nr Dagboeken Rgs_label transaction_desc trLine_desc XLSX TO ".\output\Gefilterde_dagboeken_OB_JPs.xlsx" WORKSHEET Gefilterde_dagboeken_OB_JPs 
+
+COMMENT - Einde van het SCRIPT
+CLOSE primary
+DO H004_Opschonen
+Pause "Het script is klaar. Zie bestand H004 onder folder Output voor de OB aansluiting. Het bestand Gefilterde_dagboeken_OB_JPs betreft de journaalposten van de OB boekingen uit de uitgefilterde dagboeken."
+OPEN H004
