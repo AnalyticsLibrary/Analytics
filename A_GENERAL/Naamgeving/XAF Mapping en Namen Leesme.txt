@@ -1,0 +1,24 @@
+Werkblad [XAF Tabellen]
+Geeft een overzicht van de structuur van XAF specificaties vanaf versie 1.0.
+Van elk element (complex types) is gedefinieerd op welke Tabel het element gemapt wordt.
+Bijv: de elementen Header, Company, Opening Balance en Transactions worden allemaal gemapt op Algemeen.
+Te lezen als: de _gegevens_ in de elementen Header, Company, Opening Balance en Transactions worden allemaal overgenomen in de tabel Algemeen.
+Op tabelniveau zijn er geen verschillen tussen 3.0 en 3.1.
+Sommige structuurelementen (bijv Customers Suppliers en Periods) bevatten geen simpele eigenschappen en worden niet gemapt.
+Noot: de VAT regels hebben hun eigen tabel. Als een VAT regel _altijd_ max 1 keer voorkomt dan kun je die standaard aggregeren naar de bovenliggende Line.
+
+Werkblad XAF Xpaths
+Deze tabel toont hetzelfde als [XAF tabellen] maar nu op veldniveau (simple types).
+Per element wordt een Naam voorgesteld. Hierbij zijn twee strategieën mogelijk:
+1. Elk veld een unieke naam.
+2. Naamgeving consequent eenvoudig, hetzelfde veld krijgt overal dezelfde naam.
+Gekozen is voor 2. Het kan hierdoor nodig zijn om te kwalificeren met de tabelnaam. Bijv het veld Nr: AlgAdr.Nr, Rel.Nr, Bk.Nr, Mut.Nr.
+Om deze reden zijn de tabelnamen kort gehouden.
+In werkblad Freqs is per veld te zien hoe vaak het gebruikt wordt.
+
+RGS
+In het FunHie document versie 2017 staat:
+bij leadReference: "Dit element NIET gebruiken voor RGS."
+bij EntryPoint: "Bevat de RGS conceptnaam. (bv. BIvaKouVvpBeg)"
+Dat betekent dat je nu per Grootboekrekening meerdere RGS codes kunt definieren. Is dit niet de omgekeerde wereld?
+Kan dit met voorbeelden toegelicht worden?

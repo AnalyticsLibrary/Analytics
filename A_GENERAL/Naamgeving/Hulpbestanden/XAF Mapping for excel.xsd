@@ -1,0 +1,49 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element nillable="true" name="root">
+		<xsd:complexType>
+			<xsd:sequence minOccurs="0">
+				<xsd:element minOccurs="0" nillable="true" name="XAF-Tabellen" form="unqualified">
+					<xsd:complexType>
+						<xsd:sequence minOccurs="0">
+							<xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="Rij" form="unqualified">
+								<xsd:complexType>
+									<xsd:sequence minOccurs="0">
+										<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Nr" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Tabel" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="MinMax" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="V32" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="V30en31" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="V10" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Opmerking" form="unqualified"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element minOccurs="0" nillable="true" name="XAF-XPaths" form="unqualified">
+					<xsd:complexType>
+						<xsd:sequence minOccurs="0">
+							<xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="Rij" form="unqualified">
+								<xsd:complexType>
+									<xsd:sequence minOccurs="0">
+										<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Nr" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Tabelnr" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Naam" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Element" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="V32" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="V31" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="V30" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Volgnr" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="V10" form="unqualified"/>
+										<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="V10Choice" form="unqualified"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
